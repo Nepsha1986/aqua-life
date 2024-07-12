@@ -3,11 +3,12 @@ import path from "path";
 import matter from "gray-matter";
 import { MDXRemote } from "next-mdx-remote/rsc";
 
+import { POSTS_FOLDER } from "@/utils/variables";
 import { MetaData } from "./types";
 
 async function fetchContent(params) {
   const { lang, name } = params;
-  const contentDir = path.join(process.cwd(), "content", lang);
+  const contentDir = path.join(process.cwd(), POSTS_FOLDER, lang);
   const filePath = path.join(contentDir, `${name}.mdx`);
 
   let fileContent = "";
