@@ -1,6 +1,3 @@
-import Image from "next/image";
-
-import styles from "./styles.module.css";
 import Link from "next/link";
 
 const AppLogo = () => {
@@ -12,20 +9,20 @@ const AppLogo = () => {
         <text
           x="50%"
           y="40%"
-          font-family="Arial, sans-serif"
-          font-size="24"
+          fontFamily="Arial, sans-serif"
+          fontSize="24"
           fill="black"
-          text-anchor="middle"
+          textAnchor="middle"
         >
           Handbook
         </text>
         <text
           x="50%"
           y="70%"
-          font-family="Arial, sans-serif"
-          font-size="14"
+          fontFamily="Arial, sans-serif"
+          fontSize="14"
           fill="black"
-          text-anchor="middle"
+          textAnchor="middle"
         >
           Freshwater fishes
         </text>

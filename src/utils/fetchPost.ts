@@ -1,15 +1,13 @@
 import { promises as fs } from "fs";
 import path from "path";
 import matter from "gray-matter";
-import { MDXRemote } from "next-mdx-remote/rsc";
 
 import { POSTS_FOLDER } from "@/utils/variables";
-import { MetaData } from "./types";
+import { MetaData } from "@/types";
 
-async function fetchContent(params) {
-  const { lang, name } = params;
+export async function fetchPost(lang: string, slug: string) {
   const contentDir = path.join(process.cwd(), POSTS_FOLDER, lang);
-  const filePath = path.join(contentDir, `${name}.mdx`);
+  const filePath = path.join(contentDir, `${slug}.mdx`);
 
   let fileContent = "";
   let frontmatter: MetaData = { title: "", description: "" };
@@ -27,26 +25,4 @@ async function fetchContent(params) {
   }
 
   return { fileContent, frontmatter };
-}
-
-export default async function ContentPage({ params }) {
-  const { fileContent, frontmatter } = await fetchContent(params);
-
-  return (
-    <div>
-      {<h1>{frontmatter.title}</h1>}
-      {<p>{frontmatter.description}</p>}
-
-      <MDXRemote source={fileContent} />
-    </div>
-  );
-}
-
-export async function generateMetadata({ params }) {
-  const { frontmatter } = await fetchContent(params);
-
-  return {
-    title: frontmatter?.title,
-    description: frontmatter?.description,
-  };
 }
