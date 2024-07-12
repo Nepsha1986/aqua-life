@@ -1,0 +1,15 @@
+.appHeader {
+  border-bottom: 1px solid #eee;
+}
+
+.appHeader__container {
+  display: flex;
+  padding: 0.7rem 15px;
+  justify-content: space-between;
+}
+
+.appHeader__slot {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}

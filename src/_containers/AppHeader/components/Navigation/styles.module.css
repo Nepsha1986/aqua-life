@@ -1,0 +1,8 @@
+.navigation {
+  display: flex;
+  gap: 10px;
+}
+
+.navigationItem {
+  color: #2c2c2c;
+}
