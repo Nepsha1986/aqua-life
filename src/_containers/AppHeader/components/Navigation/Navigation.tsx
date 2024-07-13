@@ -1,4 +1,7 @@
+"use client";
 import Link from "next/link";
+
+import { useLanguage } from "@/context/LanguageProvider";
 import styles from "./styles.module.css";
 
 const NavItem = ({ href, label }: { href: string; label: string }) => (
@@ -7,10 +10,12 @@ const NavItem = ({ href, label }: { href: string; label: string }) => (
   </Link>
 );
 const Navigation = () => {
+  const { lang } = useLanguage();
+
   return (
     <nav className={styles.navigation}>
-      <NavItem href="/handbook" label="Handbook" />
-      <NavItem href="/about" label="About" />
+      <NavItem href={`/${lang}/handbook`} label="Handbook" />
+      <NavItem href={`/${lang}/about`} label="About" />
     </nav>
   );
 };
