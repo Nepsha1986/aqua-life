@@ -14,6 +14,7 @@ const Navigation = () => {
 
   return (
     <nav className={styles.navigation}>
+      <NavItem href={`/${lang}`} label="Homepage" />
       <NavItem href={`/${lang}/handbook`} label="Handbook" />
       <NavItem href={`/${lang}/about`} label="About" />
     </nav>

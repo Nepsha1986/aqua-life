@@ -1,4 +1,3 @@
-import AppLogo from "@/components/AppLogo";
 import Search from "@/containers/Search";
 import Navigation from "./components/Navigation";
 
@@ -9,7 +8,6 @@ const AppHeader = () => {
     <header className={styles.appHeader} data-testid="app_header">
       <div className={styles.appHeader__container}>
         <div className={styles.appHeader__slot}>
-          <AppLogo />
           <Navigation />
         </div>
 

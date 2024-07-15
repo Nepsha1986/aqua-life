@@ -3,10 +3,10 @@ import { Inter } from "next/font/google";
 
 import { Language } from "@/i18n/languages";
 import AppHeader from "@/containers/AppHeader";
+import { LanguageProvider } from "@/context/LanguageProvider";
 
 import "normalize.css/normalize.css";
 import "./globals.css";
-import { LanguageProvider } from "@/context/LanguageProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
