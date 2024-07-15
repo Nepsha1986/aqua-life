@@ -3,6 +3,10 @@
   gap: 30px;
 }
 
-.navigationItem {
+.navItem {
   color: #2c2c2c;
+}
+
+.navItem_active {
+  color: #3598ff;
 }
