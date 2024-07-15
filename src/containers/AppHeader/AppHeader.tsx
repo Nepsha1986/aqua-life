@@ -1,5 +1,5 @@
-import AppLogo from "@/_components/AppLogo";
-import Search from "@/_containers/Search";
+import AppLogo from "@/components/AppLogo";
+import Search from "@/containers/Search";
 import Navigation from "./components/Navigation";
 
 import styles from "./styles.module.css";

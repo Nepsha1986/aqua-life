@@ -3,9 +3,9 @@ import path from "path";
 import matter from "gray-matter";
 
 import { POSTS_FOLDER } from "@/utils/variables";
-import { MetaData } from "@/types";
+import { Post } from "@/types";
 
-export async function fetchPosts(lang) {
+export async function fetchPosts(lang): Promise<Awaited<Post>[]> {
   const contentDir = path.join(process.cwd(), POSTS_FOLDER, lang);
   const filenames = await fs.readdir(contentDir);
 
@@ -15,10 +15,15 @@ export async function fetchPosts(lang) {
       const fileData = await fs.readFile(filePath, "utf8");
       const parsedContent = matter(fileData);
 
+      const slug = filename.replace(".mdx", "");
+      const postUrl = `/${lang}/${slug}`;
+
       return {
         slug: filename.replace(".mdx", ""),
-        ...parsedContent.data,
-      };
+        title: parsedContent.data.title,
+        url: postUrl,
+        excerpt: parsedContent.data.excerpt,
+      } as Post;
     }),
   );
 

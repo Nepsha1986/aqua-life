@@ -1,6 +1,9 @@
-type MetaData = {
+interface Post {
   title: string;
-  description: string;
-};
+  excerpt: string;
+  slug: string;
+  content: string;
+  url: string;
+}
 
-export { type MetaData };
+export { Post };

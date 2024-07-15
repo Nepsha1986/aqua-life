@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 
 import { Language } from "@/i18n/languages";
-import AppHeader from "@/_containers/AppHeader";
+import AppHeader from "@/containers/AppHeader";
 
 import "normalize.css/normalize.css";
 import "./globals.css";

@@ -1,4 +1,4 @@
-import PostsList from "@/_components/PostsList";
+import PostsList from "@/components/PostsList";
 import { fetchPosts } from "@/utils/fetchPosts";
 import { Language } from "@/i18n/languages";
 
