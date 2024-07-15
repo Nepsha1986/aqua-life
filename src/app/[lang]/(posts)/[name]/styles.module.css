@@ -1,0 +1,22 @@
+.article {
+}
+
+.article__imgWrap {
+  max-height: 60dvh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.article__img {
+  width: 100%;
+  height: auto;
+}
+
+.article__contentWrap {
+  max-width: 1300px;
+  padding: 3rem 15px;
+  margin: 0 auto;
+  width: 100%;
+}
