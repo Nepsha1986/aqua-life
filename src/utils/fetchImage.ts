@@ -2,10 +2,14 @@ const fetchImage = async (name) => {
   // TODO: Review and research better approach
   try {
     // @ts-ignore
-    const img = await import(`handbook-freshwater-fish/assets/${name}.jpg`);
+    let img = await import(`handbook-freshwater-fish/assets/${name}.webp`);
+
     return JSON.parse(JSON.stringify(img));
   } catch (e) {
-    return new Error(`Can not find ${name} in assets folder`);
+    // @ts-ignore
+    let img = await import(`handbook-freshwater-fish/assets/angelfish.webp`);
+    console.log(`Can not find ${name} in assets folder`);
+    return JSON.parse(JSON.stringify(img));
   }
 };
 

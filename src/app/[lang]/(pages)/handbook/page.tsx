@@ -6,7 +6,5 @@ export default async function Home({ params }: { params: { lang: Language } }) {
   const { lang } = params;
   const posts = await fetchPosts(lang);
 
-  console.log(posts);
-
   return <PostsList posts={posts} />;
 }

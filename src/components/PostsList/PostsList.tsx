@@ -19,7 +19,7 @@ export default function PostsList({ posts }: Props) {
         {posts.map(async (post) => {
           const img = await fetchImage(post.slug);
           return (
-            <li key={post.slug}>
+            <li key={post.slug} style={{ marginBottom: "10px" }}>
               <PostCard
                 slug={post.slug}
                 image={<Image src={img} width={400} height={300} />}
