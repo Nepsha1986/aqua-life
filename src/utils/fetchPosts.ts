@@ -5,8 +5,9 @@ import matter from "gray-matter";
 import { POSTS_FOLDER } from "@/utils/variables";
 import { Post } from "@/types";
 import { Language } from "@/i18n/languages";
+import fetchImage from "@/utils/fetchImage";
 
-const MAX_SIZE = 2;
+const MAX_SIZE = 3;
 
 export async function fetchPosts(
   lang: Language = "en",
@@ -28,11 +29,16 @@ export async function fetchPosts(
       const slug = filename.replace(".mdx", "");
       const postUrl = `/${lang}/${slug}`;
 
+      const image = await fetchImage(slug);
+
+      console.log(image);
+
       return {
         slug: filename.replace(".mdx", ""),
         title: parsedContent.data.title,
         url: postUrl,
         excerpt: parsedContent.data.excerpt,
+        imgUrl: image.default.src,
       } as Post;
     }),
   );
