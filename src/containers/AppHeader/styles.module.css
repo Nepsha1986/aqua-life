@@ -6,6 +6,9 @@
   display: flex;
   padding: 0.7rem 15px;
   justify-content: space-between;
+  min-height: 70px;
+  max-width: 1300px;
+  margin: 0 auto;
 }
 
 .appHeader__slot {
