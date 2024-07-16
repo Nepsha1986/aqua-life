@@ -15,7 +15,6 @@
 }
 
 .langSwitcherItem:not(.langSwitcherItem_active) {
-  background: #fff;
   padding: 3px 7px;
   width: 175px;
 }
@@ -24,7 +23,6 @@
 }
 
 .langSwitcherItem:not(.langSwitcherItem_active):hover {
-  background: #eee;
 }
 
 .langSwitcher {
