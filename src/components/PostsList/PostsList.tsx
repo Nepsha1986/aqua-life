@@ -1,11 +1,12 @@
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { MDXRemote } from "next-mdx-remote/rsc";
 
 import fetchImage from "@/utils/fetchImage";
 import PostCard from "@/components/PostCard/PostCard";
 import { Post } from "@/types";
-import Link from "next/link";
+import PostsFeed from "@/containers/PostsFeed";
 
 interface Props {
   posts: Post[];
@@ -33,6 +34,8 @@ export default function PostsList({ posts }: Props) {
           );
         })}
       </ul>
+
+      <PostsFeed />
     </div>
   );
 }
