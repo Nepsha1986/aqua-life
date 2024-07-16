@@ -12,8 +12,7 @@ export default async function ContentPage({
 }) {
   const { lang, name } = params;
 
-  const img = await fetchImage(name);
-  const { content, title } = await fetchPost(lang, name);
+  const { content, title, imgUrl, excerpt } = await fetchPost(lang, name);
 
   return (
     <main>
@@ -23,13 +22,14 @@ export default async function ContentPage({
             className={styles.article__img}
             width={1200}
             height={600}
-            src={img}
+            src={imgUrl}
             alt={title}
           />
         </div>
 
         <div className={styles.article__contentWrap}>
           <h1>{title}</h1>
+          <MDXRemote source={excerpt} />
           <MDXRemote source={content} />
         </div>
       </article>

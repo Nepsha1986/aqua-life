@@ -7,4 +7,6 @@ interface Post {
   imgUrl: string;
 }
 
-export { type Post };
+type PostPreview = Omit<Post, "content">;
+
+export { type Post, type PostPreview };
