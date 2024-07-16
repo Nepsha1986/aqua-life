@@ -6,12 +6,21 @@ import { POSTS_FOLDER } from "@/utils/variables";
 import { Post } from "@/types";
 import { Language } from "@/i18n/languages";
 
-export async function fetchPosts(lang: Language): Promise<Awaited<Post>[]> {
-  const contentDir = path.join(process.cwd(), POSTS_FOLDER, lang);
-  const filenames = await fs.readdir(contentDir);
+const MAX_SIZE = 2;
 
-  const posts = await Promise.all(
-    filenames.map(async (filename) => {
+export async function fetchPosts(
+  lang: Language = "en",
+  page = 0,
+  size = MAX_SIZE,
+): Promise<Awaited<Post>[]> {
+  const contentDir = path.join(process.cwd(), POSTS_FOLDER, lang);
+  const allFilenames = await fs.readdir(contentDir);
+  const minIndex = size * page;
+  const maxIndex = minIndex + size;
+  const filenames = allFilenames.slice(minIndex, maxIndex);
+
+  return await Promise.all(
+    filenames.map(async (filename, index) => {
       const filePath = path.join(contentDir, filename);
       const fileData = await fs.readFile(filePath, "utf8");
       const parsedContent = matter(fileData);
@@ -27,6 +36,4 @@ export async function fetchPosts(lang: Language): Promise<Awaited<Post>[]> {
       } as Post;
     }),
   );
-
-  return posts;
 }
