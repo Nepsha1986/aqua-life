@@ -1,10 +1,19 @@
 "use client";
 
-import { createContext, useContext } from "react";
+import React, { createContext, useContext } from "react";
+import { Language } from "@/i18n/languages";
 
-export const LanguageContext = createContext({});
+export const LanguageContext = createContext<{ lang: Language }>({
+  lang: "en",
+});
 
-export const LanguageProvider = ({ lang, children }) => (
+export const LanguageProvider = ({
+  lang,
+  children,
+}: {
+  lang: Language;
+  children: React.ReactNode;
+}) => (
   <LanguageContext.Provider value={{ lang }}>
     {children}
   </LanguageContext.Provider>

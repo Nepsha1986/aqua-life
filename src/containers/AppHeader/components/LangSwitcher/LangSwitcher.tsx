@@ -7,9 +7,9 @@ import { faGlobe } from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";
 
 import { type Language } from "@/i18n/languages";
+import { useLanguage } from "@/context/LanguageProvider";
 
 import styles from "./styles.module.css";
-import { useLanguage } from "@/context/LanguageProvider";
 
 const locales: Record<
   Language,
@@ -24,10 +24,6 @@ const locales: Record<
     label: "Русский",
   },
 };
-
-interface Props {
-  lang: Language;
-}
 
 const LangSwitcherItem: React.FC<{
   label: string;
@@ -50,7 +46,7 @@ const LangSwitcherItem: React.FC<{
   );
 };
 
-const LangSwitcher: React.FC<Props> = () => {
+const LangSwitcher = () => {
   const { lang } = useLanguage();
 
   return (

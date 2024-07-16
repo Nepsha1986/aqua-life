@@ -1,10 +1,10 @@
 import { promises as fs } from "fs";
+import { notFound } from "next/navigation";
 import path from "path";
 import matter from "gray-matter";
 
 import { POSTS_FOLDER } from "@/utils/variables";
 import { Post } from "@/types";
-import { notFound } from "next/navigation";
 
 export async function fetchPost(lang: string, slug: string): Promise<Post> {
   const contentDir = path.join(process.cwd(), POSTS_FOLDER, lang);

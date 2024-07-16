@@ -4,8 +4,9 @@ import matter from "gray-matter";
 
 import { POSTS_FOLDER } from "@/utils/variables";
 import { Post } from "@/types";
+import { Language } from "@/i18n/languages";
 
-export async function fetchPosts(lang): Promise<Awaited<Post>[]> {
+export async function fetchPosts(lang: Language): Promise<Awaited<Post>[]> {
   const contentDir = path.join(process.cwd(), POSTS_FOLDER, lang);
   const filenames = await fs.readdir(contentDir);
 

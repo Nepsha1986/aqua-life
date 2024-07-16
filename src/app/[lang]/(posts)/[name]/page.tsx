@@ -43,10 +43,10 @@ export async function generateMetadata({
   params: { lang: string; name: string };
 }) {
   const { lang, name } = params;
-  const { frontmatter } = await fetchPost(lang, name);
+  const { title, excerpt } = await fetchPost(lang, name);
 
   return {
-    title: frontmatter?.title,
-    description: frontmatter?.description,
+    title: title,
+    description: excerpt,
   };
 }

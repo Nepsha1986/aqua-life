@@ -6,4 +6,4 @@ interface Post {
   url: string;
 }
 
-export { Post };
+export { type Post };

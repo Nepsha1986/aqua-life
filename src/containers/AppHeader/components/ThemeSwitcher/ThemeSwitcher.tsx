@@ -39,7 +39,7 @@ const ThemeSwitcher = () => {
     localStorage.setItem("theme", theme);
   }, [theme]);
 
-  const handleThemeChange = (newTheme) => {
+  const handleThemeChange = (newTheme: "light" | "dark" | "auto") => {
     setTheme(newTheme);
   };
 

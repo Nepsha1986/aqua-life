@@ -1,4 +1,4 @@
-const fetchImage = async (name) => {
+const fetchImage = async (name: string) => {
   // TODO: Review and research better approach
   try {
     // @ts-ignore

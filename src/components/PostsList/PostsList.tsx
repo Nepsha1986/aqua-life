@@ -21,8 +21,9 @@ export default function PostsList({ posts }: Props) {
           return (
             <li key={post.slug} style={{ marginBottom: "10px" }}>
               <PostCard
-                slug={post.slug}
-                image={<Image src={img} width={400} height={300} />}
+                image={
+                  <Image alt={post.title} src={img} width={400} height={300} />
+                }
                 title={post.title}
               >
                 <MDXRemote source={post.excerpt} />
