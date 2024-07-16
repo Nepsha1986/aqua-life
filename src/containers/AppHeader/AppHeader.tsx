@@ -1,6 +1,7 @@
 import Search from "@/containers/Search";
 import Navigation from "./components/Navigation";
 import LangSwitcher from "./components/LangSwitcher";
+import ThemeSwitcher from "./components/ThemeSwitcher";
 
 import styles from "./styles.module.css";
 
@@ -15,6 +16,7 @@ const AppHeader = () => {
         <div className={styles.appHeader__slot}>
           <Search />
           <LangSwitcher />
+          <ThemeSwitcher />
         </div>
       </div>
     </header>

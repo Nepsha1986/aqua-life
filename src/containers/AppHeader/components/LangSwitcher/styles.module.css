@@ -12,7 +12,6 @@
 }
 
 .langSwitcherItem__label {
-  color: #3f3f3f;
 }
 
 .langSwitcherItem:not(.langSwitcherItem_active) {
@@ -22,7 +21,6 @@
 }
 
 .langSwitcherItem_active {
-  color: #1f1f1f;
 }
 
 .langSwitcherItem:not(.langSwitcherItem_active):hover {

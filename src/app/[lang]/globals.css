@@ -10,6 +10,11 @@
   }
 }
 
+[data-theme="dark"] {
+  --foreground-rgb: 255, 255, 255;
+  --card-bg: #2c2c2c;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -40,6 +45,10 @@ li {
   html {
     color-scheme: dark;
   }
+}
+
+html[data-theme="dark"] {
+  color-scheme: dark;
 }
 
 img {
