@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 
 import { Language, languages } from "@/i18n/languages";
-import styles from "./layout.module.css";
+import styles from "./layout.module.scss";
 export default function PagesLayout({
   children,
   params,

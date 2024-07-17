@@ -1,0 +1,63 @@
+@use "theme" as theme;
+@use "mixins" as mixins;
+
+:root {
+  @include mixins.apply-theme(theme.$shared);
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    @include mixins.apply-theme(theme.$light);
+    color-scheme: light;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    @include mixins.apply-theme(theme.$dark);
+    color-scheme: dark;
+  }
+}
+
+[data-theme="light"] {
+  @include mixins.apply-theme(theme.$light);
+  color-scheme: light;
+}
+
+[data-theme="dark"] {
+  @include mixins.apply-theme(theme.$dark);
+  color-scheme: dark;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+  font-weight: 300;
+}
+
+body {
+  color: var(--foreground);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul,
+li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: inline-block;
+}
