@@ -3,10 +3,11 @@ import { Inter } from "next/font/google";
 
 import { Language } from "@/i18n/languages";
 import AppHeader from "@/containers/AppHeader";
+import AppFooter from "@/containers/AppFooter";
 import { LanguageProvider } from "@/context/LanguageProvider";
 
 import "normalize.css/normalize.css";
-import "./globals.css";
+import "@/styles/globals.scss";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -30,6 +31,7 @@ export default async function RootLayout({
         <LanguageProvider lang={lang}>
           <AppHeader />
           {children}
+          <AppFooter />
         </LanguageProvider>
       </body>
     </html>

@@ -1,0 +1,29 @@
+.article {
+  display: flex;
+  gap: 15px;
+  max-width: var(--container-size);
+  margin: 0 auto;
+  padding: 3rem 15px;
+
+  &__imgWrap {
+    max-height: 60dvh;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__img {
+    width: 100%;
+    height: auto;
+  }
+
+  &__contentWrap {
+    width: 100%;
+  }
+
+  &__meta {
+    padding-top: 5rem;
+    min-width: 320px;
+  }
+}

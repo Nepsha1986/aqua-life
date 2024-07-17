@@ -4,7 +4,7 @@ import { fetchPost } from "@/utils/fetchPost";
 
 import InfoCard from "./_components/InfoCard";
 
-import styles from "./styles.module.css";
+import styles from "./styles.module.scss";
 
 export default async function ContentPage({
   params,
