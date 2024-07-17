@@ -32,7 +32,9 @@ const PostsFeed = () => {
             <PostCard
               key={i.slug}
               title={i.title}
-              image={<Image src={i.imgUrl} width={320} height={240} />}
+              image={
+                <Image src={i.imgUrl} width={320} height={240} alt={i.title} />
+              }
             >
               <p>{i.excerpt}</p>
               <Link href={i.url}>Link</Link>

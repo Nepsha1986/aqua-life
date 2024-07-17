@@ -17,14 +17,17 @@ export async function fetchPost(lang: string, slug: string): Promise<Post> {
     const parsedContent = matter(fileData);
 
     const image = await fetchImage(slug);
+    const { title, excerpt, tankInfo, traits } = parsedContent.data;
 
     const post: Post = {
       slug: slug,
-      title: parsedContent.data.title,
       url: postUrl,
-      excerpt: parsedContent.data.excerpt,
-      imgUrl: image.default.src,
       content: parsedContent.content,
+      imgUrl: image.default.src,
+      title,
+      excerpt,
+      tankInfo,
+      traits,
     };
 
     return post;
