@@ -7,9 +7,7 @@
 }
 
 .infoCard__title {
-}
-
-.infoCard__itemsWrap {
+  margin-bottom: 0.7em;
 }
 
 .infoItem {
