@@ -3,7 +3,7 @@ import path from "path";
 import matter from "gray-matter";
 
 import { POSTS_FOLDER } from "@/utils/variables";
-import { Post } from "@/types";
+import { PostPreview } from "@/types";
 import { Language } from "@/i18n/languages";
 import fetchImage from "@/utils/fetchImage";
 
@@ -13,7 +13,7 @@ export async function fetchPosts(
   lang: Language = "en",
   page = 0,
   size = MAX_SIZE,
-): Promise<Awaited<Post>[]> {
+): Promise<Awaited<PostPreview>[]> {
   const contentDir = path.join(process.cwd(), POSTS_FOLDER, lang);
   const allFilenames = await fs.readdir(contentDir);
   const minIndex = size * page;
@@ -31,15 +31,15 @@ export async function fetchPosts(
 
       const image = await fetchImage(slug);
 
-      console.log(image);
-
-      return {
+      const postItem: PostPreview = {
         slug: filename.replace(".mdx", ""),
         title: parsedContent.data.title,
         url: postUrl,
         excerpt: parsedContent.data.excerpt,
         imgUrl: image.default.src,
-      } as Post;
+      };
+
+      return postItem;
     }),
   );
 }

@@ -1,0 +1,32 @@
+.infoCard {
+  border: 1px solid #eee;
+  padding: 0 0.5rem;
+  border-radius: 3px;
+  max-width: 600px;
+  margin-bottom: 15px;
+}
+
+.infoCard__title {
+  margin-bottom: 0.7em;
+}
+
+.infoItem {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0 5px;
+  line-height: 1;
+
+  &:not(:last-child) {
+    border-bottom: 1px dotted #eee;
+  }
+}
+
+.infoItem__term {
+  font-size: 0.8rem;
+}
+
+.infoItem__def {
+  font-size: 0.8rem;
+  margin-bottom: 4px;
+  font-weight: bold;
+}

@@ -5,11 +5,11 @@ import { MDXRemote } from "next-mdx-remote/rsc";
 
 import fetchImage from "@/utils/fetchImage";
 import PostCard from "@/components/PostCard/PostCard";
-import { Post } from "@/types";
+import { PostPreview } from "@/types";
 import PostsFeed from "@/containers/PostsFeed";
 
 interface Props {
-  posts: Post[];
+  posts: PostPreview[];
 }
 export default function PostsList({ posts }: Props) {
   return (
