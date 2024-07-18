@@ -1,0 +1,67 @@
+.button {
+  $this: &;
+
+  display: inline-block;
+  text-transform: uppercase;
+  color: #fff;
+  border-radius: 3px;
+  font-weight: bold;
+  cursor: pointer;
+  border: none;
+  transition: 0.25s;
+
+  &:hover:not(#{$this}_pressed) {
+    scale: 1.01;
+  }
+
+  &_default {
+    //color: var(--sc-c-grey-dark, hsl(0, 0%, 10%));
+    //background: var(--sc-c-grey-lightest, hsl(0, 0%, 90%));
+  }
+
+  &_primary {
+    // background: var(--sc-c-primary, defaults.$primary-color);
+  }
+
+  &_secondary {
+    // background: var(--sc-c-secondary, defaults.$secondary-color);
+  }
+
+  &_danger {
+    // background: var(--sc-c-danger, hsl(0, 50%, 50%));
+  }
+
+  &_transparent {
+    background: transparent;
+    // color: var(--sc-c-grey);
+  }
+
+  &_disabled {
+    pointer-events: none;
+    opacity: 0.5;
+  }
+
+  &_sm {
+    padding: 3px 15px;
+    font-size: 0.65rem;
+  }
+
+  &_md {
+    padding: 5px 20px;
+    font-size: 0.75rem;
+  }
+
+  &_lg {
+    padding: 7px 25px;
+    font-size: 0.85rem;
+  }
+
+  &_iconOnly {
+    padding: 0.5rem;
+    line-height: 1;
+  }
+
+  &_pressed {
+    scale: 1.03;
+  }
+}

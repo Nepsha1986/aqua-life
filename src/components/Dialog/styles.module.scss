@@ -1,0 +1,64 @@
+.dialog {
+  //font-family: var(--sc-primary-font);
+  text-align: left;
+
+  border: none;
+  border-radius: 10px;
+  padding: 0;
+  margin: auto;
+  max-width: 800px;
+  width: 100%;
+  opacity: 0;
+  scale: 0.9;
+  transition-property: opacity, scale, display;
+  transition-duration: 0.3s;
+  transition-behavior: allow-discrete;
+
+  &[open] {
+    opacity: 1;
+    scale: 1;
+    animation: fadeIn 0.3s ease;
+  }
+
+  &__header {
+    min-height: 40px;
+    text-align: center;
+    padding: 0.5rem 1rem;
+    border-bottom: 1px solid #eee;
+  }
+
+  &__footer {
+    text-align: center;
+    padding: 0.5rem 1rem 2rem;
+  }
+
+  &__main {
+    padding: 1rem;
+    min-height: clamp(250px, 20vw, 380px);
+  }
+
+  &__btn {
+    //background-color: var(--sc-primary-color);
+  }
+
+  &::backdrop {
+    background: rgba(0, 0, 0, 0.55);
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0.3;
+    scale: 0.9;
+  }
+
+  70% {
+    opacity: 1;
+    scale: 1.01;
+  }
+
+  100% {
+    opacity: 1;
+    scale: 1;
+  }
+}

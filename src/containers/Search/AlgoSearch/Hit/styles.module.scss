@@ -1,0 +1,22 @@
+.hit {
+  display: flex;
+
+  &__img {
+    max-width: 120px;
+    width: 100%;
+    margin-right: 15px;
+  }
+
+  &__content {
+    padding: 0 15px;
+  }
+
+  &__title {
+    margin-top: 0;
+    font-size: 1.05rem;
+    font-weight: 600;
+  }
+
+  &__exerpt {
+  }
+}

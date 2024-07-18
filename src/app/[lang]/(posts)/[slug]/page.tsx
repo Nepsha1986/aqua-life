@@ -1,21 +1,54 @@
+import path from "path";
+import { promises as fs } from "fs";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import Image from "next/image";
-import { fetchPost } from "@/utils/fetchPost";
 
+import { fetchPost } from "@/utils/fetchPost";
+import { POSTS_FOLDER } from "@/utils/variables";
 import InfoCard from "./_components/InfoCard";
+import { Language, languages } from "@/i18n/languages";
 
 import styles from "./styles.module.scss";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: { lang: string; slug: string };
+}) {
+  const { lang, slug } = params;
+  const { title, excerpt } = await fetchPost(lang, slug);
+
+  return {
+    title: title,
+    description: excerpt,
+  };
+}
+
+export async function generateStaticParams() {
+  const allParams = await Promise.all(
+    languages.map(async (lang) => {
+      const contentDir = path.join(process.cwd(), POSTS_FOLDER, lang);
+      const allFilenames = await fs.readdir(contentDir);
+
+      return allFilenames.map(async (file) => {
+        const slug = file.replace(".mdx", "");
+        return { params: { lang, slug } };
+      });
+    }),
+  );
+
+  return allParams.flat();
+}
 
 export default async function ContentPage({
   params,
 }: {
-  params: { lang: string; name: string };
+  params: { lang: Language; slug: string };
 }) {
-  const { lang, name } = params;
-
-  const { content, title, imgUrl, excerpt, tankInfo, traits } = await fetchPost(
+  const { lang, slug } = params;
+  const { title, excerpt, imgUrl, content, traits, tankInfo } = await fetchPost(
     lang,
-    name,
+    slug,
   );
 
   return (
@@ -64,18 +97,4 @@ export default async function ContentPage({
       </article>
     </main>
   );
-}
-
-export async function generateMetadata({
-  params,
-}: {
-  params: { lang: string; name: string };
-}) {
-  const { lang, name } = params;
-  const { title, excerpt } = await fetchPost(lang, name);
-
-  return {
-    title: title,
-    description: excerpt,
-  };
 }

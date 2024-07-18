@@ -14,8 +14,6 @@ interface Props {
 export default function PostsList({ posts }: Props) {
   return (
     <div>
-      <h1>Blog Posts</h1>
-
       <ul>
         {posts.map(async (post) => {
           const img = await fetchImage(post.slug);

@@ -7,6 +7,7 @@ import AppFooter from "@/containers/AppFooter";
 import { LanguageProvider } from "@/context/LanguageProvider";
 
 import "normalize.css/normalize.css";
+import "instantsearch.css/themes/satellite-min.css";
 import "@/styles/globals.scss";
 
 const inter = Inter({ subsets: ["latin"] });
