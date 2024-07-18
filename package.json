@@ -16,14 +16,17 @@
     "@mdx-js/loader": "^3.0.1",
     "@mdx-js/react": "^3.0.1",
     "@next/mdx": "^14.2.5",
+    "algoliasearch": "^4.24.0",
     "classnames": "^2.5.1",
     "gray-matter": "^4.0.3",
     "handbook-freshwater-fish": "github:Nepsha1986/handbook-freshwater-fish#main",
+    "instantsearch.css": "^8.3.0",
     "next": "14.2.5",
     "next-mdx-remote": "^5.0.0",
     "normalize.css": "^8.0.1",
     "react": "^18",
     "react-dom": "^18",
+    "react-instantsearch": "^7.12.2",
     "sass": "^1.77.8"
   },
   "devDependencies": {
