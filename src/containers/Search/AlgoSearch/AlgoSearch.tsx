@@ -3,17 +3,20 @@
 import algoliasearch from "algoliasearch/lite";
 import { Hits, InstantSearch, SearchBox, Configure } from "react-instantsearch";
 
-import Hit from "@/containers/Search/AlgoSearch/Hit/Hit";
+import Hit from "./Hit";
 
-const client = algoliasearch("40A0Y9MH0P", "fbf610a276b720e7eb4b075523be6374");
+const client = algoliasearch(
+  process.env.NEXT_PUBLIC_ALGOLIA_SEARCH_APP_ID,
+  process.env.NEXT_PUBLIC_ALGOLIA_SEARCH_KEY,
+);
 
 const AlgoSearch = () => {
   return (
     <InstantSearch indexName="temp" searchClient={client}>
       <Configure hitsPerPage={5} />
-      <div className="ais-InstantSearch">
+      <div>
         <SearchBox />
-        <Hits hitComponent={Hit} />
+        <Hits hitComponent={Hit as any} />
       </div>
     </InstantSearch>
   );
