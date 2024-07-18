@@ -2,10 +2,11 @@
 
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
-import VisibilityChecker from "@/components/VisibilityChecker/VisibilityChecker";
-import { Post } from "@/types";
-import PostCard from "@/components/PostCard/PostCard";
 import Link from "next/link";
+
+import { Post } from "@/types";
+import VisibilityChecker from "@/components/VisibilityChecker";
+import PostCard from "@/components/PostCard";
 
 const PostsFeed = () => {
   const [posts, setPosts] = useState<Post[]>([]);

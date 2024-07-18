@@ -10,6 +10,7 @@ const VisibilityChecker = ({ onInView }: Props) => {
   const targetRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
+    const el = targetRef.current as HTMLDivElement;
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -22,27 +23,14 @@ const VisibilityChecker = ({ onInView }: Props) => {
       },
     );
 
-    if (targetRef.current) {
-      observer.observe(targetRef.current);
-    }
+    observer.observe(el);
 
-    // Clean up the observer
     return () => {
-      if (targetRef.current) {
-        observer.unobserve(targetRef.current);
-      }
+      observer.unobserve(el);
     };
   }, []);
 
-  return (
-    <div
-      ref={targetRef}
-      style={{
-        width: "100px",
-        height: "100px",
-      }}
-    />
-  );
+  return <div ref={targetRef} />;
 };
 
 export default VisibilityChecker;
