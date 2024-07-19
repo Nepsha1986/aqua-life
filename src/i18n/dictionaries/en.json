@@ -1,0 +1,10 @@
+{
+  "common": {
+    "search": "Search"
+  },
+  "nav": {
+    "homepage": "Homepage",
+    "handbook": "Handbook",
+    "about": "About"
+  }
+}

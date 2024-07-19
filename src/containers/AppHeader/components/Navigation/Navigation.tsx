@@ -1,28 +1,11 @@
 "use client";
 import Link from "next/link";
 import classNames from "classnames";
+
 import { usePathname } from "next/navigation";
+import { useLocale } from "@/i18n/LocaleProvider";
 
-import { useLanguage } from "@/context/LanguageProvider";
 import styles from "./styles.module.css";
-
-const navItems: {
-  path: string;
-  label: string;
-}[] = [
-  {
-    path: "",
-    label: "Homepage",
-  },
-  {
-    path: "/handbook",
-    label: "Handbook",
-  },
-  {
-    path: "/about",
-    label: "About",
-  },
-];
 
 const NavItem = ({
   href,
@@ -43,13 +26,31 @@ const NavItem = ({
   </Link>
 );
 const Navigation = () => {
-  const { lang } = useLanguage();
+  const { locale, dictionary } = useLocale();
   const pathname = usePathname();
+
+  const navItems: {
+    path: string;
+    label: string;
+  }[] = [
+    {
+      path: "/",
+      label: dictionary.nav.homepage,
+    },
+    {
+      path: "/handbook",
+      label: dictionary.nav.handbook,
+    },
+    {
+      path: "/about",
+      label: dictionary.nav.about,
+    },
+  ];
 
   return (
     <nav className={styles.navigation}>
       {navItems.map((i) => {
-        const href = `/${lang}${i.path}`;
+        const href = `/${locale}${i.path}`;
         return (
           <NavItem
             key={i.path}

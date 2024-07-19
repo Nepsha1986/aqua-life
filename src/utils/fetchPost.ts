@@ -7,10 +7,10 @@ import { POSTS_FOLDER } from "@/utils/variables";
 import { Post } from "@/types";
 import fetchImage from "@/utils/fetchImage";
 
-export async function fetchPost(lang: string, slug: string): Promise<Post> {
-  const contentDir = path.join(process.cwd(), POSTS_FOLDER, lang);
+export async function fetchPost(locale: string, slug: string): Promise<Post> {
+  const contentDir = path.join(process.cwd(), POSTS_FOLDER, locale);
   const filePath = path.join(contentDir, `${slug}.mdx`);
-  const postUrl = `/${lang}/${slug}`;
+  const postUrl = `/${locale}/${slug}`;
 
   try {
     const fileData = await fs.readFile(filePath, "utf8");

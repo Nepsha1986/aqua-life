@@ -1,17 +1,17 @@
 import { notFound } from "next/navigation";
 
-import { Language, languages } from "@/i18n/languages";
+import { Locale, locales } from "@/i18n/locales";
 import styles from "./layout.module.scss";
 export default function PagesLayout({
   children,
   params,
 }: Readonly<{
   children: React.ReactNode;
-  params: { lang: Language };
+  params: { locale: Locale };
 }>) {
-  const { lang } = params;
+  const { locale } = params;
 
-  if (!languages.includes(lang)) notFound();
+  if (!locales.includes(locale)) notFound();
 
   return <main className={styles.layout}>{children}</main>;
 }
