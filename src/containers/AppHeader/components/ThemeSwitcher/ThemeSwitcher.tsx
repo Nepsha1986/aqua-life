@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSun, faMoon, faAdjust } from "@fortawesome/free-solid-svg-icons";
 
 import styles from "./styles.module.css";
+import Button from "@/components/Button/Button";
 
 const ThemeSwitcher = () => {
   const [theme, setTheme] = useState("auto");
@@ -45,15 +46,15 @@ const ThemeSwitcher = () => {
 
   return (
     <div className={styles.themeSwitcher}>
-      <button onClick={() => handleThemeChange("light")}>
+      <Button size="sm" iconOnly onClick={() => handleThemeChange("light")}>
         <FontAwesomeIcon icon={faSun} />
-      </button>
-      <button onClick={() => handleThemeChange("dark")}>
+      </Button>
+      <Button size="sm" iconOnly onClick={() => handleThemeChange("dark")}>
         <FontAwesomeIcon icon={faMoon} />
-      </button>
-      <button onClick={() => handleThemeChange("auto")}>
+      </Button>
+      <Button size="sm" iconOnly onClick={() => handleThemeChange("auto")}>
         <FontAwesomeIcon icon={faAdjust} />
-      </button>
+      </Button>
     </div>
   );
 };

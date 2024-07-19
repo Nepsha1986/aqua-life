@@ -1,7 +1,9 @@
 import { notFound } from "next/navigation";
 
-import { Locale, locales } from "@/i18n/locales";
+import { Locale, locales } from "@/i18n";
+
 import styles from "./layout.module.scss";
+
 export default function PagesLayout({
   children,
   params,

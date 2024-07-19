@@ -1,0 +1,15 @@
+.ais-Hits-list {
+  margin-top: 1rem;
+}
+
+.ais-Hits-item {
+  padding: 0;
+  margin-bottom: 10px;
+  box-shadow: none;
+  background: none;
+}
+
+.ais-SearchBox-input,
+.ais-SearchBox-form {
+  background-color: transparent;
+}

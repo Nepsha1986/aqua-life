@@ -1,0 +1,14 @@
+.navigation {
+  display: flex;
+  gap: 30px;
+}
+
+.navItem {
+  color: var(--color-grey-700);
+  font-size: 0.9rem;
+
+  &_active {
+    color: var(--primary-color);
+    font-weight: 500;
+  }
+}

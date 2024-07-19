@@ -1,0 +1,18 @@
+.appHeader {
+  border-bottom: 1px solid var(--color-grey-400);
+
+  &__container {
+    display: flex;
+    padding: 0.7rem 15px;
+    justify-content: space-between;
+    height: var(--header-height);
+    max-width: 1300px;
+    margin: 0 auto;
+  }
+
+  &__slot {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+}

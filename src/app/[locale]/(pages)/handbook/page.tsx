@@ -1,5 +1,5 @@
 import { fetchPosts } from "@/utils/fetchPosts";
-import { Locale } from "@/i18n/locales";
+import { Locale } from "@/i18n";
 import PostsLinks from "@/components/PostsLinks";
 
 export default async function Home({ params }: { params: { locale: Locale } }) {

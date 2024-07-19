@@ -9,7 +9,7 @@ import Link from "next/link";
 import { type Locale } from "@/i18n/locales";
 import { useLocale } from "@/i18n/LocaleProvider";
 
-import styles from "./styles.module.css";
+import styles from "./styles.module.scss";
 
 const locales: Record<
   Locale,

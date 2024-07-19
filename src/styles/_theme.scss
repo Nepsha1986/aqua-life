@@ -1,13 +1,53 @@
+@function invert-color($color) {
+  $red: red($color);
+  $green: green($color);
+  $blue: blue($color);
+
+  @return rgb(255 - $red, 255 - $green, 255 - $blue);
+}
+
+$primary-color-light: #5faaf8;
+$primary-color-dark: #278ffc;
+
+$grey-colors: (
+  "color-white": #ffffff,
+  "color-grey-100": #f8f9fa,
+  "color-grey-200": #e9ecef,
+  "color-grey-300": #dee2e6,
+  "color-grey-400": #ced4da,
+  "color-grey-500": #adb5bd,
+  "color-grey-600": #6c757d,
+  "color-grey-700": #495057,
+  "color-grey-800": #343a40,
+  "color-grey-900": #212529,
+  "color-black": #000000,
+);
+
 $shared: (
   container-size: 1300px,
 );
 
 $light: (
+  primary-color: $primary-color-dark,
   foreground: rgb(0, 0, 0),
-  card-bg: #f4f4f4,
 );
 
 $dark: (
+  primary-color: $primary-color-light,
   foreground: rgb(255, 255, 255),
-  card-bg: #2c2c2c,
 );
+
+@each $name, $color in $grey-colors {
+  $light: map-merge(
+    $light,
+    (
+      $name: $color,
+    )
+  );
+  $dark: map-merge(
+    $dark,
+    (
+      $name: invert-color($color),
+    )
+  );
+}

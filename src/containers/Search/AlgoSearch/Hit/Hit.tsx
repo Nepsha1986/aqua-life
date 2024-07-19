@@ -21,7 +21,7 @@ const Hit = ({ hit }: Props) => {
           <Highlight attribute="title" hit={hit as any} />
         </h2>
 
-        <div className={styles.hit__exerpt}>
+        <div className={styles.hit__excerpt}>
           <Highlight attribute="excerpt" hit={hit as any} />
         </div>
       </div>

@@ -3,7 +3,7 @@ import Navigation from "./components/Navigation";
 import LangSwitcher from "./components/LangSwitcher";
 import ThemeSwitcher from "./components/ThemeSwitcher";
 
-import styles from "./styles.module.css";
+import styles from "./styles.module.scss";
 
 const AppHeader = () => {
   return (

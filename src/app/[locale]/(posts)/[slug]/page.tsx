@@ -6,7 +6,7 @@ import Image from "next/image";
 import { fetchPost } from "@/utils/fetchPost";
 import { POSTS_FOLDER } from "@/utils/variables";
 import InfoCard from "./_components/InfoCard";
-import { Locale, locales } from "@/i18n/locales";
+import { type Locale, locales } from "@/i18n";
 
 import styles from "./styles.module.scss";
 

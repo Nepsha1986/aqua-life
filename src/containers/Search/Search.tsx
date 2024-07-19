@@ -2,6 +2,7 @@
 import { useState } from "react";
 
 import Dialog from "@/components/Dialog/Dialog";
+import Button from "@/components/Button/Button";
 import AlgoSearch from "./AlgoSearch";
 import { useLocale, t } from "@/i18n";
 
@@ -14,7 +15,9 @@ const Search = () => {
 
   return (
     <>
-      <button onClick={handleClick}>{t(dictionary.common.search)}</button>
+      <Button size="md" onClick={handleClick}>
+        {t(dictionary.common.search)}
+      </Button>
 
       <Dialog
         size="large"

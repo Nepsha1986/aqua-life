@@ -4,10 +4,10 @@ import matter from "gray-matter";
 
 import { POSTS_FOLDER } from "@/utils/variables";
 import { PostPreview } from "@/types";
-import { Locale } from "@/i18n/locales";
+import { Locale } from "@/i18n";
 import fetchImage from "@/utils/fetchImage";
 
-const MAX_SIZE = 3;
+const MAX_SIZE = 50;
 
 export async function fetchPosts(
   locale: Locale = "en",

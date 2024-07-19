@@ -5,6 +5,8 @@ import { Hits, InstantSearch, SearchBox, Configure } from "react-instantsearch";
 
 import Hit from "./Hit";
 
+import "./styles.css";
+
 const client = algoliasearch(
   process.env.NEXT_PUBLIC_ALGOLIA_SEARCH_APP_ID,
   process.env.NEXT_PUBLIC_ALGOLIA_SEARCH_KEY,

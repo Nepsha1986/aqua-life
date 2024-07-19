@@ -5,7 +5,7 @@ import classNames from "classnames";
 import { usePathname } from "next/navigation";
 import { useLocale } from "@/i18n/LocaleProvider";
 
-import styles from "./styles.module.css";
+import styles from "./styles.module.scss";
 
 const NavItem = ({
   href,
@@ -17,7 +17,7 @@ const NavItem = ({
   active?: boolean;
 }) => (
   <Link
-    className={classNames(styles.navigation, {
+    className={classNames(styles.navItem, {
       [styles.navItem_active]: active,
     })}
     href={href}
@@ -34,7 +34,7 @@ const Navigation = () => {
     label: string;
   }[] = [
     {
-      path: "/",
+      path: "",
       label: dictionary.nav.homepage,
     },
     {
@@ -51,6 +51,8 @@ const Navigation = () => {
     <nav className={styles.navigation}>
       {navItems.map((i) => {
         const href = `/${locale}${i.path}`;
+
+        console.log(pathname, href);
         return (
           <NavItem
             key={i.path}

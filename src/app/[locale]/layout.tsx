@@ -32,8 +32,8 @@ export default async function RootLayout({
       <body className={inter.className}>
         <LocaleProvider locale={locale} dictionary={dictionary}>
           <AppHeader />
-          {children}
-          <AppFooter />
+          <div style={{ flexGrow: 1 }}>{children}</div>
+          <AppFooter dict={dictionary.common} />
         </LocaleProvider>
       </body>
     </html>
