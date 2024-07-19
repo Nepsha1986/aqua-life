@@ -3,8 +3,10 @@ import { useState } from "react";
 
 import Dialog from "@/components/Dialog/Dialog";
 import AlgoSearch from "./AlgoSearch";
+import { useLocale, t } from "@/i18n";
 
 const Search = () => {
+  const { dictionary } = useLocale();
   const [active, setActive] = useState(false);
   const handleClick = () => {
     setActive(true);
@@ -12,7 +14,7 @@ const Search = () => {
 
   return (
     <>
-      <button onClick={handleClick}>Search</button>
+      <button onClick={handleClick}>{t(dictionary.common.search)}</button>
 
       <Dialog
         size="large"

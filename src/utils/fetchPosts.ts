@@ -4,17 +4,17 @@ import matter from "gray-matter";
 
 import { POSTS_FOLDER } from "@/utils/variables";
 import { PostPreview } from "@/types";
-import { Language } from "@/i18n/languages";
+import { Locale } from "@/i18n/locales";
 import fetchImage from "@/utils/fetchImage";
 
 const MAX_SIZE = 3;
 
 export async function fetchPosts(
-  lang: Language = "en",
+  locale: Locale = "en",
   page = 0,
   size = MAX_SIZE,
 ): Promise<Awaited<PostPreview>[]> {
-  const contentDir = path.join(process.cwd(), POSTS_FOLDER, lang);
+  const contentDir = path.join(process.cwd(), POSTS_FOLDER, locale);
   const allFilenames = await fs.readdir(contentDir);
   const minIndex = size * page;
   const maxIndex = minIndex + size;
@@ -27,7 +27,7 @@ export async function fetchPosts(
       const parsedContent = matter(fileData);
 
       const slug = filename.replace(".mdx", "");
-      const postUrl = `/${lang}/${slug}`;
+      const postUrl = `/${locale}/${slug}`;
 
       const image = await fetchImage(slug);
 

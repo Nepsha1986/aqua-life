@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 
-import { Language } from "@/i18n/languages";
 import AppHeader from "@/containers/AppHeader";
 import AppFooter from "@/containers/AppFooter";
-import { LanguageProvider } from "@/context/LanguageProvider";
+import { LocaleProvider, Locale } from "@/i18n";
+import { getDictionary } from "@/i18n/server/getDictionary";
 
 import "normalize.css/normalize.css";
 import "instantsearch.css/themes/satellite-min.css";
@@ -22,18 +22,19 @@ export default async function RootLayout({
   params,
 }: Readonly<{
   children: React.ReactNode;
-  params: { lang: Language };
+  params: { locale: Locale };
 }>) {
-  const { lang } = params;
+  const { locale } = params;
+  const dictionary = await getDictionary(locale);
 
   return (
-    <html lang={lang}>
+    <html lang={locale}>
       <body className={inter.className}>
-        <LanguageProvider lang={lang}>
+        <LocaleProvider locale={locale} dictionary={dictionary}>
           <AppHeader />
           {children}
           <AppFooter />
-        </LanguageProvider>
+        </LocaleProvider>
       </body>
     </html>
   );

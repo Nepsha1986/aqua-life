@@ -6,13 +6,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGlobe } from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";
 
-import { type Language } from "@/i18n/languages";
-import { useLanguage } from "@/context/LanguageProvider";
+import { type Locale } from "@/i18n/locales";
+import { useLocale } from "@/i18n/LocaleProvider";
 
 import styles from "./styles.module.css";
 
 const locales: Record<
-  Language,
+  Locale,
   {
     label: string;
   }
@@ -47,15 +47,19 @@ const LangSwitcherItem: React.FC<{
 };
 
 const LangSwitcher = () => {
-  const { lang } = useLanguage();
+  const { locale } = useLocale();
 
   return (
     <div className={styles.langSwitcher}>
-      <LangSwitcherItem active link={`/${lang}`} label={locales[lang].label} />
+      <LangSwitcherItem
+        active
+        link={`/${locale}`}
+        label={locales[locale].label}
+      />
 
       <ul className={styles.langSwitcher__list}>
         {Object.keys(locales).map((i) => {
-          if (i === lang) return null;
+          if (i === locale) return null;
 
           return (
             <li key={i} className={styles.langSwitcher__item}>

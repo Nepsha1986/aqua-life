@@ -6,17 +6,17 @@ import Image from "next/image";
 import { fetchPost } from "@/utils/fetchPost";
 import { POSTS_FOLDER } from "@/utils/variables";
 import InfoCard from "./_components/InfoCard";
-import { Language, languages } from "@/i18n/languages";
+import { Locale, locales } from "@/i18n/locales";
 
 import styles from "./styles.module.scss";
 
 export async function generateMetadata({
   params,
 }: {
-  params: { lang: string; slug: string };
+  params: { locale: string; slug: string };
 }) {
-  const { lang, slug } = params;
-  const { title, excerpt } = await fetchPost(lang, slug);
+  const { locale, slug } = params;
+  const { title, excerpt } = await fetchPost(locale, slug);
 
   return {
     title: title,
@@ -26,13 +26,13 @@ export async function generateMetadata({
 
 export async function generateStaticParams() {
   const allParams = await Promise.all(
-    languages.map(async (lang) => {
-      const contentDir = path.join(process.cwd(), POSTS_FOLDER, lang);
+    locales.map(async (locale) => {
+      const contentDir = path.join(process.cwd(), POSTS_FOLDER, locale);
       const allFilenames = await fs.readdir(contentDir);
 
       return allFilenames.map(async (file) => {
         const slug = file.replace(".mdx", "");
-        return { params: { lang, slug } };
+        return { params: { locale, slug } };
       });
     }),
   );
@@ -43,11 +43,11 @@ export async function generateStaticParams() {
 export default async function ContentPage({
   params,
 }: {
-  params: { lang: Language; slug: string };
+  params: { locale: Locale; slug: string };
 }) {
-  const { lang, slug } = params;
+  const { locale, slug } = params;
   const { title, excerpt, imgUrl, content, traits, tankInfo } = await fetchPost(
-    lang,
+    locale,
     slug,
   );
 
