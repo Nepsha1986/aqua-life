@@ -21,9 +21,6 @@ const Button: React.FC<Props> = ({
   iconOnly,
   disabled = false,
   style,
-  /**
-   * The size of the Button
-   */
   size = "lg",
   className = "",
 }) => {
