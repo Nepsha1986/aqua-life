@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import { cookies } from "next/headers";
 
 import AppHeader from "@/containers/AppHeader";
 import AppFooter from "@/containers/AppFooter";
@@ -26,13 +27,15 @@ export default async function RootLayout({
 }>) {
   const { locale } = params;
   const dictionary = await getDictionary(locale);
+  const cookieStore = cookies();
+  const theme = cookieStore.get("theme");
 
   return (
-    <html lang={locale}>
+    <html data-theme={theme?.value || "auto"} lang={locale}>
       <body className={inter.className}>
         <LocaleProvider locale={locale} dictionary={dictionary}>
           <AppHeader />
-          <div style={{ flexGrow: 1 }}>{children}</div>
+          {children}
           <AppFooter dict={dictionary.common} />
         </LocaleProvider>
       </body>

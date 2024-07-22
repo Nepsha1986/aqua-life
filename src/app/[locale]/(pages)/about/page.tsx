@@ -1,6 +1,6 @@
 export default async function About() {
   return (
-    <main>
+    <>
       <h1>About</h1>
 
       <p>
@@ -27,6 +27,6 @@ export default async function About() {
         расширению базы данных, непрерывно исследуя и добавляя новые данные,
         чтобы каталог оставался ценным ресурсом для аквариумистов всех уровней.
       </p>
-    </main>
+    </>
   );
 }

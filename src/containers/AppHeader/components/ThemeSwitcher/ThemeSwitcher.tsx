@@ -1,46 +1,44 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Cookies from "js-cookie";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSun, faMoon, faAdjust } from "@fortawesome/free-solid-svg-icons";
 
+import Button from "@/components/Button";
 import styles from "./styles.module.css";
-import Button from "@/components/Button/Button";
+
+type Theme = "light" | "dark" | "auto";
 
 const ThemeSwitcher = () => {
-  const [theme, setTheme] = useState("auto");
+  // @ts-ignore
+  const initialTheme = (Cookies.get("theme") as Theme) || "auto";
+  const [theme, setTheme] = useState<Theme>(initialTheme);
 
   useEffect(() => {
-    const savedTheme = localStorage.getItem("theme");
-    if (savedTheme) {
-      setTheme(savedTheme);
-      document.documentElement.setAttribute("data-theme", savedTheme);
-    }
-  }, []);
+    const applyTheme = (newTheme: Theme) => {
+      if (newTheme === "auto") {
+        const darkModeMediaQuery = window.matchMedia(
+          "(prefers-color-scheme: dark)",
+        );
+        const handleChange = () => {
+          const themeToApply = darkModeMediaQuery.matches ? "dark" : "light";
+          document.documentElement.setAttribute("data-theme", themeToApply);
+        };
+        handleChange();
+        darkModeMediaQuery.addEventListener("change", handleChange);
+        return () =>
+          darkModeMediaQuery.removeEventListener("change", handleChange);
+      } else {
+        document.documentElement.setAttribute("data-theme", newTheme);
+      }
+    };
 
-  useEffect(() => {
-    if (theme === "auto") {
-      const darkModeMediaQuery = window.matchMedia(
-        "(prefers-color-scheme: dark)",
-      );
-      const handleChange = () => {
-        if (darkModeMediaQuery.matches) {
-          document.documentElement.setAttribute("data-theme", "dark");
-        } else {
-          document.documentElement.setAttribute("data-theme", "light");
-        }
-      };
-      handleChange();
-      darkModeMediaQuery.addEventListener("change", handleChange);
-      return () =>
-        darkModeMediaQuery.removeEventListener("change", handleChange);
-    } else {
-      document.documentElement.setAttribute("data-theme", theme);
-    }
-    localStorage.setItem("theme", theme);
+    applyTheme(theme);
+    Cookies.set("theme", theme, { expires: 365 });
   }, [theme]);
 
-  const handleThemeChange = (newTheme: "light" | "dark" | "auto") => {
+  const handleThemeChange = (newTheme: Theme) => {
     setTheme(newTheme);
   };
 
