@@ -5,21 +5,18 @@ import { fetchPosts } from "@/utils/fetchPosts";
 import { Locale } from "@/i18n";
 import { getDictionary } from "@/i18n/server/getDictionary";
 import Hero from "./_components/Hero";
+import { getPageContent } from "@/i18n/server/getPageContent";
+import { HomePageI18n } from "@/i18n";
 
 export default async function Home({ params }: { params: { locale: Locale } }) {
   const { locale } = params;
 
-  const dict = await getDictionary(locale);
+  const dict = await getPageContent<HomePageI18n>(locale, "homepage");
   const posts = await fetchPosts(locale);
 
   return (
     <main>
-      <Hero
-        title="Добро пожаловать на наш сайт!"
-        subTitle="Здесь вы найдете все, что нужно знать о содержании, уходе и разведении
-          аквариумных рыб. От уникальных видов до полезных советов – мы поможем
-          вам создать идеальный подводный мир в вашем доме."
-      />
+      <Hero title={dict.hero.title} subTitle={dict.hero.sub_title} />
 
       <div
         style={{
