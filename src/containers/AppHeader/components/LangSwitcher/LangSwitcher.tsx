@@ -6,8 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGlobe } from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";
 
-import { type Locale } from "@/i18n/locales";
-import { useLocale } from "@/i18n/LocaleProvider";
+import { type Locale, useLocale } from "@/i18n";
 
 import styles from "./styles.module.scss";
 

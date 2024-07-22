@@ -52,7 +52,6 @@ const Navigation = () => {
       {navItems.map((i) => {
         const href = `/${locale}${i.path}`;
 
-        console.log(pathname, href);
         return (
           <NavItem
             key={i.path}
