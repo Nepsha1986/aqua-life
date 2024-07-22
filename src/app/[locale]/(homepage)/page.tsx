@@ -2,11 +2,9 @@ import React from "react";
 
 import PostsList from "@/components/PostsList";
 import { fetchPosts } from "@/utils/fetchPosts";
-import { Locale } from "@/i18n";
-import { getDictionary } from "@/i18n/server/getDictionary";
+import { HomePageI18n, type Locale } from "@/i18n";
 import Hero from "./_components/Hero";
 import { getPageContent } from "@/i18n/server/getPageContent";
-import { HomePageI18n } from "@/i18n";
 
 export default async function Home({ params }: { params: { locale: Locale } }) {
   const { locale } = params;
@@ -15,7 +13,7 @@ export default async function Home({ params }: { params: { locale: Locale } }) {
   const posts = await fetchPosts(locale);
 
   return (
-    <main>
+    <main style={{ flexGrow: 1 }}>
       <Hero title={dict.hero.title} subTitle={dict.hero.sub_title} />
 
       <div
@@ -29,4 +27,18 @@ export default async function Home({ params }: { params: { locale: Locale } }) {
       </div>
     </main>
   );
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: { locale: Locale };
+}) {
+  const { locale } = params;
+  const dict = await getPageContent<HomePageI18n>(locale, "homepage");
+
+  return {
+    title: dict.seo.title,
+    description: dict.seo.description,
+  };
 }
