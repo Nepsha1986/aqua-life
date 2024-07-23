@@ -7,5 +7,8 @@
     "homepage": "Homepage",
     "handbook": "Handbook",
     "about": "About"
+  },
+  "footer_nav": {
+    "terms_of_use": "Terms of Use"
   }
 }

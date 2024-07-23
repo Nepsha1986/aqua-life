@@ -36,7 +36,10 @@ export default async function RootLayout({
         <LocaleProvider locale={locale} dictionary={dictionary}>
           <AppHeader />
           {children}
-          <AppFooter dict={dictionary.common} />
+          <AppFooter
+            dict={{ ...dictionary.common, ...dictionary.footer_nav }}
+            locale={locale}
+          />
         </LocaleProvider>
       </body>
     </html>

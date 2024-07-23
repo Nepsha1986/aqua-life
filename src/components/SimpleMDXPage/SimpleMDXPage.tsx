@@ -5,21 +5,23 @@ import { Locale } from "@/i18n";
 
 export default async function SimpleMDXPage({
   params,
+  page,
 }: {
   params: { locale: Locale };
 }) {
-  const { content } = await getContent(params.locale);
+  const { content } = await getContent(params.locale, page);
 
   return <MDXRemote source={content} />;
 }
 
 export async function generateMDXMetadata({
   params,
+  page,
 }: {
   params: { locale: Locale };
 }) {
   const { locale } = params;
-  const { data } = await getContent(locale);
+  const { data } = await getContent(locale, page);
 
   return {
     title: data.title,
