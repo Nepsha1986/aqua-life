@@ -4,4 +4,5 @@ import { translate } from "./translate";
 
 export { translate as t, LocaleProvider, useLocale, locales };
 
-export { type Dictionary, type Locale, type HomePageI18n } from "/types";
+import { type Dictionary, type Locale, type HomePageI18n } from "./types";
+export { type Dictionary, type Locale, type HomePageI18n };

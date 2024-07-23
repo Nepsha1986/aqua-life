@@ -1,7 +1,8 @@
 import SimpleMDXPage, { generateMDXMetadata } from "@/components/SimpleMDXPage";
 
-export default function About(props) {
-  return <SimpleMDXPage {...props} />;
+export default function About(params: any) {
+  return <SimpleMDXPage {...params} page="about" />;
 }
 
-export const generateMetadata = async (context) => generateMDXMetadata(context);
+export const generateMetadata = async (context: any) =>
+  generateMDXMetadata({ ...context, page: "about" });

@@ -1,12 +1,18 @@
+import Link from "next/link";
+
+import { Locale, t } from "@/i18n";
+
 import styles from "./styles.module.scss";
 
 interface Props {
   dict: {
     all_rights_reserved: string;
+    terms_of_use: string;
   };
+  locale: Locale;
 }
-const AppFooter = ({ dict }: Props) => {
-  const { all_rights_reserved } = dict;
+const AppFooter = ({ dict, locale }: Props) => {
+  const { all_rights_reserved, terms_of_use } = dict;
   const date = new Date().getFullYear();
 
   return (
@@ -15,6 +21,10 @@ const AppFooter = ({ dict }: Props) => {
         <p style={{ fontSize: "0.9rem" }}>
           &copy; {date} {all_rights_reserved}.
         </p>
+
+        <nav className={styles.appFooter__nav}>
+          <Link href={`/${locale}/terms-of-use`}>{t(terms_of_use)}</Link>
+        </nav>
       </div>
     </footer>
   );

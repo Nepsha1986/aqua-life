@@ -14,7 +14,7 @@ interface Props {
 export default function PostsList({ posts }: Props) {
   return (
     <div>
-      <ul>
+      <ul className="bulletfix">
         {posts.map(async (post) => {
           const img = await fetchImage(post.slug);
           return (
