@@ -7,10 +7,12 @@ import Hit from "./Hit";
 
 import "./styles.css";
 
-const client = algoliasearch(
-  process.env.NEXT_PUBLIC_ALGOLIA_SEARCH_APP_ID,
-  process.env.NEXT_PUBLIC_ALGOLIA_SEARCH_KEY,
-);
+const algoliaAppId = process.env.NEXT_PUBLIC_ALGOLIA_SEARCH_APP_ID as
+  | string
+  | "";
+const algoliaKey = process.env.NEXT_PUBLIC_ALGOLIA_SEARCH_KEY as string | "";
+
+const client = algoliasearch(algoliaAppId, algoliaKey);
 
 const AlgoSearch = () => {
   return (

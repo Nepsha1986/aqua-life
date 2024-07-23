@@ -9,7 +9,7 @@ type ILocaleContext = {
 };
 export const LocaleContext = createContext<ILocaleContext>({
   locale: "en",
-  dictionary: {},
+  dictionary: {} as Dictionary,
 });
 
 export const LocaleProvider = ({

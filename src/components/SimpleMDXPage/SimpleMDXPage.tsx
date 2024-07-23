@@ -1,17 +1,23 @@
-// components/MDXPage.js
-
 import { MDXRemote } from "next-mdx-remote/rsc";
 
 import getContent from "@/utils/getContent";
 import { Locale } from "@/i18n";
 
-export default async function SimpleMDXPage({ params }: { locale: Locale }) {
+export default async function SimpleMDXPage({
+  params,
+}: {
+  params: { locale: Locale };
+}) {
   const { content } = await getContent(params.locale);
 
   return <MDXRemote source={content} />;
 }
 
-export async function generateMDXMetadata({ params }) {
+export async function generateMDXMetadata({
+  params,
+}: {
+  params: { locale: Locale };
+}) {
   const { locale } = params;
   const { data } = await getContent(locale);
 
