@@ -17,7 +17,7 @@ export async function fetchPost(locale: string, slug: string): Promise<Post> {
     const parsedContent = matter(fileData);
 
     const image = await fetchImage(slug);
-    const { title, excerpt, tankInfo, traits } = parsedContent.data;
+    const { title, excerpt, tankInfo, traits, char } = parsedContent.data;
 
     const post: Post = {
       slug: slug,
@@ -28,6 +28,7 @@ export async function fetchPost(locale: string, slug: string): Promise<Post> {
       excerpt,
       tankInfo,
       traits,
+      char,
     };
 
     return post;

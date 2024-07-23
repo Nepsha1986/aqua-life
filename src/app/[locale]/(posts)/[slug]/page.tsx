@@ -46,10 +46,8 @@ export default async function ContentPage({
   params: { locale: Locale; slug: string };
 }) {
   const { locale, slug } = params;
-  const { title, excerpt, imgUrl, content, traits, tankInfo } = await fetchPost(
-    locale,
-    slug,
-  );
+  const { title, excerpt, imgUrl, content, traits, tankInfo, char } =
+    await fetchPost(locale, slug);
 
   return (
     <main>
@@ -80,7 +78,6 @@ export default async function ContentPage({
               <InfoCard.Item term="Family" def={traits.family} />
               <InfoCard.Item term="Size" def={traits.size} />
               <InfoCard.Item term="Lifespan" def={traits.lifespan} />
-              <InfoCard.Item term="Care Level" def={traits.careLevel} />
             </InfoCard.Container>
           )}
 
@@ -88,9 +85,20 @@ export default async function ContentPage({
             <InfoCard.Container title="Tank Info">
               <InfoCard.Item term="Temperature" def={tankInfo.temperature} />
               <InfoCard.Item term="Min. Tank Size" def={tankInfo.volume} />
-              <InfoCard.Item term="Water Hardness" def={tankInfo.hardness} />
-              <InfoCard.Item term="Ph" def={tankInfo.phRange} />
-              <InfoCard.Item term="Lighting" def={tankInfo.lighting} />
+              <InfoCard.Item term="Water Hardness" def={tankInfo.gh} />
+              <InfoCard.Item term="Ph" def={tankInfo.ph} />
+            </InfoCard.Container>
+          )}
+
+          {char && (
+            <InfoCard.Container title="Other Characteristics">
+              <InfoCard.Item term="Activity Time" def={char.activityTime} />
+              <InfoCard.Item term="Care Level" def={char.careLevel} />
+              <InfoCard.Item term="Behaviour" def={char.behaviour} />
+              <InfoCard.Item
+                term="Breed Difficulty"
+                def={char.breedingDifficulty}
+              />
             </InfoCard.Container>
           )}
         </div>

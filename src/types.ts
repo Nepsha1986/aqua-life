@@ -8,19 +8,23 @@ interface Post {
   tankInfo?: {
     temperature: string;
     volume: string;
-    hardness: string;
-    phRange: string;
-    lighting: string;
+    gh: string;
+    ph: string;
   };
   traits?: {
     scientificName: string;
     family: string;
     size: string;
     lifespan: string;
-    careLevel: string;
+  };
+  char?: {
+    activityTime: "day" | "night";
+    careLevel: number;
+    behaviour: number;
+    breedingDifficulty: number;
   };
 }
 
-type PostPreview = Omit<Post, "content" | "tankInfo" | "traits">;
+type PostPreview = Omit<Post, "content" | "tankInfo" | "traits" | "char">;
 
 export { type Post, type PostPreview };
