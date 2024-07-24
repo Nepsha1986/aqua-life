@@ -57,13 +57,15 @@ export default async function ContentPage({
 
           <MDXRemote source={excerpt} />
 
-          <Image
-            className={styles.article__img}
-            width={1200}
-            height={600}
-            src={imgUrl}
-            alt={title}
-          />
+          {imgUrl && (
+            <Image
+              className={styles.article__img}
+              width={1200}
+              height={600}
+              src={imgUrl}
+              alt={title}
+            />
+          )}
 
           <MDXRemote source={content} />
         </div>

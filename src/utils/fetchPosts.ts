@@ -36,7 +36,7 @@ export async function fetchPosts(
         title: parsedContent.data.title,
         url: postUrl,
         excerpt: parsedContent.data.excerpt,
-        imgUrl: image.default.src,
+        imgUrl: image === null ? "" : image.default.src,
       };
 
       return postItem;
