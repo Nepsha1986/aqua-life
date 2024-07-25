@@ -9,17 +9,20 @@ import InfoCard from "./_components/InfoCard";
 import { type Locale, locales } from "@/i18n";
 
 import styles from "./styles.module.scss";
+import { connectStats } from "instantsearch.js/es/connectors";
+import { getDictionary } from "@/i18n/server/getDictionary";
 
 export async function generateMetadata({
   params,
 }: {
-  params: { locale: string; slug: string };
+  params: { locale: Locale; slug: string };
 }) {
   const { locale, slug } = params;
+  const { seo } = await getDictionary(locale);
   const { title, excerpt } = await fetchPost(locale, slug);
 
   return {
-    title: title,
+    title: `${title}: ${seo.article_heading}`,
     description: excerpt,
   };
 }
@@ -48,6 +51,8 @@ export default async function ContentPage({
   const { locale, slug } = params;
   const { title, excerpt, imgUrl, content, traits, tankInfo, char } =
     await fetchPost(locale, slug);
+
+  const dict = await getDictionary(locale);
 
   return (
     <main>
@@ -79,7 +84,7 @@ export default async function ContentPage({
               />
               <InfoCard.Item
                 term="Common names"
-                def={traits.aliases.join(', ')}
+                def={traits.aliases.join(", ")}
               />
               <InfoCard.Item term="Family" def={traits.family} />
               <InfoCard.Item term="Size" def={traits.size} />

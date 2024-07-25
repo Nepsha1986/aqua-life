@@ -30,14 +30,19 @@ const PostsFeed = () => {
 
   return (
     <div>
-      <ul className='bulletfix'>
+      <ul className="bulletfix">
         {posts.map((i) => (
           <li key={i.slug} style={{ marginBottom: "10px" }}>
             <PostCard
               key={i.slug}
               title={i.title}
               image={
-                <Image src={i.imgUrl ? i.imgUrl : imgPlaceholderUrl} width={320} height={240} alt={i.imgUrl ? i.title : 'placeholder'} />
+                <Image
+                  src={i.imgUrl ? i.imgUrl : imgPlaceholderUrl}
+                  width={320}
+                  height={240}
+                  alt={i.imgUrl ? i.title : "placeholder"}
+                />
               }
             >
               <p>{i.excerpt}</p>
