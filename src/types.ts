@@ -13,6 +13,7 @@ interface Post {
   };
   traits?: {
     scientificName: string;
+    aliases: string[];
     family: string;
     size: string;
     lifespan: string;

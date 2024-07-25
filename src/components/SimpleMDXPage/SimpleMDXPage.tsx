@@ -8,6 +8,7 @@ export default async function SimpleMDXPage({
   page,
 }: {
   params: { locale: Locale };
+  page: string;
 }) {
   const { content } = await getContent(params.locale, page);
 
@@ -19,6 +20,7 @@ export async function generateMDXMetadata({
   page,
 }: {
   params: { locale: Locale };
+  page: string;
 }) {
   const { locale } = params;
   const { data } = await getContent(locale, page);

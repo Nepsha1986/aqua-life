@@ -7,7 +7,7 @@ import { PostPreview } from "@/types";
 import { Locale } from "@/i18n";
 import fetchImage from "@/utils/fetchImage";
 
-const MAX_SIZE = 50;
+const MAX_SIZE = 30;
 
 export async function fetchPosts(
   locale: Locale = "en",

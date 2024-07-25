@@ -77,6 +77,10 @@ export default async function ContentPage({
                 term="Scientific Name"
                 def={traits.scientificName}
               />
+              <InfoCard.Item
+                term="Common names"
+                def={traits.aliases.join(', ')}
+              />
               <InfoCard.Item term="Family" def={traits.family} />
               <InfoCard.Item term="Size" def={traits.size} />
               <InfoCard.Item term="Lifespan" def={traits.lifespan} />
