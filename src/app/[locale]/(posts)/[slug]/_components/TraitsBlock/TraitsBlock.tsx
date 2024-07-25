@@ -1,16 +1,16 @@
 import InfoCard from "../InfoCard";
 import { t } from "@/i18n";
 
-type TraitsBlockDictionary = {
-  characteristics: string;
-  scientific_name: string;
-  common_names: string;
-  family: string;
-  size: string;
-  lifespan: string;
-  centimeters_short: string;
-  years: string;
-};
+type DictKeys =
+  | "characteristics"
+  | "scientific_name"
+  | "common_names"
+  | "family"
+  | "size"
+  | "lifespan"
+  | "centimeters_short"
+  | "years";
+type TraitsBlockDictionary = Record<DictKeys, string>;
 
 interface Props {
   dict: TraitsBlockDictionary;

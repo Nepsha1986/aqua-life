@@ -23,5 +23,13 @@
     "family": "Семейство",
     "size": "Размер",
     "lifespan": "Продолжительность жизни"
+  },
+  "tank_info_block": {
+    "tank_info": "Аквариум",
+    "temperature": "Температура",
+    "min_tank_size": "Мин. объем",
+    "water_hardness": "Жесткость",
+    "water_acidity": "Кислотность",
+    "litters": "литры"
   }
 }

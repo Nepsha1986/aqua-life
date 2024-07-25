@@ -7,6 +7,8 @@ import { fetchPost } from "@/utils/fetchPost";
 import { POSTS_FOLDER } from "@/utils/variables";
 import InfoCard from "./_components/InfoCard";
 import TraitsBlock from "./_components/TraitsBlock";
+import TankInfoBlock from "./_components/TankInfoBlock";
+
 import { type Locale, locales } from "@/i18n";
 import { getDictionary } from "@/i18n/server/getDictionary";
 
@@ -52,7 +54,7 @@ export default async function ContentPage({
   const { title, excerpt, imgUrl, content, traits, tankInfo, char } =
     await fetchPost(locale, slug);
 
-  const { traits_block, common } = await getDictionary(locale);
+  const { common, traits_block, tank_info_block } = await getDictionary(locale);
 
   return (
     <main>
@@ -85,14 +87,7 @@ export default async function ContentPage({
             {...traits}
           />
 
-          {tankInfo && (
-            <InfoCard.Container title="Tank Info">
-              <InfoCard.Item term="Temperature" def={tankInfo.temperature} />
-              <InfoCard.Item term="Min. Tank Size" def={tankInfo.volume} />
-              <InfoCard.Item term="Water Hardness" def={tankInfo.gh} />
-              <InfoCard.Item term="Ph" def={tankInfo.ph} />
-            </InfoCard.Container>
-          )}
+          <TankInfoBlock dict={{ ...tank_info_block }} {...tankInfo} />
 
           {char && (
             <InfoCard.Container title="Other Characteristics">
