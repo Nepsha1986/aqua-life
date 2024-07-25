@@ -5,20 +5,20 @@ interface Post {
   content: string;
   url: string;
   imgUrl: string;
-  tankInfo?: {
+  tankInfo: {
     temperature: string;
     volume: string;
     gh: string;
     ph: string;
   };
-  traits?: {
+  traits: {
     scientificName: string;
     aliases: string[];
     family: string;
     size: string;
     lifespan: string;
   };
-  char?: {
+  char: {
     activityTime: "day" | "night";
     careLevel: number;
     behaviour: number;

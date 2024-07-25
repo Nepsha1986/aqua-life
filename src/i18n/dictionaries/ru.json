@@ -1,7 +1,9 @@
 {
   "common": {
     "search": "Поиск",
-    "all_rights_reserved": "Все права защищены"
+    "all_rights_reserved": "Все права защищены",
+    "centimeters_short": "см",
+    "years": "лет"
   },
   "seo": {
     "article_heading": "Содержание, кормление, совместимость с другими аквариумными рыбами"
@@ -13,5 +15,13 @@
   },
   "footer_nav": {
     "terms_of_use": "Правила пользования"
+  },
+  "traits_block": {
+    "characteristics": "Характеристики",
+    "scientific_name": "Научное название",
+    "common_names": "Общие названия",
+    "family": "Семейство",
+    "size": "Размер",
+    "lifespan": "Продолжительность жизни"
   }
 }

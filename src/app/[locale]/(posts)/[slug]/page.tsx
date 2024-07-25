@@ -6,11 +6,11 @@ import Image from "next/image";
 import { fetchPost } from "@/utils/fetchPost";
 import { POSTS_FOLDER } from "@/utils/variables";
 import InfoCard from "./_components/InfoCard";
+import TraitsBlock from "./_components/TraitsBlock";
 import { type Locale, locales } from "@/i18n";
+import { getDictionary } from "@/i18n/server/getDictionary";
 
 import styles from "./styles.module.scss";
-import { connectStats } from "instantsearch.js/es/connectors";
-import { getDictionary } from "@/i18n/server/getDictionary";
 
 export async function generateMetadata({
   params,
@@ -52,7 +52,7 @@ export default async function ContentPage({
   const { title, excerpt, imgUrl, content, traits, tankInfo, char } =
     await fetchPost(locale, slug);
 
-  const dict = await getDictionary(locale);
+  const { traits_block, common } = await getDictionary(locale);
 
   return (
     <main>
@@ -76,21 +76,14 @@ export default async function ContentPage({
         </div>
 
         <div className={styles.article__meta}>
-          {traits && (
-            <InfoCard.Container title="Characteristics">
-              <InfoCard.Item
-                term="Scientific Name"
-                def={traits.scientificName}
-              />
-              <InfoCard.Item
-                term="Common names"
-                def={traits.aliases.join(", ")}
-              />
-              <InfoCard.Item term="Family" def={traits.family} />
-              <InfoCard.Item term="Size" def={traits.size} />
-              <InfoCard.Item term="Lifespan" def={traits.lifespan} />
-            </InfoCard.Container>
-          )}
+          <TraitsBlock
+            dict={{
+              ...traits_block,
+              years: common.years,
+              centimeters_short: common.centimeters_short,
+            }}
+            {...traits}
+          />
 
           {tankInfo && (
             <InfoCard.Container title="Tank Info">

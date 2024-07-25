@@ -1,7 +1,9 @@
 {
   "common": {
     "search": "Search",
-    "all_rights_reserved": "All rights reserved"
+    "all_rights_reserved": "All rights reserved",
+    "centimeters_short": "cm",
+    "years": "years"
   },
   "seo": {
     "article_heading": "Care, Feeding, Compatibility with Other Aquarium Fish"
@@ -13,5 +15,13 @@
   },
   "footer_nav": {
     "terms_of_use": "Terms of Use"
+  },
+  "traits_block": {
+    "characteristics": "Characteristics",
+    "scientific_name": "Scientific Name",
+    "common_names": "Common Names",
+    "family": "Family",
+    "size": "Size",
+    "lifespan": "Liifespan"
   }
 }
