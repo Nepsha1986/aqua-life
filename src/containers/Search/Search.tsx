@@ -7,7 +7,7 @@ import AlgoSearch from "./AlgoSearch";
 import { useLocale, t } from "@/i18n";
 
 const Search = () => {
-  const { dictionary } = useLocale();
+  const { dictionary, locale } = useLocale();
   const [active, setActive] = useState(false);
   const handleClick = () => {
     setActive(true);
@@ -25,7 +25,7 @@ const Search = () => {
         open={active}
         onClickClose={() => setActive(false)}
       >
-        <AlgoSearch />
+        <AlgoSearch index={`${locale}_fishes`} />
       </Dialog>
     </>
   );

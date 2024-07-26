@@ -14,9 +14,13 @@ const algoliaKey = process.env.NEXT_PUBLIC_ALGOLIA_SEARCH_KEY as string | "";
 
 const client = algoliasearch(algoliaAppId, algoliaKey);
 
-const AlgoSearch = () => {
+interface Props {
+  index: string;
+}
+
+const AlgoSearch = ({index}: Props) => {
   return (
-    <InstantSearch indexName="temp" searchClient={client}>
+    <InstantSearch indexName={index} searchClient={client}>
       <Configure hitsPerPage={5} />
       <div>
         <SearchBox />
