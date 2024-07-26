@@ -13,7 +13,5 @@ export default function PagesLayout({
 }>) {
   const { locale } = params;
 
-  if (!locales.includes(locale)) notFound();
-
   return <main className={styles.layout}>{children}</main>;
 }

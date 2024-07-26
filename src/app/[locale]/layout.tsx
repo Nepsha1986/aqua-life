@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { cookies } from "next/headers";
+import { notFound } from "next/navigation";
 
 import AppHeader from "@/containers/AppHeader";
 import AppFooter from "@/containers/AppFooter";
-import { LocaleProvider, Locale } from "@/i18n";
+import { LocaleProvider, Locale, locales } from "@/i18n";
 import { getDictionary } from "@/i18n/server/getDictionary";
 
 import "normalize.css/normalize.css";
@@ -30,6 +31,8 @@ export default async function RootLayout({
   params: { locale: Locale };
 }>) {
   const { locale } = params;
+  if (!locales.includes(locale)) notFound();
+
   const dictionary = await getDictionary(locale);
   const cookieStore = cookies();
   const theme = cookieStore.get("theme");
