@@ -23,7 +23,7 @@ export default async function Home({ params }: { params: { locale: Locale } }) {
           position: "relative",
         }}
       >
-        <PostsList posts={posts} />
+        {/*<PostsList posts={posts} />*/}
       </div>
     </main>
   );
