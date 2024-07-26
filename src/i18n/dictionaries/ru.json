@@ -1,9 +1,7 @@
 {
   "common": {
     "search": "Поиск",
-    "all_rights_reserved": "Все права защищены",
-    "centimeters_short": "см",
-    "years": "лет"
+    "all_rights_reserved": "Все права защищены"
   },
   "seo": {
     "article_heading": "Содержание, кормление, совместимость с другими аквариумными рыбами"
@@ -22,7 +20,9 @@
     "common_names": "Общие названия",
     "family": "Семейство",
     "size": "Размер",
-    "lifespan": "Продолжительность жизни"
+    "lifespan": "Продолжительность жизни",
+    "centimeters_short": "см",
+    "years": "лет"
   },
   "tank_info_block": {
     "tank_info": "Аквариум",
@@ -31,5 +31,12 @@
     "water_hardness": "Жесткость",
     "water_acidity": "Кислотность",
     "litters": "литры"
+  },
+  "characteristics_block": {
+    "other_characteristics": "Другие характеристики",
+    "activity_time": "Время активности",
+    "behaviour": "Поведение",
+    "care_level": "Сложность содержания",
+    "breed_difficulty": "Сложность разведения"
   }
 }

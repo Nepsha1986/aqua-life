@@ -5,9 +5,10 @@ import Image from "next/image";
 
 import { fetchPost } from "@/utils/fetchPost";
 import { POSTS_FOLDER } from "@/utils/variables";
-import InfoCard from "./_components/InfoCard";
+
 import TraitsBlock from "./_components/TraitsBlock";
 import TankInfoBlock from "./_components/TankInfoBlock";
+import CharacteristicsBlock from "./_components/CharacteristicsBlock";
 
 import { type Locale, locales } from "@/i18n";
 import { getDictionary } from "@/i18n/server/getDictionary";
@@ -54,7 +55,8 @@ export default async function ContentPage({
   const { title, excerpt, imgUrl, content, traits, tankInfo, char } =
     await fetchPost(locale, slug);
 
-  const { common, traits_block, tank_info_block } = await getDictionary(locale);
+  const { traits_block, tank_info_block, characteristics_block } =
+    await getDictionary(locale);
 
   return (
     <main>
@@ -78,28 +80,9 @@ export default async function ContentPage({
         </div>
 
         <div className={styles.article__meta}>
-          <TraitsBlock
-            dict={{
-              ...traits_block,
-              years: common.years,
-              centimeters_short: common.centimeters_short,
-            }}
-            {...traits}
-          />
-
+          <TraitsBlock dict={{ ...traits_block }} {...traits} />
           <TankInfoBlock dict={{ ...tank_info_block }} {...tankInfo} />
-
-          {char && (
-            <InfoCard.Container title="Other Characteristics">
-              <InfoCard.Item term="Activity Time" def={char.activityTime} />
-              <InfoCard.Item term="Care Level" def={char.careLevel} />
-              <InfoCard.Item term="Behaviour" def={char.behaviour} />
-              <InfoCard.Item
-                term="Breed Difficulty"
-                def={char.breedingDifficulty}
-              />
-            </InfoCard.Container>
-          )}
+          <CharacteristicsBlock dict={{ ...characteristics_block }} {...char} />
         </div>
       </article>
     </main>

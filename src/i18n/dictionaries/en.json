@@ -1,9 +1,7 @@
 {
   "common": {
     "search": "Search",
-    "all_rights_reserved": "All rights reserved",
-    "centimeters_short": "cm",
-    "years": "years"
+    "all_rights_reserved": "All rights reserved"
   },
   "seo": {
     "article_heading": "Care, Feeding, Compatibility with Other Aquarium Fish"
@@ -22,7 +20,9 @@
     "common_names": "Common Names",
     "family": "Family",
     "size": "Size",
-    "lifespan": "Liifespan"
+    "lifespan": "Liifespan",
+    "centimeters_short": "cm",
+    "years": "years"
   },
   "tank_info_block": {
     "tank_info": "Tank info",
@@ -31,5 +31,12 @@
     "water_hardness": "Water Hardness",
     "water_acidity": "Water Acidity",
     "litters": "Litters"
+  },
+  "characteristics_block": {
+    "other_characteristics": "Other Characteristics",
+    "activity_time": "Activity Time",
+    "care_level": "Care Level",
+    "behaviour": "Behavior",
+    "breed_difficulty": "Breed Difficulty"
   }
 }
