@@ -6,9 +6,11 @@ import Image from "next/image";
 import { fetchPost } from "@/utils/fetchPost";
 import { POSTS_FOLDER } from "@/utils/variables";
 
-import TraitsBlock from "./_components/TraitsBlock";
-import TankInfoBlock from "./_components/TankInfoBlock";
-import CharacteristicsBlock from "./_components/CharacteristicsBlock";
+import {
+  TraitsBlock,
+  CharacteristicsBlock,
+  TankInfoBlock,
+} from "./_components";
 
 import { type Locale, locales } from "@/i18n";
 import { getDictionary } from "@/i18n/server/getDictionary";
