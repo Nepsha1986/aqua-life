@@ -3,6 +3,9 @@
     "search": "Search",
     "all_rights_reserved": "All rights reserved"
   },
+  "seo": {
+    "article_heading": "Care, Feeding, Compatibility with Other Aquarium Fish"
+  },
   "nav": {
     "homepage": "Homepage",
     "handbook": "Handbook",
@@ -10,5 +13,30 @@
   },
   "footer_nav": {
     "terms_of_use": "Terms of Use"
+  },
+  "traits_block": {
+    "characteristics": "Characteristics",
+    "scientific_name": "Scientific Name",
+    "common_names": "Common Names",
+    "family": "Family",
+    "size": "Size",
+    "lifespan": "Liifespan",
+    "centimeters_short": "cm",
+    "years": "years"
+  },
+  "tank_info_block": {
+    "tank_info": "Tank info",
+    "temperature": "Temperature",
+    "min_tank_size": "Min. Tank Size",
+    "water_hardness": "Water Hardness",
+    "water_acidity": "Water Acidity",
+    "litters": "Litters"
+  },
+  "characteristics_block": {
+    "other_characteristics": "Other Characteristics",
+    "activity_time": "Activity Time",
+    "care_level": "Care Level",
+    "behaviour": "Behavior",
+    "breed_difficulty": "Breed Difficulty"
   }
 }

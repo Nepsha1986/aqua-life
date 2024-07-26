@@ -5,21 +5,27 @@ import Image from "next/image";
 
 import { fetchPost } from "@/utils/fetchPost";
 import { POSTS_FOLDER } from "@/utils/variables";
-import InfoCard from "./_components/InfoCard";
+
+import TraitsBlock from "./_components/TraitsBlock";
+import TankInfoBlock from "./_components/TankInfoBlock";
+import CharacteristicsBlock from "./_components/CharacteristicsBlock";
+
 import { type Locale, locales } from "@/i18n";
+import { getDictionary } from "@/i18n/server/getDictionary";
 
 import styles from "./styles.module.scss";
 
 export async function generateMetadata({
   params,
 }: {
-  params: { locale: string; slug: string };
+  params: { locale: Locale; slug: string };
 }) {
   const { locale, slug } = params;
+  const { seo } = await getDictionary(locale);
   const { title, excerpt } = await fetchPost(locale, slug);
 
   return {
-    title: title,
+    title: `${title}: ${seo.article_heading}`,
     description: excerpt,
   };
 }
@@ -49,6 +55,9 @@ export default async function ContentPage({
   const { title, excerpt, imgUrl, content, traits, tankInfo, char } =
     await fetchPost(locale, slug);
 
+  const { traits_block, tank_info_block, characteristics_block } =
+    await getDictionary(locale);
+
   return (
     <main>
       <article className={styles.article}>
@@ -71,38 +80,9 @@ export default async function ContentPage({
         </div>
 
         <div className={styles.article__meta}>
-          {traits && (
-            <InfoCard.Container title="Characteristics">
-              <InfoCard.Item
-                term="Scientific Name"
-                def={traits.scientificName}
-              />
-              <InfoCard.Item term="Family" def={traits.family} />
-              <InfoCard.Item term="Size" def={traits.size} />
-              <InfoCard.Item term="Lifespan" def={traits.lifespan} />
-            </InfoCard.Container>
-          )}
-
-          {tankInfo && (
-            <InfoCard.Container title="Tank Info">
-              <InfoCard.Item term="Temperature" def={tankInfo.temperature} />
-              <InfoCard.Item term="Min. Tank Size" def={tankInfo.volume} />
-              <InfoCard.Item term="Water Hardness" def={tankInfo.gh} />
-              <InfoCard.Item term="Ph" def={tankInfo.ph} />
-            </InfoCard.Container>
-          )}
-
-          {char && (
-            <InfoCard.Container title="Other Characteristics">
-              <InfoCard.Item term="Activity Time" def={char.activityTime} />
-              <InfoCard.Item term="Care Level" def={char.careLevel} />
-              <InfoCard.Item term="Behaviour" def={char.behaviour} />
-              <InfoCard.Item
-                term="Breed Difficulty"
-                def={char.breedingDifficulty}
-              />
-            </InfoCard.Container>
-          )}
+          <TraitsBlock dict={{ ...traits_block }} {...traits} />
+          <TankInfoBlock dict={{ ...tank_info_block }} {...tankInfo} />
+          <CharacteristicsBlock dict={{ ...characteristics_block }} {...char} />
         </div>
       </article>
     </main>

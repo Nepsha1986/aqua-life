@@ -9,6 +9,7 @@ import VisibilityChecker from "@/components/VisibilityChecker";
 import PostCard from "@/components/PostCard";
 import { useLocale } from "@/i18n";
 
+const imgPlaceholderUrl = "/fish-img-not-found-placeholder.png";
 const PostsFeed = () => {
   const { locale } = useLocale();
   const [posts, setPosts] = useState<Post[]>([]);
@@ -29,14 +30,19 @@ const PostsFeed = () => {
 
   return (
     <div>
-      <ul>
+      <ul className="bulletfix">
         {posts.map((i) => (
           <li key={i.slug} style={{ marginBottom: "10px" }}>
             <PostCard
               key={i.slug}
               title={i.title}
               image={
-                <Image src={i.imgUrl} width={320} height={240} alt={i.title} />
+                <Image
+                  src={i.imgUrl ? i.imgUrl : imgPlaceholderUrl}
+                  width={320}
+                  height={240}
+                  alt={i.imgUrl ? i.title : "placeholder"}
+                />
               }
             >
               <p>{i.excerpt}</p>
