@@ -1,3 +1,5 @@
+"force-dynamic";
+
 import path from "path";
 import { promises as fs } from "fs";
 import { MDXRemote } from "next-mdx-remote/rsc";
@@ -18,6 +20,8 @@ import { getDictionary } from "@/i18n/server/getDictionary";
 import styles from "./styles.module.scss";
 import { Rate } from "@/app/[locale]/(posts)/[slug]/_components/CharacteristicsBlock/CharacteristicsBlock";
 
+// TODO: Review! It's done to fix prod. Check if it's possible to make it static!
+export const dynamic = "force-dynamic";
 export async function generateMetadata({
   params,
 }: {
