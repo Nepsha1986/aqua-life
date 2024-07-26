@@ -1,3 +1,3 @@
-const POSTS_FOLDER = "node_modules/handbook-freshwater-fish/content";
+const POSTS_FOLDER = "posts/content";
 
 export { POSTS_FOLDER };
