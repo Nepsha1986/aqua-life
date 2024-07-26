@@ -5,7 +5,7 @@ import { Hits, InstantSearch, SearchBox, Configure } from "react-instantsearch";
 
 import Hit from "./Hit";
 
-import "./styles.css";
+import "./styles.scss";
 
 const algoliaAppId = process.env.NEXT_PUBLIC_ALGOLIA_SEARCH_APP_ID as
   | string
@@ -21,7 +21,7 @@ interface Props {
 const AlgoSearch = ({ index }: Props) => {
   return (
     <InstantSearch indexName={index} searchClient={client}>
-      <Configure hitsPerPage={5} />
+      <Configure hitsPerPage={7} />
       <div>
         <SearchBox />
         <Hits hitComponent={Hit as any} />

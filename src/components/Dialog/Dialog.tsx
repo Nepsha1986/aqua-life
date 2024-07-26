@@ -25,7 +25,7 @@ const Dialog: FC<{
   return (
     <dialog className={className} ref={dialogRef}>
       <header className={styles.dialog__header}>
-        {!!heading && <h3 style={{ marginBottom: 0 }}>{heading}</h3>}
+        {!!heading && <h4 style={{ margin: 0 }}>{heading}</h4>}
       </header>
 
       <div className={styles.dialog__main}>{open && children}</div>

@@ -1,5 +1,6 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 
 import Dialog from "@/components/Dialog/Dialog";
 import Button from "@/components/Button/Button";
@@ -8,10 +9,15 @@ import { useLocale, t } from "@/i18n";
 
 const Search = () => {
   const { dictionary, locale } = useLocale();
+  const pathname = usePathname();
   const [active, setActive] = useState(false);
   const handleClick = () => {
     setActive(true);
   };
+
+  useEffect(() => {
+    setActive(false);
+  }, [pathname]);
 
   return (
     <>
