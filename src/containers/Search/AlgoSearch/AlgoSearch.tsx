@@ -18,7 +18,7 @@ interface Props {
   index: string;
 }
 
-const AlgoSearch = ({index}: Props) => {
+const AlgoSearch = ({ index }: Props) => {
   return (
     <InstantSearch indexName={index} searchClient={client}>
       <Configure hitsPerPage={5} />
