@@ -13,7 +13,7 @@ type TankInfoBlockDictionary = Record<DictKeys, string>;
 interface Props {
   dict: TankInfoBlockDictionary;
   temperature: string;
-  volume: number;
+  volume: string;
   gh: string;
   ph: string;
 }

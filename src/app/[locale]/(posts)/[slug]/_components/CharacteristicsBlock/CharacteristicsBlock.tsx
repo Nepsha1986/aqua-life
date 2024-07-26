@@ -11,10 +11,15 @@ type DictKeys =
   | "easy"
   | "normal"
   | "hard"
-  | "very_hard";
+  | "very_hard"
+  | "very_peaceful"
+  | "peaceful"
+  | "neutral"
+  | "aggressive"
+  | "very_aggressive";
 
 type CharacteristicsBlockDictionary = Record<DictKeys, string>;
-type Rate = 1 | 2 | 3 | 4 | 5;
+export type Rate = 1 | 2 | 3 | 4 | 5;
 
 interface Props {
   dict: CharacteristicsBlockDictionary;
@@ -52,15 +57,15 @@ const CharacteristicsBlock = ({
       <InfoCard.Item term={t(dict.activity_time)} def={activityTime} />
       <InfoCard.Item
         term={t(dict.care_level)}
-        def={t(dict[difficultyMap[careLevel]])}
+        def={t(dict[difficultyMap[careLevel] as DictKeys])}
       />
       <InfoCard.Item
         term={t(dict.behaviour)}
-        def={t(dict[behaviourMap[behaviour]])}
+        def={t(dict[behaviourMap[behaviour] as DictKeys])}
       />
       <InfoCard.Item
         term={t(dict.breed_difficulty)}
-        def={t(dict[difficultyMap[breedingDifficulty]])}
+        def={t(dict[difficultyMap[breedingDifficulty] as DictKeys])}
       />
     </InfoCard.Container>
   );
