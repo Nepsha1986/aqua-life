@@ -84,10 +84,7 @@ export default async function ContentPage({
         <div className={styles.article__meta}>
           <TraitsBlock dict={traits_block} {...traits} />
           <TankInfoBlock dict={tank_info_block} {...tankInfo} />
-          <CharacteristicsBlock
-            dict={characteristics_block}
-            {...char}
-          />
+          <CharacteristicsBlock dict={characteristics_block} {...char} />
         </div>
       </article>
     </main>

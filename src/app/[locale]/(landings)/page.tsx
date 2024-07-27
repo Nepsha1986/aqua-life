@@ -5,18 +5,20 @@ import { fetchPosts } from "@/utils/fetchPosts";
 import { HomePageI18n, type Locale } from "@/i18n";
 import Hero from "./_components/Hero";
 import { getPageContent } from "@/i18n/server/getPageContent";
+import { getDictionary } from "@/i18n/server/getDictionary";
 
 export default async function Home({ params }: { params: { locale: Locale } }) {
   const { locale } = params;
 
   const dict = await getPageContent<HomePageI18n>(locale, "homepage");
+  const { common } = await getDictionary(locale);
   const posts = await fetchPosts(locale);
 
   return (
     <>
       <Hero title={dict.hero.title} subTitle={dict.hero.sub_title} />
 
-      <PostsFeedSection posts={posts} />
+      <PostsFeedSection dict={{ read: common.read }} posts={posts} />
     </>
   );
 }

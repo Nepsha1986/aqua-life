@@ -1,7 +1,7 @@
 export default function PagesLayout({
-	children,
+  children,
 }: Readonly<{
-	children: React.ReactNode;
+  children: React.ReactNode;
 }>) {
-	return <main style={{ flexGrow: 1 }}>{children}</main>;
+  return <main style={{ flexGrow: 1 }}>{children}</main>;
 }
