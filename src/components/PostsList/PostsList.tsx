@@ -7,6 +7,8 @@ import PostCard from "@/components/PostCard/PostCard";
 import { PostPreview } from "@/types";
 import PostsFeed from "@/containers/PostsFeed";
 
+import styles from './styles.module.scss'
+
 interface Props {
   posts: PostPreview[];
 }
@@ -14,7 +16,7 @@ interface Props {
 const imgPlaceholderUrl = "/fish-img-not-found-placeholder.png";
 export default function PostsList({ posts }: Props) {
   return (
-    <div>
+    <div className={styles.postsFeedSection}>
       <ul className="bulletfix">
         {posts.map(async (post) => {
           return (
