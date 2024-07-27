@@ -5,7 +5,7 @@ import { MDXRemote } from "next-mdx-remote/rsc";
 
 import PostCard from "@/components/PostCard/PostCard";
 import { PostPreview } from "@/types";
-import PostsFeed from "@/containers/PostsFeed";
+import PostsFeed from "../PostsFeed";
 
 import styles from './styles.module.scss'
 
@@ -14,9 +14,9 @@ interface Props {
 }
 
 const imgPlaceholderUrl = "/fish-img-not-found-placeholder.png";
-export default function PostsList({ posts }: Props) {
+export default function PostsFeedSection({ posts }: Props) {
   return (
-    <div className={styles.postsFeedSection}>
+    <div data-testid='posts_feed_section' className={styles.postsFeedSection}>
       <ul className="bulletfix">
         {posts.map(async (post) => {
           return (

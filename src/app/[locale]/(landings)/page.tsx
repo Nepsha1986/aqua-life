@@ -1,6 +1,6 @@
 import React from "react";
 
-import PostsList from "@/components/PostsList";
+import PostsFeedSection from "./_containers/PostsFeedSection";
 import { fetchPosts } from "@/utils/fetchPosts";
 import { HomePageI18n, type Locale } from "@/i18n";
 import Hero from "./_components/Hero";
@@ -16,7 +16,7 @@ export default async function Home({ params }: { params: { locale: Locale } }) {
     <>
       <Hero title={dict.hero.title} subTitle={dict.hero.sub_title} />
 
-      <PostsList posts={posts} />
+      <PostsFeedSection posts={posts} />
     </>
   );
 }
