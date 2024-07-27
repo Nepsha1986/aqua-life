@@ -1,5 +1,6 @@
 .appHeader {
   border-bottom: 1px solid var(--color-grey-400);
+  position: relative;
 
   &__container {
     display: flex;
@@ -10,9 +11,25 @@
     margin: 0 auto;
   }
 
-  &__slot {
+  &__leftSlot {
     display: flex;
     align-items: center;
     gap: 15px;
+  }
+
+  &__rightSlot {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    position: absolute;
+    bottom: -35px;
+    right: 0;
+    z-index: 2;
+    padding: 3px 5px;
+    background: var(--color-grey-100);
+
+    @media screen and (min-width: 768px) {
+      position: static;
+    }
   }
 }
