@@ -16,7 +16,6 @@ import { type Locale, locales } from "@/i18n";
 import { getDictionary } from "@/i18n/server/getDictionary";
 
 import styles from "./styles.module.scss";
-import { Rate } from "@/app/[locale]/(posts)/[slug]/_components/CharacteristicsBlock/CharacteristicsBlock";
 
 export async function generateMetadata({
   params,
@@ -88,9 +87,6 @@ export default async function ContentPage({
           <CharacteristicsBlock
             dict={characteristics_block}
             {...char}
-            careLevel={char.careLevel as Rate}
-            behaviour={char.behaviour as Rate}
-            breedingDifficulty={char.breedingDifficulty as Rate}
           />
         </div>
       </article>

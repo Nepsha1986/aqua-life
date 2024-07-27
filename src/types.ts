@@ -1,3 +1,6 @@
+export type Rate = 1 | 2 | 3 | 4 | 5;
+export type ActivityTime = "day" | "night";
+
 interface Post {
   title: string;
   excerpt: string;
@@ -19,10 +22,10 @@ interface Post {
     lifespan: string;
   };
   char: {
-    activityTime: "day" | "night";
-    careLevel: number;
-    behaviour: number;
-    breedingDifficulty: number;
+    activityTime: ActivityTime;
+    careLevel: Rate;
+    behaviour: Rate;
+    breedingDifficulty: Rate;
   };
 }
 
