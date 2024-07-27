@@ -1,16 +1,15 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import { cookies } from "next/headers";
 
 import AppHeader from "@/containers/AppHeader";
 import AppFooter from "@/containers/AppFooter";
 import { LocaleProvider, Locale, locales } from "@/i18n";
 import { getDictionary } from "@/i18n/server/getDictionary";
+import ErrorPage from "@/app/[locale]/not-found";
 
 import "normalize.css/normalize.css";
 import "instantsearch.css/themes/satellite-min.css";
 import "@/styles/globals.scss";
-import ErrorPage from "@/app/[locale]/not-found";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -34,11 +33,9 @@ export default async function RootLayout({
   if (!locales.includes(locale)) return <ErrorPage />;
 
   const dictionary = await getDictionary(locale);
-  const cookieStore = cookies();
-  const theme = cookieStore.get("theme");
 
   return (
-    <html data-theme={theme?.value || "auto"} lang={locale}>
+    <html lang={locale}>
       <body className={inter.className}>
         <LocaleProvider locale={locale} dictionary={dictionary}>
           <AppHeader />

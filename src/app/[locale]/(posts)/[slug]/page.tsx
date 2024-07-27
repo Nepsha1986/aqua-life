@@ -1,5 +1,3 @@
-"force-dynamic";
-
 import path from "path";
 import { promises as fs } from "fs";
 import { MDXRemote } from "next-mdx-remote/rsc";
@@ -18,10 +16,7 @@ import { type Locale, locales } from "@/i18n";
 import { getDictionary } from "@/i18n/server/getDictionary";
 
 import styles from "./styles.module.scss";
-import { Rate } from "@/app/[locale]/(posts)/[slug]/_components/CharacteristicsBlock/CharacteristicsBlock";
 
-// TODO: Review! It's done to fix prod. Check if it's possible to make it static!
-export const dynamic = "force-dynamic";
 export async function generateMetadata({
   params,
 }: {
@@ -89,13 +84,7 @@ export default async function ContentPage({
         <div className={styles.article__meta}>
           <TraitsBlock dict={traits_block} {...traits} />
           <TankInfoBlock dict={tank_info_block} {...tankInfo} />
-          <CharacteristicsBlock
-            dict={characteristics_block}
-            {...char}
-            careLevel={char.careLevel as Rate}
-            behaviour={char.behaviour as Rate}
-            breedingDifficulty={char.breedingDifficulty as Rate}
-          />
+          <CharacteristicsBlock dict={characteristics_block} {...char} />
         </div>
       </article>
     </main>

@@ -3,15 +3,17 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
 
 import { Post } from "@/types";
 import VisibilityChecker from "@/components/VisibilityChecker";
 import PostCard from "@/components/PostCard";
-import { useLocale } from "@/i18n";
+import { t, useLocale } from "@/i18n";
 
 const imgPlaceholderUrl = "/fish-img-not-found-placeholder.png";
 const PostsFeed = () => {
-  const { locale } = useLocale();
+  const { locale, dictionary } = useLocale();
   const [posts, setPosts] = useState<Post[]>([]);
   const [page, setPage] = useState(0);
 
@@ -46,7 +48,10 @@ const PostsFeed = () => {
               }
             >
               <p>{i.excerpt}</p>
-              <Link href={i.url}>Link</Link>
+              <Link href={i.url}>
+                {t(dictionary.common.read)}{" "}
+                <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
+              </Link>
             </PostCard>
           </li>
         ))}

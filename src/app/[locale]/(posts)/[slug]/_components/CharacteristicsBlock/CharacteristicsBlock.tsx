@@ -1,5 +1,6 @@
 import InfoCard from "../InfoCard";
 import { t } from "@/i18n";
+import { Rate, ActivityTime } from "@/types";
 
 type DictKeys =
   | "other_characteristics"
@@ -19,11 +20,9 @@ type DictKeys =
   | "very_aggressive";
 
 type CharacteristicsBlockDictionary = Record<DictKeys, string>;
-export type Rate = 1 | 2 | 3 | 4 | 5;
-
 interface Props {
   dict: CharacteristicsBlockDictionary;
-  activityTime: "day" | "night";
+  activityTime: ActivityTime;
   careLevel: Rate;
   behaviour: Rate;
   breedingDifficulty: Rate;
