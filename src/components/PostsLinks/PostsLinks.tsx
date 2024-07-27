@@ -1,5 +1,6 @@
-import { PostPreview } from "@/types";
 import Link from "next/link";
+
+import { PostPreview } from "@/types";
 
 const PostsLinks = ({ posts }: { posts: PostPreview[] }) => {
   const groupedPosts = posts.reduce(
@@ -30,8 +31,6 @@ const PostsLinks = ({ posts }: { posts: PostPreview[] }) => {
             </ul>
           </div>
         ))}
-
-      <h2>Overall: {posts.length}</h2>
     </div>
   );
 };
