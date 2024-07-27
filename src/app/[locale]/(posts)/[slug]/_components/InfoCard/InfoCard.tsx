@@ -1,6 +1,6 @@
 import React from "react";
 
-import styles from "./styles.module.css";
+import styles from "./styles.module.scss";
 
 type InfoItemProps = {
   term: string;
@@ -23,7 +23,7 @@ const Item = ({ term, def }: InfoItemProps) => {
 
 const Container = ({ title, children }: ContainerProps) => {
   return (
-    <div className={styles.infoCard} data-testid="info_card">
+    <div data-testid="info_card" className={styles.infoCard}>
       <h3 className={styles.infoCard__title}>{title}</h3>
       {children}
     </div>

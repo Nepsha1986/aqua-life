@@ -63,11 +63,16 @@ export default async function ContentPage({
   return (
     <main>
       <article className={styles.article}>
-        <div className={styles.article__contentWrap}>
-          <h1>{title}</h1>
+        <div className={styles.article__header}>
+          <h1>
+            {title}{" "}
+            <span className={styles.article__scientificName}>
+              ({traits.scientificName})
+            </span>
+          </h1>
+        </div>
 
-          <MDXRemote source={excerpt} />
-
+        <div className={styles.article__imgWrap}>
           {imgUrl && (
             <Image
               className={styles.article__img}
@@ -77,14 +82,17 @@ export default async function ContentPage({
               alt={title}
             />
           )}
-
-          <MDXRemote source={content} />
         </div>
 
         <div className={styles.article__meta}>
           <TraitsBlock dict={traits_block} {...traits} />
           <TankInfoBlock dict={tank_info_block} {...tankInfo} />
           <CharacteristicsBlock dict={characteristics_block} {...char} />
+        </div>
+
+        <div className={styles.article__content}>
+          <MDXRemote source={excerpt} />
+          <MDXRemote source={content} />
         </div>
       </article>
     </main>
