@@ -1,0 +1,32 @@
+.infoCard {
+  border: 1px solid var(--color-grey-400);
+  padding: 2px 0.7rem 0.7rem;
+  border-radius: 3px;
+  margin-bottom: 15px;
+  background: var(--color-white);
+
+  &__title {
+    margin-bottom: 0.7em;
+  }
+}
+
+.infoItem {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0 5px;
+  line-height: 1;
+
+  &:not(:last-child) {
+    border-bottom: 1px dotted #eee;
+  }
+
+  &__term {
+    font-size: 0.8rem;
+  }
+
+  &__def {
+    font-size: 0.8rem;
+    margin-bottom: 4px;
+    font-weight: bold;
+  }
+}

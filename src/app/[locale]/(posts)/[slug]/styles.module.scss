@@ -1,9 +1,43 @@
 .article {
-  display: flex;
-  gap: 15px;
   max-width: var(--container-size);
   margin: 0 auto;
   padding: 3rem 15px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 15px;
+
+  &__header,
+  &__meta,
+  &__content,
+  &__imgWrap {
+    grid-column: 1 / -1;
+  }
+
+  @media (min-width: 960px) {
+    grid-template-columns: 1fr 320px;
+
+    &__header {
+      grid-column: 1 / 2;
+    }
+
+    &__imgWrap {
+      grid-column: 1 / 2;
+    }
+
+    &__meta {
+      grid-column: 2 / 3;
+      grid-row: 2 / span 2;
+    }
+
+    &__content {
+      grid-column: 1 / 2;
+    }
+  }
+
+  &__scientificName {
+    font-style: italic;
+    font-weight: 400;
+  }
 
   &__imgWrap {
     max-height: 60dvh;
@@ -16,14 +50,5 @@
   &__img {
     width: 100%;
     height: auto;
-  }
-
-  &__contentWrap {
-    width: 100%;
-  }
-
-  &__meta {
-    padding-top: 5rem;
-    min-width: 320px;
   }
 }

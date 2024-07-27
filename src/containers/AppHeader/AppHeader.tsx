@@ -9,11 +9,11 @@ const AppHeader = () => {
   return (
     <header className={styles.appHeader} data-testid="app_header">
       <div className={styles.appHeader__container}>
-        <div className={styles.appHeader__slot}>
+        <div className={styles.appHeader__leftSlot}>
           <Navigation />
         </div>
 
-        <div className={styles.appHeader__slot}>
+        <div className={styles.appHeader__rightSlot}>
           <Search />
           <LangSwitcher />
           <ThemeSwitcher />

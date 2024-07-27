@@ -4,6 +4,7 @@ import classNames from "classnames";
 
 import { usePathname } from "next/navigation";
 import { useLocale } from "@/i18n/LocaleProvider";
+import { t } from "@/i18n";
 
 import styles from "./styles.module.scss";
 
@@ -57,7 +58,7 @@ const Navigation = () => {
             key={i.path}
             active={href === pathname}
             href={href}
-            label={i.label}
+            label={t(i.label)}
           />
         );
       })}
