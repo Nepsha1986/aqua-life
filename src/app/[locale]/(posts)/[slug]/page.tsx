@@ -10,6 +10,7 @@ import {
   TraitsBlock,
   CharacteristicsBlock,
   TankInfoBlock,
+  UnverifiedAlert,
 } from "./_components";
 
 import { type Locale, locales } from "@/i18n";
@@ -97,13 +98,7 @@ export default async function ContentPage({
         </div>
 
         <div data-nosnippet={true}>
-          {draft && (
-            <Alert
-              message="Note: Unverified Information"
-              type="warning"
-              description="This article is part of our freshwater aquarium fish catalog and is currently unverified. The information presented here has not yet been reviewed by a specialist. Please use this content as a general reference and verify details from additional sources before making any decisions related to fish care."
-            />
-          )}
+          {draft && <UnverifiedAlert locale={locale} />}
         </div>
       </article>
     </main>

@@ -11,7 +11,6 @@ $light: (
   color-white: #fff,
   color-black: #000,
   primary-color: $primary-color-dark,
-  foreground: rgb(0, 0, 0),
   hero-bg-image: url("/hero-light.jpg"),
   hero-bg: linear-gradient(to bottom, #fff0, #fffc 60%, #f8f9fa),
 );
@@ -20,7 +19,6 @@ $dark: (
   color-white: #000,
   color-black: #fff,
   primary-color: $primary-color-light,
-  foreground: rgb(255, 255, 255),
   hero-bg-image: url("/hero-light.jpg"),
   hero-bg: linear-gradient(to bottom, #fff0, rgba(28, 28, 28, 0.8) 30%, #070605),
 );
