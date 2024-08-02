@@ -1,0 +1,29 @@
+.alert {
+  padding: 1rem;
+  border-radius: 5px;
+  border: 1px solid var(--color-grey-300);
+
+  &__message {
+    margin-top: 0;
+  }
+
+  &__description {
+    text-align: justify;
+    font-size: 0.875rem;
+  }
+
+  &_danger {
+    background: var(--color-red-200);
+    border-color: var(--color-red-700);
+  }
+
+  &_warning {
+    background: var(--color-yellow-200);
+    border-color: var(--color-yellow-700);
+  }
+
+  &_success {
+    background: var(--color-green-200);
+    border-color: var(--color-green-700);
+  }
+}

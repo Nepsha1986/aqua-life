@@ -16,6 +16,7 @@ import { type Locale, locales } from "@/i18n";
 import { getDictionary } from "@/i18n/server/getDictionary";
 
 import styles from "./styles.module.scss";
+import { Alert } from "@/ui";
 
 export async function generateMetadata({
   params,
@@ -54,7 +55,7 @@ export default async function ContentPage({
   params: { locale: Locale; slug: string };
 }) {
   const { locale, slug } = params;
-  const { title, excerpt, imgUrl, content, traits, tankInfo, char } =
+  const { draft, title, excerpt, imgUrl, content, traits, tankInfo, char } =
     await fetchPost(locale, slug);
 
   const { traits_block, tank_info_block, characteristics_block } =
@@ -93,6 +94,16 @@ export default async function ContentPage({
         <div className={styles.article__content}>
           <MDXRemote source={excerpt} />
           <MDXRemote source={content} />
+        </div>
+
+        <div data-nosnippet={true}>
+          {draft && (
+            <Alert
+              message="Note: Unverified Information"
+              type="warning"
+              description="This article is part of our freshwater aquarium fish catalog and is currently unverified. The information presented here has not yet been reviewed by a specialist. Please use this content as a general reference and verify details from additional sources before making any decisions related to fish care."
+            />
+          )}
         </div>
       </article>
     </main>

@@ -2,6 +2,7 @@ export type Rate = 1 | 2 | 3 | 4 | 5;
 export type ActivityTime = "day" | "night";
 
 interface Post {
+  draft?: boolean;
   title: string;
   excerpt: string;
   slug: string;
@@ -29,6 +30,9 @@ interface Post {
   };
 }
 
-type PostPreview = Omit<Post, "content" | "tankInfo" | "traits" | "char">;
+type PostPreview = Omit<
+  Post,
+  "content" | "tankInfo" | "traits" | "char" | "draft"
+>;
 
 export { type Post, type PostPreview };
