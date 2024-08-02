@@ -5,7 +5,7 @@ import { UnverifiedAlertI18n } from "@/i18n/types";
 import Link from "next/link";
 
 interface Props {
-  locale: Locale
+  locale: Locale;
 }
 export const UnverifiedAlert = async ({ locale }: Props) => {
   const dictionary = await getPageDictionary<UnverifiedAlertI18n>(
