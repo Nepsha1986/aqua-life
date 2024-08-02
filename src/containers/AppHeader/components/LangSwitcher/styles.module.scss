@@ -1,9 +1,10 @@
 .langSwitcherItem {
-  padding: 3px 0;
+  padding: 3px 5px;
   font-size: 0.85rem;
-  border-radius: 3px;
   display: block;
+  border-radius: 3px;
   color: var(--color-grey-900);
+  transition: 0.2s background-color;
 
   &__icon {
     margin-right: 10px;
@@ -14,12 +15,16 @@
   &__label {
   }
 
+  &_active {
+    pointer-events: none;
+  }
+
   &:not(.langSwitcherItem_active) {
-    padding: 3px 7px;
-    width: 175px;
+    padding: 10px 1rem;
   }
 
   &:not(.langSwitcherItem_active):hover {
+    background: var(--color-grey-200);
   }
 }
 
@@ -29,19 +34,25 @@
   position: relative;
   z-index: 2;
 
+  &__dropdown {
+    padding-top: 1rem;
+    min-width: 200px;
+    height: 0;
+    opacity: 0;
+    position: absolute;
+    right: -1rem;
+    transition: 0.3s opacity;
+    top: 100%;
+  }
+
   &__list {
     border: 1px solid var(--color-grey-400);
-    background: var(--color-grey-100);
+    border-radius: 5px;
+    overflow: hidden;
+    background: var(--color-grey-300);
     list-style: none;
     padding: 10px 0 10px;
     margin: 0;
-    height: 0;
-    overflow: hidden;
-    opacity: 0;
-    position: absolute;
-    right: 0;
-    transition: 0.3s opacity;
-    top: 100%;
   }
 
   &__item {
@@ -49,7 +60,7 @@
   }
 
   &:hover {
-    #{$this}__list {
+    #{$this}__dropdown {
       height: auto;
       opacity: 1;
     }

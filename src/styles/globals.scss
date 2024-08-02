@@ -1,5 +1,6 @@
 @use "theme" as theme;
 @use "mixins" as mixins;
+@import "shame";
 
 :root {
   @include mixins.apply-theme(theme.$shared);

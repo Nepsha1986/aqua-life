@@ -2,7 +2,7 @@ import { type ReactNode, useEffect, useRef, FC } from "react";
 import classNames from "classnames";
 
 import styles from "./styles.module.scss";
-import Button from "@/components/Button/Button";
+import { Button } from "@/ui";
 
 const Dialog: FC<{
   open: boolean;

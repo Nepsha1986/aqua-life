@@ -1,3 +1,4 @@
+"use client";
 import { useState } from "react";
 import classNames from "classnames";
 
@@ -6,18 +7,22 @@ interface Props {
   children: React.ReactNode;
   link?: string;
   onClick?: () => void;
-  color?: "primary" | "secondary" | "default" | "transparent" | "danger";
+  color?: "default" | "primary" | "transparent" | "danger" | "success";
+  ghost?: boolean;
   iconOnly?: boolean;
   disabled?: boolean;
+  active?: boolean;
   style?: React.CSSProperties;
   size?: "sm" | "md" | "lg";
   className?: string;
   target?: React.HTMLAttributeAnchorTarget;
 }
-const Button: React.FC<Props> = ({
+export const Button: React.FC<Props> = ({
   children,
   onClick,
   color = "default",
+  ghost = false,
+  active = false,
   iconOnly,
   disabled = false,
   style,
@@ -30,6 +35,8 @@ const Button: React.FC<Props> = ({
     [styles.button_disabled]: disabled,
     [styles.button_iconOnly]: iconOnly,
     [styles.button_pressed]: pressed,
+    [styles.button_ghost]: ghost,
+    [styles.button_active]: active,
     [styles[`button_${color}`]]: !!color,
     [styles[`button_${size}`]]: !!size,
   });
@@ -61,5 +68,3 @@ const Button: React.FC<Props> = ({
     </button>
   );
 };
-
-export default Button;

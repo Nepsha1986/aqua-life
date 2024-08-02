@@ -9,6 +9,7 @@ import Link from "next/link";
 import { type Locale, useLocale } from "@/i18n";
 
 import styles from "./styles.module.scss";
+import { usePathname } from "next/navigation";
 
 const locales: Record<
   Locale,
@@ -47,6 +48,7 @@ const LangSwitcherItem: React.FC<{
 
 const LangSwitcher = () => {
   const { locale } = useLocale();
+  const path = usePathname();
 
   return (
     <div className={styles.langSwitcher}>
@@ -56,20 +58,22 @@ const LangSwitcher = () => {
         label={locales[locale].label}
       />
 
-      <ul className={styles.langSwitcher__list}>
-        {Object.keys(locales).map((i) => {
-          if (i === locale) return null;
+      <div className={styles.langSwitcher__dropdown}>
+        <ul className={styles.langSwitcher__list}>
+          {Object.keys(locales).map((i) => {
+            if (i === locale) return null;
 
-          return (
-            <li key={i} className={styles.langSwitcher__item}>
-              <LangSwitcherItem
-                link={`/${i}`}
-                label={locales[i as keyof typeof locales].label}
-              />
-            </li>
-          );
-        })}
-      </ul>
+            return (
+              <li key={i} className={styles.langSwitcher__item}>
+                <LangSwitcherItem
+                  link={path.replace(`/${locale}`, `/${i}`)}
+                  label={locales[i as keyof typeof locales].label}
+                />
+              </li>
+            );
+          })}
+        </ul>
+      </div>
     </div>
   );
 };

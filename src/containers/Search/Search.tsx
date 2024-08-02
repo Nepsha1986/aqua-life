@@ -1,9 +1,11 @@
 "use client";
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
 import Dialog from "@/components/Dialog/Dialog";
-import Button from "@/components/Button/Button";
+import { Button } from "@/ui";
 import AlgoSearch from "./AlgoSearch";
 import { useLocale, t } from "@/i18n";
 
@@ -21,8 +23,11 @@ const Search = () => {
 
   return (
     <>
-      <Button size="md" onClick={handleClick}>
-        {t(dictionary.common.search)}
+      <Button size="lg" onClick={handleClick} ghost>
+        <FontAwesomeIcon icon={faSearch} />
+        <span style={{ marginLeft: "10px" }}>
+          {t(dictionary.common.search)}
+        </span>
       </Button>
 
       <Dialog

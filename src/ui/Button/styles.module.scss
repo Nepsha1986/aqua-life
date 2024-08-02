@@ -2,16 +2,15 @@
   $this: &;
 
   display: inline-block;
-  text-transform: uppercase;
   color: #fff;
   border-radius: 3px;
-  font-weight: bold;
+  font-weight: 400;
   cursor: pointer;
   border: none;
-  transition: 0.25s;
+  transition: 0.3s scale;
 
-  &:hover:not(#{$this}_pressed) {
-    scale: 1.01;
+  &:hover {
+    scale: 1.03;
   }
 
   &_default {
@@ -23,22 +22,34 @@
     background: var(--primary-color);
   }
 
-  &_secondary {
-    // background: var(--sc-c-secondary, defaults.$secondary-color);
+  &_danger {
+    background: var(--color-red-500);
   }
 
-  &_danger {
-    // background: var(--sc-c-danger, hsl(0, 50%, 50%));
+  &_success {
+    background: var(--color-green-500);
   }
 
   &_transparent {
+    color: var(--color-grey-900);
     background: transparent;
-    // color: var(--sc-c-grey);
+  }
+
+  &_ghost {
+    background: transparent;
+    color: var(--color-grey-800);
+    border: 1px solid var(--color-grey-400);
   }
 
   &_disabled {
     pointer-events: none;
     opacity: 0.5;
+  }
+
+  &_active {
+    pointer-events: none;
+    background: var(--primary-color);
+    color: #fff;
   }
 
   &_sm {
