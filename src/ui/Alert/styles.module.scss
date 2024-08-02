@@ -14,17 +14,17 @@
   }
 
   &_danger {
-    background: var(--color-red-200);
+    background: var(--color-red-100);
     border-color: var(--color-red-700);
   }
 
   &_warning {
-    background: var(--color-yellow-200);
+    background: var(--color-yellow-100);
     border-color: var(--color-yellow-700);
   }
 
   &_success {
-    background: var(--color-green-200);
+    background: var(--color-green-100);
     border-color: var(--color-green-700);
   }
 }
