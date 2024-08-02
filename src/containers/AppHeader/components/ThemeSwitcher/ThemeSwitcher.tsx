@@ -1,19 +1,16 @@
 "use client";
+
 import { useState, useEffect } from "react";
 import Cookies from "js-cookie";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSun, faMoon, faAdjust } from "@fortawesome/free-solid-svg-icons";
-
-import { Theme } from "@/types/theme";
 import { Button } from "@/ui";
+import { Theme } from "@/types/theme";
 
 import styles from "./styles.module.css";
 
-interface Props {
-  initialTheme: Theme;
-}
-
-const ThemeSwitcher = ({ initialTheme }: Props) => {
+const ThemeSwitcher = () => {
+  const initialTheme = (Cookies.get("theme") as Theme) || "auto";
   const [theme, setTheme] = useState<Theme>(initialTheme);
 
   useEffect(() => {
@@ -27,13 +24,16 @@ const ThemeSwitcher = ({ initialTheme }: Props) => {
           document.documentElement.setAttribute("data-theme", themeToApply);
         };
         handleChange();
+        darkModeMediaQuery.addEventListener("change", handleChange);
+        return () =>
+          darkModeMediaQuery.removeEventListener("change", handleChange);
       } else {
         document.documentElement.setAttribute("data-theme", newTheme);
       }
-      Cookies.set("theme", newTheme, { expires: 365 });
     };
 
     applyTheme(theme);
+    Cookies.set("theme", theme, { expires: 365 });
   }, [theme]);
 
   const handleThemeChange = (newTheme: Theme) => {
@@ -42,28 +42,13 @@ const ThemeSwitcher = ({ initialTheme }: Props) => {
 
   return (
     <div className={styles.themeSwitcher}>
-      <Button
-        active={theme === "light"}
-        size="sm"
-        iconOnly
-        onClick={() => handleThemeChange("light")}
-      >
+      <Button size="sm" iconOnly onClick={() => handleThemeChange("light")}>
         <FontAwesomeIcon icon={faSun} />
       </Button>
-      <Button
-        active={theme === "dark"}
-        size="sm"
-        iconOnly
-        onClick={() => handleThemeChange("dark")}
-      >
+      <Button size="sm" iconOnly onClick={() => handleThemeChange("dark")}>
         <FontAwesomeIcon icon={faMoon} />
       </Button>
-      <Button
-        active={theme === "auto"}
-        size="sm"
-        iconOnly
-        onClick={() => handleThemeChange("auto")}
-      >
+      <Button size="sm" iconOnly onClick={() => handleThemeChange("auto")}>
         <FontAwesomeIcon icon={faAdjust} />
       </Button>
     </div>
