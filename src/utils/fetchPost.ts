@@ -18,9 +18,11 @@ export async function fetchPost(locale: string, slug: string): Promise<Post> {
 
     const image = await fetchImage(slug);
 
-    const { title, excerpt, tankInfo, traits, char } = parsedContent.data;
+    const { title, excerpt, tankInfo, traits, char, draft } =
+      parsedContent.data;
 
     const post: Post = {
+      draft: draft,
       slug: slug,
       url: postUrl,
       content: parsedContent.content,

@@ -10,12 +10,14 @@ import {
   TraitsBlock,
   CharacteristicsBlock,
   TankInfoBlock,
+  UnverifiedAlert,
 } from "./_components";
 
 import { type Locale, locales } from "@/i18n";
 import { getDictionary } from "@/i18n/server/getDictionary";
 
 import styles from "./styles.module.scss";
+import { Alert } from "@/ui";
 
 export async function generateMetadata({
   params,
@@ -54,7 +56,7 @@ export default async function ContentPage({
   params: { locale: Locale; slug: string };
 }) {
   const { locale, slug } = params;
-  const { title, excerpt, imgUrl, content, traits, tankInfo, char } =
+  const { draft, title, excerpt, imgUrl, content, traits, tankInfo, char } =
     await fetchPost(locale, slug);
 
   const { traits_block, tank_info_block, characteristics_block } =
@@ -93,6 +95,10 @@ export default async function ContentPage({
         <div className={styles.article__content}>
           <MDXRemote source={excerpt} />
           <MDXRemote source={content} />
+        </div>
+
+        <div data-nosnippet={true}>
+          {draft && <UnverifiedAlert locale={locale} />}
         </div>
       </article>
     </main>

@@ -1,57 +1,42 @@
-@function invert-color($color) {
-  $red: red($color);
-  $green: green($color);
-  $blue: blue($color);
-
-  @return rgb(255 - $red, 255 - $green, 255 - $blue);
-}
+@use "colors";
 
 $primary-color-light: #5faaf8;
 $primary-color-dark: #278ffc;
-
-$grey-colors: (
-  "color-white": #ffffff,
-  "color-grey-100": #f8f9fa,
-  "color-grey-200": #e9ecef,
-  "color-grey-300": #dee2e6,
-  "color-grey-400": #ced4da,
-  "color-grey-500": #adb5bd,
-  "color-grey-600": #6c757d,
-  "color-grey-700": #495057,
-  "color-grey-800": #343a40,
-  "color-grey-900": #212529,
-  "color-black": #000000,
-);
 
 $shared: (
   container-size: 1300px,
 );
 
 $light: (
+  color-white: #fff,
+  color-black: #000,
   primary-color: $primary-color-dark,
-  foreground: rgb(0, 0, 0),
   hero-bg-image: url("/hero-light.jpg"),
   hero-bg: linear-gradient(to bottom, #fff0, #fffc 60%, #f8f9fa),
 );
 
 $dark: (
+  color-white: #000,
+  color-black: #fff,
   primary-color: $primary-color-light,
-  foreground: rgb(255, 255, 255),
   hero-bg-image: url("/hero-light.jpg"),
   hero-bg: linear-gradient(to bottom, #fff0, rgba(28, 28, 28, 0.8) 30%, #070605),
 );
 
-@each $name, $color in $grey-colors {
+@each $name, $color in colors.$colors {
   $light: map-merge(
     $light,
     (
       $name: $color,
     )
   );
+}
+
+@each $name, $color in colors.$reversed-colors {
   $dark: map-merge(
     $dark,
     (
-      $name: invert-color($color),
+      $name: $color,
     )
   );
 }

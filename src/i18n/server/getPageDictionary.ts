@@ -2,8 +2,8 @@ import "server-only";
 
 import { type Locale, locales } from "@/i18n";
 
-const importDictionary = (locale: Locale, page: string) =>
-  import(`../dictionaries/${page}/${locale}.json`).then(
+const importDictionary = (locale: Locale, dictionary: string) =>
+  import(`../dictionaries/${dictionary}/${locale}.json`).then(
     (module) => module.default,
   );
 

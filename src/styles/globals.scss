@@ -5,18 +5,6 @@
   @include mixins.apply-theme(theme.$shared);
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    @include mixins.apply-theme(theme.$light);
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    @include mixins.apply-theme(theme.$dark);
-  }
-}
-
 [data-theme="light"] {
   @include mixins.apply-theme(theme.$light);
 }
