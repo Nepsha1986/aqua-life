@@ -10,45 +10,56 @@ import { Theme } from "@/types/theme";
 import styles from "./styles.module.css";
 
 const ThemeSwitcher = () => {
-  const initialTheme = (Cookies.get("theme") as Theme) || "auto";
-  const [theme, setTheme] = useState<Theme>(initialTheme);
+  const [theme, setTheme] = useState<Theme | undefined>();
 
   useEffect(() => {
-    const applyTheme = (newTheme: Theme) => {
-      if (newTheme === "auto") {
-        const darkModeMediaQuery = window.matchMedia(
-          "(prefers-color-scheme: dark)",
-        );
-        const handleChange = () => {
-          const themeToApply = darkModeMediaQuery.matches ? "dark" : "light";
-          document.documentElement.setAttribute("data-theme", themeToApply);
-        };
-        handleChange();
-        darkModeMediaQuery.addEventListener("change", handleChange);
-        return () =>
-          darkModeMediaQuery.removeEventListener("change", handleChange);
-      } else {
-        document.documentElement.setAttribute("data-theme", newTheme);
-      }
-    };
+    const savedTheme = (Cookies.get("theme") as Theme) || "auto";
+    setTheme(savedTheme);
+    applyTheme(savedTheme);
+  }, []);
 
-    applyTheme(theme);
-    Cookies.set("theme", theme, { expires: 365 });
-  }, [theme]);
+  const applyTheme = (newTheme: Theme) => {
+    if (newTheme === "auto") {
+      const darkModeMediaQuery = window.matchMedia(
+        "(prefers-color-scheme: dark)",
+      );
+      const themeToApply = darkModeMediaQuery.matches ? "dark" : "light";
+      document.documentElement.setAttribute("data-theme", themeToApply);
+    } else {
+      document.documentElement.setAttribute("data-theme", newTheme);
+    }
+    Cookies.set("theme", newTheme, { expires: 365 });
+  };
 
   const handleThemeChange = (newTheme: Theme) => {
+    applyTheme(newTheme);
     setTheme(newTheme);
   };
 
   return (
     <div className={styles.themeSwitcher}>
-      <Button size="sm" iconOnly onClick={() => handleThemeChange("light")}>
+      <Button
+        active={theme === "light"}
+        size="sm"
+        iconOnly
+        onClick={() => handleThemeChange("light")}
+      >
         <FontAwesomeIcon icon={faSun} />
       </Button>
-      <Button size="sm" iconOnly onClick={() => handleThemeChange("dark")}>
+      <Button
+        active={theme === "dark"}
+        size="sm"
+        iconOnly
+        onClick={() => handleThemeChange("dark")}
+      >
         <FontAwesomeIcon icon={faMoon} />
       </Button>
-      <Button size="sm" iconOnly onClick={() => handleThemeChange("auto")}>
+      <Button
+        active={theme === "auto"}
+        size="sm"
+        iconOnly
+        onClick={() => handleThemeChange("auto")}
+      >
         <FontAwesomeIcon icon={faAdjust} />
       </Button>
     </div>

@@ -4,6 +4,7 @@
 
 :root {
   @include mixins.apply-theme(theme.$shared);
+  @include mixins.apply-theme(theme.$light);
 }
 
 [data-theme="light"] {
