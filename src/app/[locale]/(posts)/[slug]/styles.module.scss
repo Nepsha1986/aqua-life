@@ -16,10 +16,6 @@
   @media (min-width: 960px) {
     grid-template-columns: 1fr 320px;
 
-    &__header {
-      grid-column: 1 / 2;
-    }
-
     &__imgWrap {
       grid-column: 1 / 2;
     }
@@ -37,6 +33,9 @@
   &__scientificName {
     font-style: italic;
     font-weight: 400;
+    text-wrap: nowrap;
+    font-size: 0.85em;
+    color: var(--color-grey-600);
   }
 
   &__imgWrap {
@@ -50,5 +49,20 @@
   &__img {
     width: 100%;
     height: auto;
+  }
+
+  h1 {
+    padding-left: 25px;
+    position: relative;
+
+    &:before {
+      display: block;
+      content: '';
+      position: absolute;
+      background: var(--primary-color);
+      width: 5px;
+      left: 0;
+      height: 100%;
+    }
   }
 }

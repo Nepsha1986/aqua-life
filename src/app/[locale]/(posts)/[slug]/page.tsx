@@ -17,7 +17,6 @@ import { type Locale, locales } from "@/i18n";
 import { getDictionary } from "@/i18n/server/getDictionary";
 
 import styles from "./styles.module.scss";
-import { Alert } from "@/ui";
 
 export async function generateMetadata({
   params,
