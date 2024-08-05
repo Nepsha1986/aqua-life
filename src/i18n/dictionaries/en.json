@@ -15,16 +15,6 @@
   "footer_nav": {
     "terms_of_use": "Terms of Use"
   },
-  "traits_block": {
-    "characteristics": "Characteristics",
-    "scientific_name": "Scientific Name",
-    "common_names": "Common Names",
-    "family": "Family",
-    "size": "Size",
-    "lifespan": "Liifespan",
-    "centimeters_short": "cm",
-    "years": "years"
-  },
   "tank_info_block": {
     "tank_info": "Tank info",
     "temperature": "Temperature",
@@ -34,7 +24,13 @@
     "litters": "Litters"
   },
   "characteristics_block": {
-    "other_characteristics": "Other Characteristics",
+    "characteristics": "Characteristics",
+    "common_names": "Общие названия",
+    "family": "Семейство",
+    "size": "Size",
+    "lifespan": "Lifespan",
+    "centimeters_short": "cm",
+    "years": "years",
     "activity_time": "Activity Time",
     "care_level": "Care Level",
     "behaviour": "Behavior",

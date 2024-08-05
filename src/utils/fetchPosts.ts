@@ -14,25 +14,24 @@ export async function fetchPosts(
   page = 0,
   size = MAX_SIZE,
 ): Promise<Awaited<PostPreview>[]> {
-  const contentDir = path.join(process.cwd(), POSTS_FOLDER, locale);
-  const allFilenames = await fs.readdir(contentDir);
+  const contentDir = path.join(process.cwd(), POSTS_FOLDER);
+  const allDirNames = await fs.readdir(contentDir);
   const minIndex = size * page;
   const maxIndex = minIndex + size;
-  const filenames = allFilenames.slice(minIndex, maxIndex);
+  const dirNames = allDirNames.slice(minIndex, maxIndex);
 
   return await Promise.all(
-    filenames.map(async (filename, index) => {
-      const filePath = path.join(contentDir, filename);
+    dirNames.map(async (dir, index) => {
+      const filePath = path.join(contentDir, dir, `${locale}.mdx`);
       const fileData = await fs.readFile(filePath, "utf8");
       const parsedContent = matter(fileData);
 
-      const slug = filename.replace(".mdx", "");
-      const postUrl = `/${locale}/${slug}`;
+      const postUrl = `/${locale}/${dir}`;
 
-      const image = await fetchImage(slug);
+      const image = await fetchImage(dir);
 
       const postItem: PostPreview = {
-        slug: filename.replace(".mdx", ""),
+        slug: dir,
         title: parsedContent.data.title,
         url: postUrl,
         excerpt: parsedContent.data.excerpt,

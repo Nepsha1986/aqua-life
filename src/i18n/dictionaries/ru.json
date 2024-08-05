@@ -15,16 +15,6 @@
   "footer_nav": {
     "terms_of_use": "Правила пользования"
   },
-  "traits_block": {
-    "characteristics": "Характеристики",
-    "scientific_name": "Научное название",
-    "common_names": "Общие названия",
-    "family": "Семейство",
-    "size": "Размер",
-    "lifespan": "Продолжительность жизни",
-    "centimeters_short": "см",
-    "years": "лет"
-  },
   "tank_info_block": {
     "tank_info": "Аквариум",
     "temperature": "Температура",
@@ -34,7 +24,13 @@
     "litters": "литры"
   },
   "characteristics_block": {
-    "other_characteristics": "Другие характеристики",
+    "characteristics": "Характеристики",
+    "common_names": "Общие названия",
+    "family": "Семейство",
+    "size": "Размер",
+    "lifespan": "Продолжительность жизни",
+    "centimeters_short": "см",
+    "years": "лет",
     "activity_time": "Время активности",
     "behaviour": "Поведение",
     "care_level": "Сложность содержания",

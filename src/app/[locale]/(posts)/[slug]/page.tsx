@@ -7,7 +7,6 @@ import { fetchPost } from "@/utils/fetchPost";
 import { POSTS_FOLDER } from "@/utils/variables";
 
 import {
-  TraitsBlock,
   CharacteristicsBlock,
   TankInfoBlock,
   UnverifiedAlert,
@@ -36,13 +35,10 @@ export async function generateMetadata({
 export async function generateStaticParams() {
   const allParams = await Promise.all(
     locales.map(async (locale) => {
-      const contentDir = path.join(process.cwd(), POSTS_FOLDER, locale);
-      const allFilenames = await fs.readdir(contentDir);
+      const contentDir = path.join(process.cwd(), POSTS_FOLDER);
+      const allDirNames = await fs.readdir(contentDir);
 
-      return allFilenames.map(async (file) => {
-        const slug = file.replace(".mdx", "");
-        return { params: { locale, slug } };
-      });
+      return allDirNames.map(async (slug) => ({ params: { locale, slug } }));
     }),
   );
 
@@ -55,10 +51,20 @@ export default async function ContentPage({
   params: { locale: Locale; slug: string };
 }) {
   const { locale, slug } = params;
-  const { draft, title, excerpt, imgUrl, content, traits, tankInfo, char } =
-    await fetchPost(locale, slug);
+  const {
+    draft,
+    title,
+    scientificName,
+    family,
+    aliases,
+    excerpt,
+    imgUrl,
+    content,
+    traits,
+    tankInfo,
+  } = await fetchPost(locale, slug);
 
-  const { traits_block, tank_info_block, characteristics_block } =
+  const { tank_info_block, characteristics_block } =
     await getDictionary(locale);
 
   return (
@@ -68,7 +74,7 @@ export default async function ContentPage({
           <h1>
             {title}{" "}
             <span className={styles.article__scientificName}>
-              ({traits.scientificName})
+              ({scientificName})
             </span>
           </h1>
         </div>
@@ -86,9 +92,13 @@ export default async function ContentPage({
         </div>
 
         <div className={styles.article__meta}>
-          <TraitsBlock dict={traits_block} {...traits} />
+          <CharacteristicsBlock
+            dict={characteristics_block}
+            aliases={aliases}
+            family={family}
+            {...traits}
+          />
           <TankInfoBlock dict={tank_info_block} {...tankInfo} />
-          <CharacteristicsBlock dict={characteristics_block} {...char} />
         </div>
 
         <div className={styles.article__content}>
