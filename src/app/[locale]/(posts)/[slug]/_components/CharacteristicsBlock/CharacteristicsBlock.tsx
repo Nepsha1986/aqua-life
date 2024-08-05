@@ -4,6 +4,8 @@ import { Rate, ActivityTime } from "@/types";
 
 type DictKeys =
   | "characteristics"
+  | "common_names"
+  | "family"
   | "size"
   | "lifespan"
   | "centimeters_short"
@@ -26,6 +28,8 @@ type DictKeys =
 type CharacteristicsBlockDictionary = Record<DictKeys, string>;
 interface Props {
   dict: CharacteristicsBlockDictionary;
+  family: string;
+  aliases: string[];
   size: string;
   lifespan: string;
   activityTime: ActivityTime;
@@ -52,6 +56,8 @@ const behaviourMap = {
 
 const CharacteristicsBlock = ({
   dict,
+  family,
+  aliases,
   size,
   lifespan,
   activityTime,
@@ -61,6 +67,8 @@ const CharacteristicsBlock = ({
 }: Props) => {
   return (
     <InfoCard.Container title={t(dict.characteristics)}>
+      <InfoCard.Item term={t(dict.family)} def={family} />
+      <InfoCard.Item term={t(dict.common_names)} def={aliases.join(", ")} />
       <InfoCard.Item
         term={t(dict.size)}
         def={`${size} ${t(dict.centimeters_short)}`}

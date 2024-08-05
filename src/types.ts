@@ -5,6 +5,7 @@ interface Post {
   draft?: boolean;
   title: string;
   scientificName: string;
+  family: string;
   aliases: string[];
   excerpt: string;
   slug: string;
@@ -29,7 +30,13 @@ interface Post {
 
 type PostPreview = Omit<
   Post,
-  "content" | "tankInfo" | "traits" | "draft" | "scientificName" | "aliases"
+  | "content"
+  | "tankInfo"
+  | "traits"
+  | "draft"
+  | "scientificName"
+  | "aliases"
+  | "family"
 >;
 
 export { type Post, type PostPreview };

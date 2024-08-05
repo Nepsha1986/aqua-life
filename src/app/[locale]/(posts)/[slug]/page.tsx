@@ -54,8 +54,10 @@ export default async function ContentPage({
   const {
     draft,
     title,
-    excerpt,
     scientificName,
+    family,
+    aliases,
+    excerpt,
     imgUrl,
     content,
     traits,
@@ -90,7 +92,12 @@ export default async function ContentPage({
         </div>
 
         <div className={styles.article__meta}>
-          <CharacteristicsBlock dict={characteristics_block} {...traits} />
+          <CharacteristicsBlock
+            dict={characteristics_block}
+            aliases={aliases}
+            family={family}
+            {...traits}
+          />
           <TankInfoBlock dict={tank_info_block} {...tankInfo} />
         </div>
 

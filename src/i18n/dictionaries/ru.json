@@ -25,6 +25,8 @@
   },
   "characteristics_block": {
     "characteristics": "Характеристики",
+    "common_names": "Общие названия",
+    "family": "Семейство",
     "size": "Размер",
     "lifespan": "Продолжительность жизни",
     "centimeters_short": "см",

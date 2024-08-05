@@ -24,20 +24,21 @@ export async function fetchPost(locale: string, slug: string): Promise<Post> {
     const parsedContent = matter(fileData);
 
     const { title, excerpt, aliases, draft } = parsedContent.data;
-    const { scientificName, tankInfo, traits } = metaData;
+    const { scientificName, family, tankInfo, traits } = metaData;
 
     const post: Post = {
       draft,
+      title,
+      excerpt,
       aliases,
       slug,
       url,
-      content: parsedContent.content,
-      imgUrl: image === null ? "" : image.default.src,
-      title,
-      excerpt,
       scientificName,
+      family,
       tankInfo,
       traits,
+      content: parsedContent.content,
+      imgUrl: image === null ? "" : image.default.src,
     };
 
     return post;
