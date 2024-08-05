@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import { GoogleTagManager } from '@next/third-parties/google'
+import { GoogleTagManager } from "@next/third-parties/google";
 
 import AppHeader from "@/containers/AppHeader";
 import AppFooter from "@/containers/AppFooter";

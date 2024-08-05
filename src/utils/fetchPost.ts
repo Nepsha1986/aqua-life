@@ -8,30 +8,36 @@ import { Post } from "@/types";
 import fetchImage from "@/utils/fetchImage";
 
 export async function fetchPost(locale: string, slug: string): Promise<Post> {
-  const contentDir = path.join(process.cwd(), POSTS_FOLDER, locale);
-  const filePath = path.join(contentDir, `${slug}.mdx`);
-  const postUrl = `/${locale}/${slug}`;
+  const contentDir = path.join(process.cwd(), POSTS_FOLDER, slug);
+  const filePath = path.join(contentDir, `${locale}.mdx`);
+  const charsPath = path.join(contentDir, `_info.json`);
+  const url = `/${locale}/${slug}`;
 
   try {
-    const fileData = await fs.readFile(filePath, "utf8");
+    const [fileData, meta, image] = await Promise.all([
+      fs.readFile(filePath, "utf8"),
+      fs.readFile(charsPath, "utf8"),
+      fetchImage(slug),
+    ]);
+
+    const metaData = JSON.parse(meta);
     const parsedContent = matter(fileData);
 
-    const image = await fetchImage(slug);
-
-    const { title, excerpt, tankInfo, traits, char, draft } =
-      parsedContent.data;
+    const { title, excerpt, aliases, draft } = parsedContent.data;
+    const { scientificName, tankInfo, traits } = metaData;
 
     const post: Post = {
-      draft: draft,
-      slug: slug,
-      url: postUrl,
+      draft,
+      aliases,
+      slug,
+      url,
       content: parsedContent.content,
       imgUrl: image === null ? "" : image.default.src,
       title,
       excerpt,
+      scientificName,
       tankInfo,
       traits,
-      char,
     };
 
     return post;

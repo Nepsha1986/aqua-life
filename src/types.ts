@@ -4,6 +4,8 @@ export type ActivityTime = "day" | "night";
 interface Post {
   draft?: boolean;
   title: string;
+  scientificName: string;
+  aliases: string[];
   excerpt: string;
   slug: string;
   content: string;
@@ -16,23 +18,18 @@ interface Post {
     ph: string;
   };
   traits: {
-    scientificName: string;
-    aliases: string[];
-    family: string;
-    size: string;
-    lifespan: string;
-  };
-  char: {
     activityTime: ActivityTime;
     careLevel: Rate;
     behaviour: Rate;
     breedingDifficulty: Rate;
+    size: string;
+    lifespan: string;
   };
 }
 
 type PostPreview = Omit<
   Post,
-  "content" | "tankInfo" | "traits" | "char" | "draft"
+  "content" | "tankInfo" | "traits" | "draft" | "scientificName" | "aliases"
 >;
 
 export { type Post, type PostPreview };

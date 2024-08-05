@@ -3,7 +3,11 @@ import { t } from "@/i18n";
 import { Rate, ActivityTime } from "@/types";
 
 type DictKeys =
-  | "other_characteristics"
+  | "characteristics"
+  | "size"
+  | "lifespan"
+  | "centimeters_short"
+  | "years"
   | "activity_time"
   | "care_level"
   | "behaviour"
@@ -22,6 +26,8 @@ type DictKeys =
 type CharacteristicsBlockDictionary = Record<DictKeys, string>;
 interface Props {
   dict: CharacteristicsBlockDictionary;
+  size: string;
+  lifespan: string;
   activityTime: ActivityTime;
   careLevel: Rate;
   behaviour: Rate;
@@ -46,13 +52,23 @@ const behaviourMap = {
 
 const CharacteristicsBlock = ({
   dict,
+  size,
+  lifespan,
   activityTime,
   careLevel,
   behaviour,
   breedingDifficulty,
 }: Props) => {
   return (
-    <InfoCard.Container title={t(dict.other_characteristics)}>
+    <InfoCard.Container title={t(dict.characteristics)}>
+      <InfoCard.Item
+        term={t(dict.size)}
+        def={`${size} ${t(dict.centimeters_short)}`}
+      />
+      <InfoCard.Item
+        term={t(dict.lifespan)}
+        def={`${lifespan} ${t(dict.years)}`}
+      />
       <InfoCard.Item term={t(dict.activity_time)} def={activityTime} />
       <InfoCard.Item
         term={t(dict.care_level)}
