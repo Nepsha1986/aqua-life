@@ -44,7 +44,7 @@ export default async function RootLayout({
           />
         </LocaleProvider>
       </body>
-      <GoogleAnalytics gtmId="G-B4XFSSZ1EL" />
+      <GoogleAnalytics gaId="G-B4XFSSZ1EL" />
     </html>
   );
 }
