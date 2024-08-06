@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import { GoogleTagManager } from "@next/third-parties/google";
+import { GoogleAnalytics } from "@next/third-parties/google";
 
 import AppHeader from "@/containers/AppHeader";
 import AppFooter from "@/containers/AppFooter";
@@ -44,7 +44,7 @@ export default async function RootLayout({
           />
         </LocaleProvider>
       </body>
-      <GoogleTagManager gtmId="G-B4XFSSZ1EL" />
+      <GoogleAnalytics gtmId="G-B4XFSSZ1EL" />
     </html>
   );
 }
