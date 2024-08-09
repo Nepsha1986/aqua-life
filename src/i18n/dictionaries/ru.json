@@ -2,7 +2,8 @@
   "common": {
     "search": "Поиск",
     "all_rights_reserved": "Все права защищены",
-    "read": "Читать"
+    "read": "Читать",
+    "common_names": "Другие варианты названия"
   },
   "seo": {
     "article_heading": "Содержание, кормление, совместимость с другими аквариумными рыбами"
@@ -25,7 +26,6 @@
   },
   "characteristics_block": {
     "characteristics": "Характеристики",
-    "common_names": "Общие названия",
     "family": "Семейство",
     "size": "Размер",
     "lifespan": "Продолжительность жизни",

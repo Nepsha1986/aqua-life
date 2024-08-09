@@ -38,6 +38,16 @@
     color: var(--color-grey-600);
   }
 
+  &__commonNames {
+    font-size: 1.2rem;
+    margin: 0.3rem 0;
+    color: var(--color-grey-700);
+
+    strong {
+      color: var(--color-black);
+    }
+  }
+
   &__imgWrap {
     max-height: 60dvh;
     overflow: hidden;

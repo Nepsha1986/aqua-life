@@ -2,7 +2,8 @@
   "common": {
     "search": "Search",
     "all_rights_reserved": "All rights reserved",
-    "read": "Read"
+    "read": "Read",
+    "common_names": "Common Names"
   },
   "seo": {
     "article_heading": "Care, Feeding, Compatibility with Other Aquarium Fish"
@@ -25,8 +26,7 @@
   },
   "characteristics_block": {
     "characteristics": "Characteristics",
-    "common_names": "Общие названия",
-    "family": "Семейство",
+    "family": "Family",
     "size": "Size",
     "lifespan": "Lifespan",
     "centimeters_short": "cm",

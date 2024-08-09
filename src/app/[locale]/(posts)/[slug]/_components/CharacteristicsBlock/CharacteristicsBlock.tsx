@@ -68,7 +68,6 @@ const CharacteristicsBlock = ({
   return (
     <InfoCard.Container title={t(dict.characteristics)}>
       <InfoCard.Item term={t(dict.family)} def={family} />
-      <InfoCard.Item term={t(dict.common_names)} def={aliases.join(", ")} />
       <InfoCard.Item
         term={t(dict.size)}
         def={`${size} ${t(dict.centimeters_short)}`}
