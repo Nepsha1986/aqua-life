@@ -4,7 +4,6 @@ import { Rate, ActivityTime } from "@/types";
 
 type DictKeys =
   | "characteristics"
-  | "common_names"
   | "family"
   | "size"
   | "lifespan"
@@ -29,7 +28,6 @@ type CharacteristicsBlockDictionary = Record<DictKeys, string>;
 interface Props {
   dict: CharacteristicsBlockDictionary;
   family: string;
-  aliases: string[];
   size: string;
   lifespan: string;
   activityTime: ActivityTime;
@@ -57,7 +55,6 @@ const behaviourMap = {
 const CharacteristicsBlock = ({
   dict,
   family,
-  aliases,
   size,
   lifespan,
   activityTime,

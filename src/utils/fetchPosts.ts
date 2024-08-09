@@ -20,25 +20,38 @@ export async function fetchPosts(
   const maxIndex = minIndex + size;
   const dirNames = allDirNames.slice(minIndex, maxIndex);
 
-  return await Promise.all(
-    dirNames.map(async (dir, index) => {
-      const filePath = path.join(contentDir, dir, `${locale}.mdx`);
-      const fileData = await fs.readFile(filePath, "utf8");
-      const parsedContent = matter(fileData);
+  const posts = await Promise.all(
+    dirNames.map(async (dir) => {
+      try {
+        const filePath = path.join(contentDir, dir, `${locale}.mdx`);
+        const charsPath = path.join(contentDir, dir, `_info.json`);
+        const postUrl = `/${locale}/${dir}`;
 
-      const postUrl = `/${locale}/${dir}`;
+        const [fileData, meta, image] = await Promise.all([
+          fs.readFile(filePath, "utf8"),
+          fs.readFile(charsPath, "utf8"),
+          fetchImage(dir)
+        ]);
 
-      const image = await fetchImage(dir);
+        const metaData = JSON.parse(meta);
+        const parsedContent = matter(fileData);
 
-      const postItem: PostPreview = {
-        slug: dir,
-        title: parsedContent.data.title,
-        url: postUrl,
-        excerpt: parsedContent.data.excerpt,
-        imgUrl: image === null ? "" : image.default.src,
-      };
+        const postItem: PostPreview = {
+          slug: dir,
+          scientificName: metaData.scientificName,
+          title: parsedContent.data.title,
+          url: postUrl,
+          excerpt: parsedContent.data.excerpt,
+          imgUrl: image === null ? "" : image.default.src,
+        };
 
-      return postItem;
-    }),
+        return postItem;
+      } catch (e) {
+        console.error('Error while fetching posts data:', e);
+        return null;
+      }
+    })
   );
+
+  return posts.filter((post): post is PostPreview => post !== null);
 }

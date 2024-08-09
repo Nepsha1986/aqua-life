@@ -34,7 +34,6 @@ type PostPreview = Omit<
   | "tankInfo"
   | "traits"
   | "draft"
-  | "scientificName"
   | "aliases"
   | "family"
 >;

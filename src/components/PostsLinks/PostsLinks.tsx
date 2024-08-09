@@ -2,6 +2,8 @@ import Link from "next/link";
 
 import { PostPreview } from "@/types";
 
+import styles from './styles.module.scss';
+
 const PostsLinks = ({ posts }: { posts: PostPreview[] }) => {
   const groupedPosts = posts.reduce(
     (acc, post) => {
@@ -16,16 +18,17 @@ const PostsLinks = ({ posts }: { posts: PostPreview[] }) => {
   );
 
   return (
-    <div>
+    <div className={styles.postsLinks}>
       {Object.keys(groupedPosts)
         .sort()
         .map((letter) => (
           <div key={letter}>
             <h2>{letter}</h2>
-            <ul>
+
+            <ul className={styles.postsLinks__list}>
               {groupedPosts[letter].map((post) => (
                 <li key={post.title}>
-                  <Link href={post.url}>{post.title}</Link>
+                  <Link className={styles.postsLinks__listItem} href={post.url}>{post.title} <span>({post.scientificName})</span></Link>
                 </li>
               ))}
             </ul>
