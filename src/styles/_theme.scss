@@ -11,16 +11,14 @@ $light: (
   color-white: #fff,
   color-black: #000,
   primary-color: $primary-color-dark,
-  hero-bg-image: url("/hero-light.jpg"),
-  hero-bg: linear-gradient(to bottom, #fff0, #fffc 60%, #f8f9fa),
+  hero-bg-image: url("/hero-dark.jpg"),
 );
 
 $dark: (
   color-white: #000,
   color-black: #fff,
   primary-color: $primary-color-light,
-  hero-bg-image: url("/hero-light.jpg"),
-  hero-bg: linear-gradient(to bottom, #fff0, rgba(28, 28, 28, 0.8) 30%, #070605),
+  hero-bg-image: url("/hero-dark.jpg"),
 );
 
 @each $name, $color in colors.$colors {
