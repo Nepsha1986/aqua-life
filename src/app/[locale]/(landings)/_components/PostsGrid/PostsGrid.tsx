@@ -9,8 +9,12 @@ const PostsGridContainer = ({ children }: { children: React.ReactNode }) => {
   return <ul className={styles.postsGrid}>{children}</ul>;
 };
 
-const PostsGrid = {};
-PostsGrid.Container = PostsGridContainer;
-PostsGrid.Item = PostsGridItem;
+const PostsGrid: {
+  Container: typeof PostsGridContainer;
+  Item: typeof PostsGridItem;
+} = {
+  Container: PostsGridContainer,
+  Item: PostsGridItem,
+};
 
 export default PostsGrid;
