@@ -1,14 +1,14 @@
 .postsLinks {
-	&__list {
-		@media (min-width: 800px) {
-			columns: 2;
-		}
-	}
+  &__list {
+    @media (min-width: 800px) {
+      columns: 2;
+    }
+  }
 
-	&__listItem {
-		span {
-			font-style:italic;
-			color: var(--color-grey-700);
-		}
-	}
+  &__listItem {
+    span {
+      font-style: italic;
+      color: var(--color-grey-700);
+    }
+  }
 }

@@ -10,6 +10,7 @@ import { Post } from "@/types";
 import VisibilityChecker from "@/components/VisibilityChecker";
 import PostCard from "@/components/PostCard";
 import { t, useLocale } from "@/i18n";
+import PostsGrid from "@/app/[locale]/(landings)/_components/PostsGrid";
 
 const imgPlaceholderUrl = "/fish-img-not-found-placeholder.png";
 const PostsFeed = () => {
@@ -31,31 +32,30 @@ const PostsFeed = () => {
   }, [page]);
 
   return (
-    <div>
-      <ul className="bulletfix">
+    <div style={{ paddingTop: "2rem" }}>
+      <PostsGrid.Container>
         {posts.map((i) => (
-          <li key={i.slug} style={{ marginBottom: "10px" }}>
+          <PostsGrid.Item key={i.slug}>
             <PostCard
-              key={i.slug}
               title={i.title}
+              excerpt={i.excerpt}
               image={
                 <Image
                   src={i.imgUrl ? i.imgUrl : imgPlaceholderUrl}
-                  width={320}
-                  height={240}
+                  width={400}
+                  height={300}
                   alt={i.imgUrl ? i.title : "placeholder"}
                 />
               }
             >
-              <p>{i.excerpt}</p>
               <Link href={i.url}>
                 {t(dictionary.common.read)}{" "}
                 <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
               </Link>
             </PostCard>
-          </li>
+          </PostsGrid.Item>
         ))}
-      </ul>
+      </PostsGrid.Container>
 
       <VisibilityChecker
         onInView={() => {
