@@ -30,7 +30,7 @@ export async function fetchPosts(
         const [fileData, meta, image] = await Promise.all([
           fs.readFile(filePath, "utf8"),
           fs.readFile(charsPath, "utf8"),
-          fetchImage(dir)
+          fetchImage(dir),
         ]);
 
         const metaData = JSON.parse(meta);
@@ -47,10 +47,10 @@ export async function fetchPosts(
 
         return postItem;
       } catch (e) {
-        console.error('Error while fetching posts data:', e);
+        console.error("Error while fetching posts data:", e);
         return null;
       }
-    })
+    }),
   );
 
   return posts.filter((post): post is PostPreview => post !== null);

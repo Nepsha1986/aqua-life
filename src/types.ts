@@ -30,12 +30,7 @@ interface Post {
 
 type PostPreview = Omit<
   Post,
-  | "content"
-  | "tankInfo"
-  | "traits"
-  | "draft"
-  | "aliases"
-  | "family"
+  "content" | "tankInfo" | "traits" | "draft" | "aliases" | "family"
 >;
 
 export { type Post, type PostPreview };
