@@ -17,12 +17,19 @@ type DictKeys = "read";
 type PostsFeedSectionDictionary = Record<DictKeys, string>;
 
 interface Props {
+  totalItems: number;
+  itemsLoaded: number;
   dict: PostsFeedSectionDictionary;
   posts: PostPreview[];
 }
 
 const imgPlaceholderUrl = "/fish-img-not-found-placeholder.png";
-export default function PostsFeedSection({ dict, posts }: Props) {
+export default function PostsFeedSection({
+  dict,
+  posts,
+  totalItems,
+  itemsLoaded,
+}: Props) {
   return (
     <div data-testid="posts_feed_section" className={styles.postsFeedSection}>
       <PostsGrid.Container>
@@ -49,7 +56,7 @@ export default function PostsFeedSection({ dict, posts }: Props) {
         ))}
       </PostsGrid.Container>
 
-      <PostsFeed />
+      <PostsFeed totalItems={totalItems} itemsLoaded={itemsLoaded} />
     </div>
   );
 }

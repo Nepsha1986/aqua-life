@@ -12,13 +12,18 @@ export default async function Home({ params }: { params: { locale: Locale } }) {
 
   const dict = await getPageDictionary<HomePageI18n>(locale, "homepage");
   const { common } = await getDictionary(locale);
-  const posts = await fetchPosts(locale);
+  const { data, pagination } = await fetchPosts(locale, 0, 30);
 
   return (
     <>
       <Hero title={dict.hero.title} subTitle={dict.hero.sub_title} />
 
-      <PostsFeedSection dict={{ read: common.read }} posts={posts} />
+      <PostsFeedSection
+        dict={{ read: common.read }}
+        posts={data}
+        totalItems={pagination.totalItems}
+        itemsLoaded={data.length}
+      />
     </>
   );
 }

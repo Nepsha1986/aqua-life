@@ -8,12 +8,12 @@ export default async function Page({ params }: { params: { locale: Locale } }) {
   const { locale } = params;
   const dict = await getPageDictionary<HandbookPageI18n>(locale, PAGE_NAME);
 
-  const posts = await fetchPosts(locale, 0, 9999);
+  const { data } = await fetchPosts(locale, 0, 9999);
 
   return (
     <>
       <h1>{dict.heading}</h1>
-      <PostsLinks posts={posts} />
+      <PostsLinks posts={data} />
     </>
   );
 }
