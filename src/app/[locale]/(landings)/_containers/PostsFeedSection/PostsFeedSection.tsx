@@ -6,30 +6,33 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import PostCard from "@/components/PostCard/PostCard";
 import { PostPreview } from "@/types";
-import { t } from "@/i18n";
+import { Locale, t } from "@/i18n";
 import PostsFeed from "../PostsFeed";
 import PostsGrid from "@/app/[locale]/(landings)/_components/PostsGrid";
 
 import styles from "./styles.module.scss";
-
-type DictKeys = "read";
-
-type PostsFeedSectionDictionary = Record<DictKeys, string>;
+import { getPageDictionary } from "@/i18n/server/getPageDictionary";
+import * as dict from "@/i18n/dictionaries/posts_feed_section/en.json";
 
 interface Props {
   totalItems: number;
   itemsLoaded: number;
-  dict: PostsFeedSectionDictionary;
   posts: PostPreview[];
+  locale: Locale;
 }
 
 const imgPlaceholderUrl = "/fish-img-not-found-placeholder.png";
-export default function PostsFeedSection({
-  dict,
+export default async function PostsFeedSection({
   posts,
   totalItems,
   itemsLoaded,
+  locale,
 }: Props) {
+  const dictionary = await getPageDictionary<typeof dict>(
+    locale,
+    "posts_feed_section",
+  );
+
   return (
     <div data-testid="posts_feed_section" className={styles.postsFeedSection}>
       <PostsGrid.Container>
@@ -48,7 +51,7 @@ export default function PostsFeedSection({
               excerpt={post.excerpt}
             >
               <Link href={post.url}>
-                {t(dict.read)}{" "}
+                {t(dictionary.read)}{" "}
                 <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
               </Link>
             </PostCard>
@@ -56,7 +59,11 @@ export default function PostsFeedSection({
         ))}
       </PostsGrid.Container>
 
-      <PostsFeed totalItems={totalItems} itemsLoaded={itemsLoaded} />
+      <PostsFeed
+        totalItems={totalItems}
+        itemsLoaded={itemsLoaded}
+        dictionary={dictionary}
+      />
     </div>
   );
 }

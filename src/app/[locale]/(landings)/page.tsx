@@ -11,7 +11,6 @@ export default async function Home({ params }: { params: { locale: Locale } }) {
   const { locale } = params;
 
   const dict = await getPageDictionary<HomePageI18n>(locale, "homepage");
-  const { common } = await getDictionary(locale);
   const { data, pagination } = await fetchPosts(locale, 0, 30);
 
   return (
@@ -19,7 +18,7 @@ export default async function Home({ params }: { params: { locale: Locale } }) {
       <Hero title={dict.hero.title} subTitle={dict.hero.sub_title} />
 
       <PostsFeedSection
-        dict={{ read: common.read }}
+        locale={locale}
         posts={data}
         totalItems={pagination.totalItems}
         itemsLoaded={data.length}

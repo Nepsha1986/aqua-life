@@ -12,14 +12,21 @@ import { t, useLocale } from "@/i18n";
 import PostsGrid from "@/app/[locale]/(landings)/_components/PostsGrid";
 import { Button } from "@/ui";
 
+import styles from "./styles.module.scss";
+
 const imgPlaceholderUrl = "/fish-img-not-found-placeholder.png";
 
 interface Props {
+  dictionary: {
+    read: string;
+    show_more: string;
+    showed_text: string;
+  };
   totalItems: number;
   itemsLoaded: number;
 }
-const PostsFeed = ({ totalItems, itemsLoaded }: Props) => {
-  const { locale, dictionary } = useLocale();
+const PostsFeed = ({ totalItems, itemsLoaded, dictionary }: Props) => {
+  const { locale } = useLocale();
   const [posts, setPosts] = useState<Post[]>([]);
   const [page, setPage] = useState(0);
   const [postsLoaded, setPostsLoaded] = useState(itemsLoaded);
@@ -40,7 +47,7 @@ const PostsFeed = ({ totalItems, itemsLoaded }: Props) => {
   }, [page]);
 
   return (
-    <div style={{ paddingTop: "2rem" }}>
+    <div className={styles.postsFeed}>
       <PostsGrid.Container>
         {posts.map((i) => (
           <PostsGrid.Item key={i.slug}>
@@ -57,7 +64,7 @@ const PostsFeed = ({ totalItems, itemsLoaded }: Props) => {
               }
             >
               <Link href={i.url}>
-                {t(dictionary.common.read)}{" "}
+                {t(dictionary.read)}{" "}
                 <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
               </Link>
             </PostCard>
@@ -65,28 +72,29 @@ const PostsFeed = ({ totalItems, itemsLoaded }: Props) => {
         ))}
       </PostsGrid.Container>
 
-      <div
-        style={{ display: "flex", justifyContent: "center", padding: "1rem" }}
-      >
-        <div>
-          <p>
-            Displaying {postsLoaded} out of {totalItems} fish profiles
-          </p>
+      <div className={styles.postsFeed__footer}>
+        <p
+          className={styles.postsFeed__footerInfo}
+          dangerouslySetInnerHTML={{
+            __html: t(
+              dictionary.showed_text,
+              postsLoaded.toString(),
+              totalItems.toString(),
+            ),
+          }}
+        />
 
-          {postsLoaded < totalItems && (
-            <div style={{ display: "flex", justifyContent: "center" }}>
-              <Button
-                size="lg"
-                color="primary"
-                onClick={() => {
-                  setPage((prevState) => prevState + 1);
-                }}
-              >
-                Show More
-              </Button>
-            </div>
-          )}
-        </div>
+        {postsLoaded < totalItems && (
+          <Button
+            size="lg"
+            color="primary"
+            onClick={() => {
+              setPage((prevState) => prevState + 1);
+            }}
+          >
+            {t(dictionary.show_more)}
+          </Button>
+        )}
       </div>
     </div>
   );
