@@ -1,0 +1,22 @@
+.postsFeed {
+  padding-top: 2rem;
+
+  &__footer {
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+  }
+
+  &__footerInfo {
+    font-size: 1.15rem;
+    font-style: italic;
+
+    span {
+      font-weight: bold;
+      font-size: 1.2em;
+      color: var(--primary-color);
+    }
+  }
+}

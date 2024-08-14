@@ -6,6 +6,7 @@ import { POSTS_FOLDER } from "@/utils/variables";
 import { PostPreview } from "@/types";
 import { Locale } from "@/i18n";
 import fetchImage from "@/utils/fetchImage";
+import { Paginated } from "@/types/paginated";
 
 const MAX_SIZE = 30;
 
@@ -13,45 +14,54 @@ export async function fetchPosts(
   locale: Locale = "en",
   page = 0,
   size = MAX_SIZE,
-): Promise<Awaited<PostPreview>[]> {
+): Promise<Paginated<PostPreview>> {
   const contentDir = path.join(process.cwd(), POSTS_FOLDER);
   const allDirNames = await fs.readdir(contentDir);
-  const minIndex = size * page;
-  const maxIndex = minIndex + size;
-  const dirNames = allDirNames.slice(minIndex, maxIndex);
+
+  const start = page * size;
+  const end = start + size;
+  const dirNames = allDirNames.slice(start, end);
 
   const posts = await Promise.all(
     dirNames.map(async (dir) => {
-      try {
-        const filePath = path.join(contentDir, dir, `${locale}.mdx`);
-        const charsPath = path.join(contentDir, dir, `_info.json`);
-        const postUrl = `/${locale}/${dir}`;
+      const filePath = path.join(contentDir, dir, `${locale}.mdx`);
+      const metaPath = path.join(contentDir, dir, `_info.json`);
+      const postUrl = `/${locale}/${dir}`;
 
+      try {
         const [fileData, meta, image] = await Promise.all([
           fs.readFile(filePath, "utf8"),
-          fs.readFile(charsPath, "utf8"),
+          fs.readFile(metaPath, "utf8"),
           fetchImage(dir),
         ]);
 
-        const metaData = JSON.parse(meta);
         const parsedContent = matter(fileData);
+        const metaData = JSON.parse(meta);
 
-        const postItem: PostPreview = {
+        return {
           slug: dir,
           scientificName: metaData.scientificName,
           title: parsedContent.data.title,
           url: postUrl,
           excerpt: parsedContent.data.excerpt,
-          imgUrl: image === null ? "" : image.default.src,
-        };
-
-        return postItem;
-      } catch (e) {
-        console.error("Error while fetching posts data:", e);
+          imgUrl: image?.default.src || "",
+        } as PostPreview;
+      } catch (error) {
+        console.error(`Error fetching post data for ${dir}:`, error);
         return null;
       }
     }),
   );
 
-  return posts.filter((post): post is PostPreview => post !== null);
+  const validPosts = posts.filter(Boolean) as PostPreview[];
+
+  return {
+    data: validPosts,
+    pagination: {
+      totalItems: allDirNames.length,
+      page,
+      totalPages: Math.ceil(allDirNames.length / size),
+      pageSize: size,
+    },
+  };
 }

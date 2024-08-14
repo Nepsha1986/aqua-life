@@ -11,7 +11,7 @@ export async function GET(request: NextRequest) {
   const pageNumber = page ? parseInt(page, 10) : undefined;
   const sizeNumber = size ? parseInt(size, 10) : undefined;
 
-  const posts = await fetchPosts(locale, pageNumber, sizeNumber);
+  const res = await fetchPosts(locale, pageNumber, sizeNumber);
 
-  return Response.json(posts);
+  return Response.json(res);
 }

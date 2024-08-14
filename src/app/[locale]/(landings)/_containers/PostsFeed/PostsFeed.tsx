@@ -7,23 +7,38 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
 
 import { Post } from "@/types";
-import VisibilityChecker from "@/components/VisibilityChecker";
 import PostCard from "@/components/PostCard";
 import { t, useLocale } from "@/i18n";
 import PostsGrid from "@/app/[locale]/(landings)/_components/PostsGrid";
+import { Button } from "@/ui";
+
+import styles from "./styles.module.scss";
 
 const imgPlaceholderUrl = "/fish-img-not-found-placeholder.png";
-const PostsFeed = () => {
-  const { locale, dictionary } = useLocale();
+
+interface Props {
+  dictionary: {
+    read: string;
+    show_more: string;
+    showed_text: string;
+  };
+  totalItems: number;
+  itemsLoaded: number;
+}
+const PostsFeed = ({ totalItems, itemsLoaded, dictionary }: Props) => {
+  const { locale } = useLocale();
   const [posts, setPosts] = useState<Post[]>([]);
   const [page, setPage] = useState(0);
+  const [postsLoaded, setPostsLoaded] = useState(itemsLoaded);
 
   useEffect(() => {
     const fetchPosts = async () => {
-      const data = await fetch(
+      const { data } = await fetch(
         `/api/v1/posts?page=${page}&locale=${locale}`,
-      ).then((data) => data.json());
+      ).then((res) => res.json());
       setPosts([...posts, ...data]);
+
+      setPostsLoaded((prev) => prev + data.length);
     };
 
     if (!!page) {
@@ -32,7 +47,7 @@ const PostsFeed = () => {
   }, [page]);
 
   return (
-    <div style={{ paddingTop: "2rem" }}>
+    <div className={styles.postsFeed}>
       <PostsGrid.Container>
         {posts.map((i) => (
           <PostsGrid.Item key={i.slug}>
@@ -49,7 +64,7 @@ const PostsFeed = () => {
               }
             >
               <Link href={i.url}>
-                {t(dictionary.common.read)}{" "}
+                {t(dictionary.read)}{" "}
                 <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
               </Link>
             </PostCard>
@@ -57,11 +72,30 @@ const PostsFeed = () => {
         ))}
       </PostsGrid.Container>
 
-      <VisibilityChecker
-        onInView={() => {
-          setPage((prevState) => prevState + 1);
-        }}
-      />
+      <div className={styles.postsFeed__footer}>
+        <p
+          className={styles.postsFeed__footerInfo}
+          dangerouslySetInnerHTML={{
+            __html: t(
+              dictionary.showed_text,
+              postsLoaded.toString(),
+              totalItems.toString(),
+            ),
+          }}
+        />
+
+        {postsLoaded < totalItems && (
+          <Button
+            size="lg"
+            color="primary"
+            onClick={() => {
+              setPage((prevState) => prevState + 1);
+            }}
+          >
+            {t(dictionary.show_more)}
+          </Button>
+        )}
+      </div>
     </div>
   );
 };
