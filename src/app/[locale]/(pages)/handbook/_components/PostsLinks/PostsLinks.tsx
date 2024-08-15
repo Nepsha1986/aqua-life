@@ -1,11 +1,15 @@
 import Link from "next/link";
 
 import { PostPreview } from "@/types";
+import { fetchPosts } from "@/utils/fetchPosts";
+import { Locale } from "@/i18n";
 
 import styles from "./styles.module.scss";
 
-const PostsLinks = ({ posts }: { posts: PostPreview[] }) => {
-  const groupedPosts = posts.reduce(
+const PostsLinks = async ({ locale }: { locale: Locale }) => {
+  const { data } = await fetchPosts(locale, 0, 9999);
+
+  const groupedPosts = data.reduce(
     (acc, post) => {
       const firstLetter = post.title[0].toUpperCase();
       if (!acc[firstLetter]) {
@@ -27,7 +31,7 @@ const PostsLinks = ({ posts }: { posts: PostPreview[] }) => {
 
             <ul className={styles.postsLinks__list}>
               {groupedPosts[letter].map((post) => (
-                <li key={post.title}>
+                <li key={post.scientificName}>
                   <Link className={styles.postsLinks__listItem} href={post.url}>
                     {post.title} <span>({post.scientificName})</span>
                   </Link>
