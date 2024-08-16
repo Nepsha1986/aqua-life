@@ -7,6 +7,7 @@ import AppFooter from "@/containers/AppFooter";
 import { LocaleProvider, Locale, locales } from "@/i18n";
 import { getDictionary } from "@/i18n/server/getDictionary";
 import ErrorPage from "@/app/[locale]/not-found";
+import dictionary from "@/i18n/dictionaries/all/en.json";
 
 import "normalize.css/normalize.css";
 import "instantsearch.css/themes/satellite-min.css";
@@ -30,16 +31,16 @@ export default async function RootLayout({
   const { locale } = params;
   if (!locales.includes(locale)) return <ErrorPage />;
 
-  const dictionary = await getDictionary(locale);
+  const dict = await getDictionary<typeof dictionary>(locale, "all");
 
   return (
     <html lang={locale}>
       <body className={inter.className}>
-        <LocaleProvider locale={locale} dictionary={dictionary}>
+        <LocaleProvider locale={locale} dictionary={dict}>
           <AppHeader />
           {children}
           <AppFooter
-            dict={{ ...dictionary.common, ...dictionary.footer_nav }}
+            dict={{ ...dict.common, ...dict.footer_nav }}
             locale={locale}
           />
         </LocaleProvider>

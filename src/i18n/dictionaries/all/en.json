@@ -1,0 +1,19 @@
+{
+  "common": {
+    "search": "Search",
+    "all_rights_reserved": "All rights reserved",
+    "read": "Read",
+    "common_names": "Common Names"
+  },
+  "seo": {
+    "article_heading": "Care, Feeding, Compatibility with Other Aquarium Fish"
+  },
+  "nav": {
+    "homepage": "Homepage",
+    "handbook": "Handbook",
+    "about": "About"
+  },
+  "footer_nav": {
+    "terms_of_use": "Terms of Use"
+  }
+}

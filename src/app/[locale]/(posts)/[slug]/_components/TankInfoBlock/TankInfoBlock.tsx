@@ -1,24 +1,24 @@
 import InfoCard from "../InfoCard";
-import { t } from "@/i18n";
-
-type DictKeys =
-  | "tank_info"
-  | "temperature"
-  | "min_tank_size"
-  | "water_hardness"
-  | "water_acidity"
-  | "litters";
-type TankInfoBlockDictionary = Record<DictKeys, string>;
+import { Locale, t } from "@/i18n";
+import { getDictionary } from "@/i18n/server/getDictionary";
+import dictionary from "@/i18n/dictionaries/tank_info/en.json";
 
 interface Props {
-  dict: TankInfoBlockDictionary;
+  locale: Locale;
   temperature: string;
   volume: string;
   gh: string;
   ph: string;
 }
 
-const TankInfoBlock = ({ dict, temperature, volume, gh, ph }: Props) => {
+const TankInfoBlock = async ({
+  locale,
+  temperature,
+  volume,
+  gh,
+  ph,
+}: Props) => {
+  const dict = await getDictionary<typeof dictionary>(locale, "tank_info");
   return (
     <InfoCard.Container title={t(dict.tank_info)}>
       <InfoCard.Item

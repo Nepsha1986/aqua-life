@@ -1,4 +1,4 @@
-import * as dictionary from "./dictionaries/en.json";
+import dictionary from "./dictionaries/all/en.json";
 
 import * as homePageI18n from "./dictionaries/homepage/en.json";
 import * as unverifiedAlertI18n from "./dictionaries/unverified_alert/en.json";

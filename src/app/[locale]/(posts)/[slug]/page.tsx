@@ -14,9 +14,9 @@ import {
 
 import { type Locale, locales, t } from "@/i18n";
 import { getDictionary } from "@/i18n/server/getDictionary";
+import dictionary from "@/i18n/dictionaries/all/en.json";
 
 import styles from "./styles.module.scss";
-import InfoCard from "@/app/[locale]/(posts)/[slug]/_components/InfoCard";
 
 export async function generateMetadata({
   params,
@@ -24,7 +24,7 @@ export async function generateMetadata({
   params: { locale: Locale; slug: string };
 }) {
   const { locale, slug } = params;
-  const { seo } = await getDictionary(locale);
+  const { seo } = await getDictionary<typeof dictionary>(locale, "all");
   const { title, excerpt } = await fetchPost(locale, slug);
 
   return {
@@ -65,8 +65,7 @@ export default async function ContentPage({
     tankInfo,
   } = await fetchPost(locale, slug);
 
-  const { tank_info_block, characteristics_block, common } =
-    await getDictionary(locale);
+  const { common } = await getDictionary<typeof dictionary>(locale, "all");
 
   return (
     <main>
@@ -98,12 +97,8 @@ export default async function ContentPage({
         </div>
 
         <div className={styles.article__meta}>
-          <CharacteristicsBlock
-            dict={characteristics_block}
-            family={family}
-            {...traits}
-          />
-          <TankInfoBlock dict={tank_info_block} {...tankInfo} />
+          <CharacteristicsBlock locale={locale} family={family} {...traits} />
+          <TankInfoBlock locale={locale} {...tankInfo} />
         </div>
 
         <div className={styles.article__content}>
