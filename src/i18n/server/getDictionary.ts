@@ -7,16 +7,17 @@ const importDictionary = (locale: Locale, dictionary: string) =>
     (module) => module.default,
   );
 
-const dictionaries: Record<Locale, (page: string) => Promise<any>> =
-  {} as Record<Locale, (page: string) => Promise<any>>;
+const dictionaries: Record<Locale, (dictionary: string) => Promise<any>> =
+  {} as Record<Locale, (dictionary: string) => Promise<any>>;
 
 locales.forEach((locale) => {
-  dictionaries[locale] = (page: string) => importDictionary(locale, page);
+  dictionaries[locale] = (dictionary: string) =>
+    importDictionary(locale, dictionary);
 });
 
 export const getDictionary = async <T extends Record<string, any>>(
   locale: Locale,
-  page: string,
+  dictionary: string,
 ): Promise<T> => {
-  return dictionaries[locale](page);
+  return dictionaries[locale](dictionary);
 };
