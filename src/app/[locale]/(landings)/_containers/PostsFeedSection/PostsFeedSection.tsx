@@ -11,7 +11,7 @@ import PostsFeed from "../PostsFeed";
 import PostsGrid from "@/app/[locale]/(landings)/_components/PostsGrid";
 
 import styles from "./styles.module.scss";
-import { getPageDictionary } from "@/i18n/server/getPageDictionary";
+import { getDictionary } from "@/i18n/server/getDictionary";
 import * as dict from "@/i18n/dictionaries/posts_feed_section/en.json";
 
 interface Props {
@@ -28,7 +28,7 @@ export default async function PostsFeedSection({
   itemsLoaded,
   locale,
 }: Props) {
-  const dictionary = await getPageDictionary<typeof dict>(
+  const dictionary = await getDictionary<typeof dict>(
     locale,
     "posts_feed_section",
   );

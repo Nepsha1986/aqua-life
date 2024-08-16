@@ -1,4 +1,4 @@
-import { getPageDictionary } from "@/i18n/server/getPageDictionary";
+import { getDictionary } from "@/i18n/server/getDictionary";
 import { Alert } from "@/ui";
 import { Locale, t } from "@/i18n";
 import { UnverifiedAlertI18n } from "@/i18n/types";
@@ -8,7 +8,7 @@ interface Props {
   locale: Locale;
 }
 export const UnverifiedAlert = async ({ locale }: Props) => {
-  const dictionary = await getPageDictionary<UnverifiedAlertI18n>(
+  const dictionary = await getDictionary<UnverifiedAlertI18n>(
     locale,
     "unverified_alert",
   );
