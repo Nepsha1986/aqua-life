@@ -65,8 +65,10 @@ export default async function ContentPage({
     tankInfo,
   } = await fetchPost(locale, slug);
 
-  const { tank_info_block, characteristics_block, common } =
-    await getDictionary<typeof dictionary>(locale, "all");
+  const { tank_info_block, common } = await getDictionary<typeof dictionary>(
+    locale,
+    "all",
+  );
 
   return (
     <main>
@@ -98,11 +100,7 @@ export default async function ContentPage({
         </div>
 
         <div className={styles.article__meta}>
-          <CharacteristicsBlock
-            dict={characteristics_block}
-            family={family}
-            {...traits}
-          />
+          <CharacteristicsBlock locale={locale} family={family} {...traits} />
           <TankInfoBlock dict={tank_info_block} {...tankInfo} />
         </div>
 

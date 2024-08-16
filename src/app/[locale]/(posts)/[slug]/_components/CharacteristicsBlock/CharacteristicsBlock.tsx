@@ -1,32 +1,11 @@
 import InfoCard from "../InfoCard";
-import { t } from "@/i18n";
+import { Locale, t } from "@/i18n";
 import { Rate, ActivityTime } from "@/types";
+import dictionary from "@/i18n/dictionaries/characteristics_block/en.json";
+import { getDictionary } from "@/i18n/server/getDictionary";
 
-type DictKeys =
-  | "characteristics"
-  | "family"
-  | "size"
-  | "lifespan"
-  | "centimeters_short"
-  | "years"
-  | "activity_time"
-  | "care_level"
-  | "behaviour"
-  | "breed_difficulty"
-  | "very_easy"
-  | "easy"
-  | "normal"
-  | "hard"
-  | "very_hard"
-  | "very_peaceful"
-  | "peaceful"
-  | "neutral"
-  | "aggressive"
-  | "very_aggressive";
-
-type CharacteristicsBlockDictionary = Record<DictKeys, string>;
 interface Props {
-  dict: CharacteristicsBlockDictionary;
+  locale: Locale;
   family: string;
   size: string;
   lifespan: string;
@@ -52,8 +31,8 @@ const behaviourMap = {
   "5": "very_aggressive",
 };
 
-const CharacteristicsBlock = ({
-  dict,
+const CharacteristicsBlock = async ({
+  locale,
   family,
   size,
   lifespan,
@@ -62,6 +41,11 @@ const CharacteristicsBlock = ({
   behaviour,
   breedingDifficulty,
 }: Props) => {
+  const dict = await getDictionary<typeof dictionary>(
+    locale,
+    "characteristics_block",
+  );
+
   return (
     <InfoCard.Container title={t(dict.characteristics)}>
       <InfoCard.Item term={t(dict.family)} def={family} />
@@ -76,15 +60,17 @@ const CharacteristicsBlock = ({
       <InfoCard.Item term={t(dict.activity_time)} def={activityTime} />
       <InfoCard.Item
         term={t(dict.care_level)}
-        def={t(dict[difficultyMap[careLevel] as DictKeys])}
+        def={t(dict[difficultyMap[careLevel] as keyof typeof dictionary])}
       />
       <InfoCard.Item
         term={t(dict.behaviour)}
-        def={t(dict[behaviourMap[behaviour] as DictKeys])}
+        def={t(dict[behaviourMap[behaviour] as keyof typeof dictionary])}
       />
       <InfoCard.Item
         term={t(dict.breed_difficulty)}
-        def={t(dict[difficultyMap[breedingDifficulty] as DictKeys])}
+        def={t(
+          dict[difficultyMap[breedingDifficulty] as keyof typeof dictionary],
+        )}
       />
     </InfoCard.Container>
   );

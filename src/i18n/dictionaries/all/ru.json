@@ -23,27 +23,5 @@
     "water_hardness": "Жесткость",
     "water_acidity": "Кислотность",
     "litters": "литры"
-  },
-  "characteristics_block": {
-    "characteristics": "Характеристики",
-    "family": "Семейство",
-    "size": "Размер",
-    "lifespan": "Продолжительность жизни",
-    "centimeters_short": "см",
-    "years": "лет",
-    "activity_time": "Время активности",
-    "behaviour": "Поведение",
-    "care_level": "Сложность содержания",
-    "breed_difficulty": "Сложность разведения",
-    "very_easy": "Очень легко",
-    "easy": "Легко",
-    "normal": "Нормально",
-    "hard": "Трудно",
-    "very_hard": "Очень трудно",
-    "very_peaceful": "Очень мирная",
-    "peaceful": "Мирная",
-    "neutral": "Нейтральная",
-    "aggressive": "Агрессивная",
-    "very_aggressive": "Очень агрессивная"
   }
 }
