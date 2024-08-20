@@ -4,8 +4,7 @@ import { usePathname } from "next/navigation";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
-import Dialog from "@/components/Dialog/Dialog";
-import { Button } from "@/ui";
+import { Button, Dialog } from "@/ui";
 import AlgoSearch from "./AlgoSearch";
 import { useLocale, t } from "@/i18n";
 

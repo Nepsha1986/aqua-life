@@ -1,10 +1,12 @@
+"use client";
+
 import { type ReactNode, useEffect, useRef, FC } from "react";
 import classNames from "classnames";
 
 import styles from "./styles.module.scss";
 import { Button } from "@/ui";
 
-const Dialog: FC<{
+export const Dialog: FC<{
   open: boolean;
   children: ReactNode;
   onClickClose?: () => void;
@@ -38,5 +40,3 @@ const Dialog: FC<{
     </dialog>
   );
 };
-
-export default Dialog;

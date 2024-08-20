@@ -6,7 +6,7 @@ import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
 
-import { Post } from "@/types";
+import { Post, PostPreview } from "@/types";
 import PostCard from "@/components/PostCard";
 import { t, useLocale } from "@/i18n";
 import PostsGrid from "@/app/[locale]/(landings)/_components/PostsGrid";
@@ -27,7 +27,7 @@ interface Props {
 }
 const PostsFeed = ({ totalItems, itemsLoaded, dictionary }: Props) => {
   const { locale } = useLocale();
-  const [posts, setPosts] = useState<Post[]>([]);
+  const [posts, setPosts] = useState<PostPreview[]>([]);
   const [page, setPage] = useState(0);
   const [postsLoaded, setPostsLoaded] = useState(itemsLoaded);
 
@@ -62,6 +62,7 @@ const PostsFeed = ({ totalItems, itemsLoaded, dictionary }: Props) => {
                   alt={i.imgUrl ? i.title : "placeholder"}
                 />
               }
+              subTitle={i.scientificName}
             >
               <Link href={i.url}>
                 {t(dictionary.read)}{" "}

@@ -47,6 +47,7 @@ export default async function PostsFeedSection({
                   height={300}
                 />
               }
+              subTitle={`${post.scientificName}`}
               title={post.title}
               excerpt={post.excerpt}
             >

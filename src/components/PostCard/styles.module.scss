@@ -17,6 +17,7 @@
     justify-content: center;
     background: var(--color-grey-200);
     aspect-ratio: 3/1.7;
+    position: relative;
 
     img {
       width: 100%;
@@ -25,17 +26,24 @@
     }
   }
 
-  .postCard__content {
-    padding: 1rem 0.8rem;
+  &__title {
+    margin: 0;
+    font-size: 1.35rem;
   }
 
-  &__title {
+  &__subTitle {
+    font-style: italic;
+    color: var(--color-grey-600);
+    font-size: 0.9rem;
     margin-top: 0;
-    font-size: 1.35rem;
+  }
+
+  &__content {
+    padding: 1rem 0.8rem;
   }
 
   &__excerpt {
     font-size: 1rem;
-    @include mixins.textOverflow(4);
+    @include mixins.textOverflow(3);
   }
 }
