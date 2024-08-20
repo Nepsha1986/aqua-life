@@ -22,7 +22,7 @@ const Search = () => {
 
   return (
     <>
-      <Button size="lg" onClick={handleClick} ghost>
+      <Button size="md" onClick={handleClick} ghost>
         <FontAwesomeIcon icon={faSearch} />
         <span style={{ marginLeft: "10px" }}>
           {t(dictionary.common.search)}
