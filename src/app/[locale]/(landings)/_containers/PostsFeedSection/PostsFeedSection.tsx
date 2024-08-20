@@ -1,8 +1,5 @@
 import React from "react";
 import Image from "next/image";
-import Link from "next/link";
-import { faArrowUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import PostCard from "@/components/PostCard/PostCard";
 import { PostPreview } from "@/types";
@@ -50,12 +47,8 @@ export default async function PostsFeedSection({
               subTitle={`${post.scientificName}`}
               title={post.title}
               excerpt={post.excerpt}
-            >
-              <Link href={post.url}>
-                {t(dictionary.read)}{" "}
-                <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
-              </Link>
-            </PostCard>
+              href={post.url}
+            />
           </PostsGrid.Item>
         ))}
       </PostsGrid.Container>

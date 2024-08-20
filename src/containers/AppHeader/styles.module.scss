@@ -7,8 +7,7 @@
     display: flex;
     padding: 0.7rem 15px;
     justify-content: space-between;
-    height: var(--header-height);
-    max-width: 1300px;
+    max-width: var(--container-size);
     margin: 0 auto;
   }
 

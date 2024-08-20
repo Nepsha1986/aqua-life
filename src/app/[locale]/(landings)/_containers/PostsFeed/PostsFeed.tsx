@@ -2,11 +2,8 @@
 
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
-import Link from "next/link";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
 
-import { Post, PostPreview } from "@/types";
+import { PostPreview } from "@/types";
 import PostCard from "@/components/PostCard";
 import { t, useLocale } from "@/i18n";
 import PostsGrid from "@/app/[locale]/(landings)/_components/PostsGrid";
@@ -18,7 +15,6 @@ const imgPlaceholderUrl = "/fish-img-not-found-placeholder.png";
 
 interface Props {
   dictionary: {
-    read: string;
     show_more: string;
     showed_text: string;
   };
@@ -54,6 +50,7 @@ const PostsFeed = ({ totalItems, itemsLoaded, dictionary }: Props) => {
             <PostCard
               title={i.title}
               excerpt={i.excerpt}
+              href={i.url}
               image={
                 <Image
                   src={i.imgUrl ? i.imgUrl : imgPlaceholderUrl}
@@ -63,12 +60,7 @@ const PostsFeed = ({ totalItems, itemsLoaded, dictionary }: Props) => {
                 />
               }
               subTitle={i.scientificName}
-            >
-              <Link href={i.url}>
-                {t(dictionary.read)}{" "}
-                <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
-              </Link>
-            </PostCard>
+            />
           </PostsGrid.Item>
         ))}
       </PostsGrid.Container>
