@@ -20,7 +20,7 @@
   }
 
   &__subTitle {
-    font-size: 1.15rem;
+    font-size: clamp(1.1rem, 2dvw, 1.25rem);
     color: #fff;
   }
 

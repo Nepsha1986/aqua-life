@@ -20,8 +20,8 @@ const Hero = async ({ locale }: Props) => {
         <p className={styles.hero__subTitle}>{t(dict.sub_title)}</p>
 
         <LinkBtn
+          size="md"
           className={styles.hero__btn}
-          color="primary"
           href={`${locale}/handbook`}
           ghost
         >

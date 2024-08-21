@@ -3,7 +3,7 @@ import React from "react";
 import PostsFeedSection from "./_containers/PostsFeedSection";
 import { fetchPosts } from "@/utils/fetchPosts";
 import { type Locale } from "@/i18n";
-import dictionary from '@/i18n/dictionaries/homepage_seo/en.json';
+import dictionary from "@/i18n/dictionaries/homepage_seo/en.json";
 import Hero from "./_components/Hero";
 import { getDictionary } from "@/i18n/server/getDictionary";
 
