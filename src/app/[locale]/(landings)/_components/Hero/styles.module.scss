@@ -20,7 +20,7 @@
   }
 
   &__subTitle {
-    font-size: 1.15rem;
+    font-size: clamp(1.1rem, 2dvw, 1.25rem);
     color: #fff;
   }
 
@@ -32,5 +32,11 @@
     position: absolute;
     left: 0;
     top: 0;
+  }
+
+  &__btn {
+    margin-top: 2rem;
+    color: #fff !important;
+    border-color: #fff !important;
   }
 }

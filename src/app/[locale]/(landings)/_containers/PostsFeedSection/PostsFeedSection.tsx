@@ -2,14 +2,17 @@ import React from "react";
 import Image from "next/image";
 
 import PostCard from "@/components/PostCard/PostCard";
+import Section from "@/components/Section";
+
 import { PostPreview } from "@/types";
 import { Locale, t } from "@/i18n";
 import PostsFeed from "../PostsFeed";
 import PostsGrid from "@/app/[locale]/(landings)/_components/PostsGrid";
 
-import styles from "./styles.module.scss";
 import { getDictionary } from "@/i18n/server/getDictionary";
 import * as dict from "@/i18n/dictionaries/posts_feed_section/en.json";
+
+import styles from "./styles.module.scss";
 
 interface Props {
   totalItems: number;
@@ -31,7 +34,12 @@ export default async function PostsFeedSection({
   );
 
   return (
-    <div data-testid="posts_feed_section" className={styles.postsFeedSection}>
+    <Section
+      data-testid="posts_feed_section"
+      heading={t(dictionary.title)}
+      intro={t(dictionary.intro)}
+      className={styles.postsFeedSection}
+    >
       <PostsGrid.Container>
         {posts.map(async (post) => (
           <PostsGrid.Item key={post.slug}>
@@ -58,6 +66,6 @@ export default async function PostsFeedSection({
         itemsLoaded={itemsLoaded}
         dictionary={dictionary}
       />
-    </div>
+    </Section>
   );
 }

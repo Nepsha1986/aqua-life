@@ -1,17 +1,32 @@
+import { LinkBtn } from "@/ui";
+import { Locale, t } from "@/i18n";
+import { getDictionary } from "@/i18n/server/getDictionary";
+import dictionary from "@/i18n/dictionaries/hero/en.json";
+
 import styles from "./styles.module.scss";
 
 interface Props {
-  title: string;
-  subTitle: string;
+  locale: Locale;
 }
-const Hero = ({ title, subTitle }: Props) => {
+const Hero = async ({ locale }: Props) => {
+  const dict = await getDictionary<typeof dictionary>(locale, "hero");
+
   return (
     <section className={styles.hero}>
       <div className={styles.hero__bg} />
 
       <div className={styles.hero__content}>
-        <h1 className={styles.hero__title}>{title}</h1>
-        <p className={styles.hero__subTitle}>{subTitle}</p>
+        <h1 className={styles.hero__title}>{t(dict.title)}</h1>
+        <p className={styles.hero__subTitle}>{t(dict.sub_title)}</p>
+
+        <LinkBtn
+          size="md"
+          className={styles.hero__btn}
+          href={`${locale}/handbook`}
+          ghost
+        >
+          {t(dict.btn)}
+        </LinkBtn>
       </div>
     </section>
   );

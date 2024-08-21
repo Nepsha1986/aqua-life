@@ -1,0 +1,25 @@
+.section {
+  &__heading {
+    padding-left: 25px;
+    font-size: clamp(1.6rem, 3.5dvw, 2.5rem);
+    position: relative;
+
+    &:before {
+      display: block;
+      content: "";
+      position: absolute;
+      background: var(--primary-color);
+      width: 5px;
+      left: 0;
+      height: 100%;
+    }
+  }
+
+  &__intro {
+    font-size: clamp(1.1rem, 2dvw, 1.25rem);
+    margin-bottom: 5rem;
+  }
+
+  &__content {
+  }
+}
