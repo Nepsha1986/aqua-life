@@ -20,6 +20,7 @@
     "@next/third-parties": "^14.2.5",
     "algoliasearch": "^4.24.0",
     "classnames": "^2.5.1",
+    "disqus-react": "^1.1.5",
     "gray-matter": "^4.0.3",
     "handbook-freshwater-fish": "github:Nepsha1986/handbook-freshwater-fish#main",
     "instantsearch.css": "^8.3.0",

@@ -10,6 +10,7 @@ import {
   CharacteristicsBlock,
   TankInfoBlock,
   UnverifiedAlert,
+  Discus
 } from "./_components";
 
 import { type Locale, locales, t } from "@/i18n";
@@ -53,6 +54,7 @@ export default async function ContentPage({
 }) {
   const { locale, slug } = params;
   const {
+    url,
     draft,
     title,
     scientificName,
@@ -110,6 +112,9 @@ export default async function ContentPage({
           {draft && <UnverifiedAlert locale={locale} />}
         </div>
       </article>
+      <aside className={styles.aside}>
+        <Discus title={title} locale={locale} id={url} url={url} />
+      </aside>
     </main>
   );
 }
