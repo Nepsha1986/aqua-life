@@ -113,7 +113,7 @@ export default async function ContentPage({
         </div>
       </article>
       <aside className={styles.aside}>
-        <Discus title={title} locale={locale} id={url} url={url} />
+        <Discus title={title} locale={locale} id={url} url={`https://aquajoy.club/${url}`} />
       </aside>
     </main>
   );
