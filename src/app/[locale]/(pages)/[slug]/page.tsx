@@ -18,6 +18,7 @@ import { getDictionary } from "@/i18n/server/getDictionary";
 import dictionary from "@/i18n/dictionaries/all/en.json";
 
 import styles from "./styles.module.scss";
+import Link from "next/link";
 
 export async function generateMetadata({
   params,
@@ -109,12 +110,9 @@ export default async function ContentPage({
         </div>
 
         <div data-nosnippet={true}>
-          {draft && <UnverifiedAlert locale={locale} />}
+          {draft && <UnverifiedAlert locale={locale} discussionLink={`${url}/discussion`} />}
         </div>
       </article>
-      <aside className={styles.aside}>
-        <Discus title={title} locale={locale} id={url} url={`https://aquajoy.club/${url}`} />
-      </aside>
     </main>
   );
 }
