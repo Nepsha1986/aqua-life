@@ -6,9 +6,9 @@ import Link from "next/link";
 
 interface Props {
   locale: Locale;
-  discussionLink: string,
+  discussionLink: string;
 }
-export const UnverifiedAlert = async ({ locale,discussionLink }: Props) => {
+export const UnverifiedAlert = async ({ locale, discussionLink }: Props) => {
   const dictionary = await getDictionary<UnverifiedAlertI18n>(
     locale,
     "unverified_alert",
@@ -19,11 +19,7 @@ export const UnverifiedAlert = async ({ locale,discussionLink }: Props) => {
       message={t(dictionary.message)}
       type="warning"
       description={t(dictionary.description)}
-      footer={
-        <Link href={discussionLink}>
-          {dictionary.contribute_text}
-        </Link>
-      }
+      footer={<Link href={discussionLink}>{dictionary.contribute_text}</Link>}
     />
   );
 };

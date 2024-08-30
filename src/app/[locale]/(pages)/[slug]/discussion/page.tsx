@@ -1,17 +1,17 @@
 import path from "path";
 import { promises as fs } from "fs";
-import Link from "next/link";
 
 import { fetchPost } from "@/utils/fetchPost";
 import { POSTS_FOLDER } from "@/utils/variables";
 
-import {
-  Discus
-} from "../_components";
+import { Discus } from "../_components";
 
 import { type Locale, locales, t } from "@/i18n";
 import { getDictionary } from "@/i18n/server/getDictionary";
-import dictionary from "@/i18n/dictionaries/all/en.json";
+import dictionary from "@/i18n/dictionaries/discussion_page/en.json";
+import PostCard from "@/components/PostCard";
+import Image from "next/image";
+import React from "react";
 
 export async function generateMetadata({
   params,
@@ -19,12 +19,15 @@ export async function generateMetadata({
   params: { locale: Locale; slug: string };
 }) {
   const { locale, slug } = params;
-  const { seo } = await getDictionary<typeof dictionary>(locale, "all");
-  const { title, excerpt } = await fetchPost(locale, slug);
+  const { seo_title, seo_description } = await getDictionary<typeof dictionary>(
+    locale,
+    "discussion_page",
+  );
+  const { title } = await fetchPost(locale, slug);
 
   return {
-    title: `${title}: ${seo.article_heading}`,
-    description: excerpt,
+    title: t(seo_title, title),
+    description: t(seo_description, title),
   };
 }
 
@@ -41,33 +44,61 @@ export async function generateStaticParams() {
   return allParams.flat();
 }
 
-export default async function ContentPage({
+export default async function DiscussionPage({
   params,
 }: {
   params: { locale: Locale; slug: string };
 }) {
   const { locale, slug } = params;
-  const {
-    url,
-    title,
-  } = await fetchPost(locale, slug);
+  const { url, title, imgUrl, scientificName, excerpt } = await fetchPost(
+    locale,
+    slug,
+  );
+  const { heading, sub_heading, rules } = await getDictionary<
+    typeof dictionary
+  >(locale, "discussion_page");
 
   return (
     <main>
-      <h1>{title}. Обсуждение, предложения и комментарии.</h1>
-      <p>Эта страница создана для того, чтобы каждый любитель аквариумистики мог внести свой вклад в развитие нашего сообщества. Здесь вы можете:</p>
-      <ul>
-        <li>
-          Предложить изменения к статье <Link href={url} target='_blank'>{title}</Link>, если у вас есть дополнительная информация или замечания по содержанию.
-        </li>
-        <li>
-          Поделиться фотографиями своих рыб, чтобы другие участники могли увидеть их в реальных условиях.
-        </li>
-        <li>
-          Оставить полезные комментарии и рекомендации, делясь своим опытом и знаниями.
-        </li>
-      </ul>
-      <Discus title={title} locale={locale} id={url} url={`https://aquajoy.club${url}`} />
+      <div style={{ marginBottom: "5rem" }}>
+        <h1>{t(heading, title)}</h1>
+
+        <div style={{ display: "flex", gap: "15px" }}>
+          <div style={{ maxWidth: "400px" }}>
+            <PostCard
+              title={title}
+              href={url}
+              image={
+                <Image
+                  alt={imgUrl ? title : "placeholder"}
+                  src={imgUrl ? imgUrl : ""}
+                  width={400}
+                  height={300}
+                />
+              }
+              subTitle={scientificName}
+              excerpt={excerpt}
+            />
+          </div>
+
+          <div>
+            <p>{t(sub_heading)}</p>
+
+            <ul>
+              {rules.map((i, index) => (
+                <li key={index} dangerouslySetInnerHTML={{ __html: i }} />
+              ))}
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <Discus
+        title={title}
+        locale={locale}
+        id={scientificName}
+        url={`https://aquajoy.club${url}/discussion`}
+      />
     </main>
   );
 }

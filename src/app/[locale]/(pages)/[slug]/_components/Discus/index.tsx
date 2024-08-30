@@ -1,1 +1,1 @@
-export { default } from './Discus';
+export { default } from "./Discus";
