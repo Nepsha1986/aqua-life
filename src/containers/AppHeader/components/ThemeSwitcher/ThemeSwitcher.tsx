@@ -29,6 +29,7 @@ const ThemeSwitcher = () => {
       document.documentElement.setAttribute("data-theme", newTheme);
     }
     Cookies.set("theme", newTheme, { expires: 365 });
+    window.dispatchEvent(new CustomEvent("themeApplied"));
   };
 
   const handleThemeChange = (newTheme: Theme) => {

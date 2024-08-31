@@ -10,7 +10,6 @@ import {
   CharacteristicsBlock,
   TankInfoBlock,
   UnverifiedAlert,
-  Discus
 } from "./_components";
 
 import { type Locale, locales, t } from "@/i18n";
@@ -109,12 +108,14 @@ export default async function ContentPage({
         </div>
 
         <div data-nosnippet={true}>
-          {draft && <UnverifiedAlert locale={locale} />}
+          {draft && (
+            <UnverifiedAlert
+              locale={locale}
+              discussionLink={`${url}/discussion`}
+            />
+          )}
         </div>
       </article>
-      <aside className={styles.aside}>
-        <Discus title={title} locale={locale} id={url} url={`https://aquajoy.club/${url}`} />
-      </aside>
     </main>
   );
 }
