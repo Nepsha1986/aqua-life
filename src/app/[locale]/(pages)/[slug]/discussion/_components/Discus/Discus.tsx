@@ -1,8 +1,9 @@
 "use client";
 
+import { useEffect, useState, useCallback } from "react";
 import { DiscussionEmbed } from "disqus-react";
+
 import { Locale } from "@/i18n";
-import { useEffect, useState } from "react";
 
 interface Props {
   url: string;
@@ -13,33 +14,45 @@ interface Props {
 
 const Discus = ({ url, id, title, locale }: Props) => {
   const [key, setKey] = useState<number>(1);
+  const [render, setRender] = useState(false);
 
-  const triggerDiscuss = () => {
-    setKey(Math.random());
-  };
+  const triggerDisqus = useCallback(() => {
+    setKey((prev) => prev + 1);
+  }, []);
 
+  // Hotfix to solve the problem with styling for dark/light modes
   useEffect(() => {
-    window.addEventListener("themeApplied", triggerDiscuss);
+    window.addEventListener("themeApplied", triggerDisqus);
 
     return () => {
-      window.removeEventListener("themeApplied", triggerDiscuss);
+      window.removeEventListener("themeApplied", triggerDisqus);
     };
-  }, [window]);
+  }, [triggerDisqus]);
+
+  // Hotfix to solve the problem with double-rendering of a discussion feed
+  const renderDiscussionWithDelay = useCallback(() => {
+    setTimeout(() => {
+      setRender(true);
+    }, 100);
+  }, []);
+
+  useEffect(() => {
+    renderDiscussionWithDelay();
+  }, []);
+
+  if (!render) return null;
+
   return (
-    <div style={{ opacity: 1 }}>
-      {!!key && (
-        <DiscussionEmbed
-          key={key}
-          shortname="aquajoy"
-          config={{
-            url,
-            identifier: id,
-            title,
-            language: locale,
-          }}
-        />
-      )}
-    </div>
+    <DiscussionEmbed
+      key={key}
+      shortname="aquajoy"
+      config={{
+        url,
+        identifier: id,
+        title,
+        language: locale,
+      }}
+    />
   );
 };
 
