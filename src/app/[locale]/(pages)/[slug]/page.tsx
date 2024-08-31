@@ -10,7 +10,6 @@ import {
   CharacteristicsBlock,
   TankInfoBlock,
   UnverifiedAlert,
-  Discus,
 } from "./_components";
 
 import { type Locale, locales, t } from "@/i18n";
@@ -18,7 +17,6 @@ import { getDictionary } from "@/i18n/server/getDictionary";
 import dictionary from "@/i18n/dictionaries/all/en.json";
 
 import styles from "./styles.module.scss";
-import Link from "next/link";
 
 export async function generateMetadata({
   params,
