@@ -2,9 +2,10 @@
   "seo_title": "${1}. Discussion, Suggestions, and Comments on the Article",
   "seo_description": "Here you can leave suggestions and comments on the article, as well as ask any questions you have regarding ${1}",
   "heading": "${1}. Discussion, Suggestions, and Comments.",
-  "sub_heading": "This page is created for every aquarium enthusiast to contribute to the growth of our community. Here you can:",
+  "sub_heading": "This page is created for every aquarium enthusiast to contribute to the growth of our community",
+  "rules_heading": "Here you can:",
   "rules": [
-    "<strong>Suggest changes</strong> to the article if you have additional information or comments on the content.",
+    "Suggest changes to the article if you have additional information or comments on the content.",
     "Share photos of your fish so other members can see them in real conditions.",
     "Leave helpful comments and recommendations, sharing your experience and knowledge."
   ]

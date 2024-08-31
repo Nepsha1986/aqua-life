@@ -1,17 +1,18 @@
+import React from "react";
+import Image from "next/image";
 import path from "path";
 import { promises as fs } from "fs";
 
 import { fetchPost } from "@/utils/fetchPost";
 import { POSTS_FOLDER } from "@/utils/variables";
 
-import { Discus } from "../_components";
+import Discus from "./_components/Discus";
+import DiscussionPageLayout from "./_components/DiscussionPageLayout";
 
 import { type Locale, locales, t } from "@/i18n";
 import { getDictionary } from "@/i18n/server/getDictionary";
 import dictionary from "@/i18n/dictionaries/discussion_page/en.json";
 import PostCard from "@/components/PostCard";
-import Image from "next/image";
-import React from "react";
 
 export async function generateMetadata({
   params,
@@ -54,51 +55,53 @@ export default async function DiscussionPage({
     locale,
     slug,
   );
-  const { heading, sub_heading, rules } = await getDictionary<
+  const { heading, sub_heading, rules, rules_heading } = await getDictionary<
     typeof dictionary
   >(locale, "discussion_page");
 
   return (
     <main>
-      <div style={{ marginBottom: "5rem" }}>
-        <h1>{t(heading, title)}</h1>
-
-        <div style={{ display: "flex", gap: "15px" }}>
-          <div style={{ maxWidth: "400px" }}>
-            <PostCard
-              title={title}
-              href={url}
-              image={
-                <Image
-                  alt={imgUrl ? title : "placeholder"}
-                  src={imgUrl ? imgUrl : ""}
-                  width={400}
-                  height={300}
-                />
-              }
-              subTitle={scientificName}
-              excerpt={excerpt}
-            />
-          </div>
-
-          <div>
+      <DiscussionPageLayout
+        header={
+          <>
+            <h1>{t(heading, title)}</h1>
+          </>
+        }
+        card={
+          <PostCard
+            title={title}
+            href={url}
+            image={
+              <Image
+                alt={imgUrl ? title : "placeholder"}
+                src={imgUrl ? imgUrl : ""}
+                width={400}
+                height={300}
+              />
+            }
+            subTitle={scientificName}
+            excerpt={excerpt}
+          />
+        }
+        rules={
+          <>
             <p>{t(sub_heading)}</p>
-
+            <h3>{t(rules_heading)}</h3>
             <ul>
               {rules.map((i, index) => (
-                <li key={index} dangerouslySetInnerHTML={{ __html: i }} />
+                <li key={index} dangerouslySetInnerHTML={{ __html: t(i) }} />
               ))}
             </ul>
-          </div>
-        </div>
-      </div>
-
-      <Discus
-        title={title}
-        locale={locale}
-        id={scientificName}
-        url={`https://aquajoy.club${url}/discussion`}
-      />
+          </>
+        }
+      >
+        <Discus
+          title={title}
+          locale={locale}
+          id={scientificName}
+          url={`https://aquajoy.club${url}/discussion`}
+        />
+      </DiscussionPageLayout>
     </main>
   );
 }

@@ -1,0 +1,26 @@
+.layout {
+  &__header {
+    margin-bottom: 2rem;
+  }
+
+  &__main {
+    display: flex;
+    flex-flow: row wrap;
+    gap: 15px;
+    margin-bottom: 4rem;
+  }
+
+  &__cardSlot {
+    flex-basis: 400px;
+    flex-grow: 1;
+  }
+
+  &__rulesSlot {
+    flex-basis: 400px;
+    flex-grow: 5;
+
+    li {
+      margin-bottom: 10px;
+    }
+  }
+}
