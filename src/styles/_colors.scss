@@ -38,7 +38,17 @@ $colors: (
   "color-green-600": #00b300,
   "color-green-700": #009900,
   "color-green-800": #006600,
-  "color-green-900": #004400
+  "color-green-900": #004400,
+  // Blue
+  "color-blue-100": #e6f2ff,
+  "color-blue-200": #cce5ff,
+  "color-blue-300": #99ccff,
+  "color-blue-400": #66b2ff,
+  "color-blue-500": #3399ff,
+  "color-blue-600": #007fff,
+  "color-blue-700": #0066cc,
+  "color-blue-800": #004c99,
+  "color-blue-900": #003366
 );
 
 $reversed-colors: (
@@ -81,5 +91,15 @@ $reversed-colors: (
   "color-green-600": map-get($colors, "color-green-400"),
   "color-green-700": map-get($colors, "color-green-300"),
   "color-green-800": map-get($colors, "color-green-200"),
-  "color-green-900": map-get($colors, "color-green-100")
+  "color-green-900": map-get($colors, "color-green-100"),
+  // Blue
+  "color-blue-100": map-get($colors, "color-blue-900"),
+  "color-blue-200": map-get($colors, "color-blue-800"),
+  "color-blue-300": map-get($colors, "color-blue-700"),
+  "color-blue-400": map-get($colors, "color-blue-600"),
+  "color-blue-500": map-get($colors, "color-blue-500"),
+  "color-blue-600": map-get($colors, "color-blue-400"),
+  "color-blue-700": map-get($colors, "color-blue-300"),
+  "color-blue-800": map-get($colors, "color-blue-200"),
+  "color-blue-900": map-get($colors, "color-blue-100")
 );

@@ -11,6 +11,7 @@
   &__description {
     text-align: justify;
     font-size: 0.875rem;
+    margin-top: 0;
   }
 
   &_danger {
@@ -26,5 +27,10 @@
   &_success {
     background: var(--color-green-100);
     border-color: var(--color-green-700);
+  }
+
+  &_info {
+    background: var(--color-blue-100);
+    border-color: var(--color-blue-700);
   }
 }

@@ -4,15 +4,15 @@ import classNames from "classnames";
 import styles from "./styles.module.scss";
 
 interface Props {
-  message: string;
+  title?: string;
   description?: string;
-  type?: "success" | "warning" | "danger";
+  type?: "success" | "warning" | "danger" | "info";
   className?: string;
   footer?: React.ReactNode;
 }
 
 export const Alert: React.FC<Props> = ({
-  message,
+  title,
   description,
   type = "warning",
   className,
@@ -29,7 +29,7 @@ export const Alert: React.FC<Props> = ({
 
   return (
     <div data-testid="alert" className={classname} {...props}>
-      <h3 className={styles.alert__message}>{message}</h3>
+      {title && <h3 className={styles.alert__message}>{title}</h3>}
       {description && (
         <p
           className={styles.alert__description}

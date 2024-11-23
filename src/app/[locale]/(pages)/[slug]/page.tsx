@@ -8,8 +8,9 @@ import { POSTS_FOLDER } from "@/utils/variables";
 
 import {
   CharacteristicsBlock,
-  TankInfoBlock,
   UnverifiedAlert,
+  ImproveArticleBlock,
+  TankInfoBlock,
 } from "./_components";
 
 import { type Locale, locales, t } from "@/i18n";
@@ -108,11 +109,13 @@ export default async function ContentPage({
         </div>
 
         <div data-nosnippet={true}>
-          {draft && (
+          {draft ? (
             <UnverifiedAlert
               locale={locale}
               discussionLink={`${url}/discussion`}
             />
+          ) : (
+            <ImproveArticleBlock link={`${url}/discussion`} locale={locale} />
           )}
         </div>
       </article>
