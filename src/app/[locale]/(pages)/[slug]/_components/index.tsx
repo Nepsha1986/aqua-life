@@ -1,5 +1,4 @@
-import CharacteristicsBlock from "./CharacteristicsBlock";
-import TankInfoBlock from "./TankInfoBlock";
-export * from "./UnverifiedAlert";
-
-export { CharacteristicsBlock, TankInfoBlock };
+export { default as CharacteristicsBlock } from "./CharacteristicsBlock";
+export { default as TankInfoBlock } from "./TankInfoBlock";
+export { default as UnverifiedAlert } from "./UnverifiedAlert";
+export { default as ImproveArticleBlock } from "./ImproveArticleBlock";
