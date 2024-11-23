@@ -1,3 +1,3 @@
-const POSTS_FOLDER = "posts/content";
+const POSTS_FOLDER = "posts";
 
 export { POSTS_FOLDER };

@@ -8,7 +8,13 @@ import { Post } from "@/types";
 import fetchImage from "@/utils/fetchImage";
 
 export async function fetchPost(locale: string, slug: string): Promise<Post> {
-  const contentDir = path.join(process.cwd(), POSTS_FOLDER, slug);
+  const contentDir = path.join(
+    process.cwd(),
+    POSTS_FOLDER,
+    slug.split("-")[0],
+    slug,
+  );
+
   const filePath = path.join(contentDir, `${locale}.mdx`);
   const charsPath = path.join(contentDir, `_info.json`);
   const url = `/${locale}/${slug}`;

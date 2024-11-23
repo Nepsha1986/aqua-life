@@ -40,7 +40,9 @@ export async function generateStaticParams() {
       const contentDir = path.join(process.cwd(), POSTS_FOLDER);
       const allDirNames = await fs.readdir(contentDir);
 
-      return allDirNames.map(async (slug) => ({ params: { locale, slug } }));
+      return allDirNames.map(async (slug) => ({
+        params: { locale, slug },
+      }));
     }),
   );
 
