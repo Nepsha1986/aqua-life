@@ -17,9 +17,9 @@ import PostCard from "@/components/PostCard";
 export async function generateMetadata({
   params,
 }: {
-  params: { locale: Locale; slug: string };
+  params: Promise<{ locale: Locale; slug: string }>;
 }) {
-  const { locale, slug } = params;
+  const { locale, slug } = await params;
   const { seo_title, seo_description } = await getDictionary<typeof dictionary>(
     locale,
     "discussion_page",
@@ -48,9 +48,9 @@ export async function generateStaticParams() {
 export default async function DiscussionPage({
   params,
 }: {
-  params: { locale: Locale; slug: string };
+  params: Promise<{ locale: Locale; slug: string }>;
 }) {
-  const { locale, slug } = params;
+  const { locale, slug } = await params;
   const { url, title, imgUrl, scientificName, excerpt } = await fetchPost(
     locale,
     slug,

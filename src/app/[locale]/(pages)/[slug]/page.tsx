@@ -22,9 +22,9 @@ import styles from "./styles.module.scss";
 export async function generateMetadata({
   params,
 }: {
-  params: { locale: Locale; slug: string };
+  params: Promise<{ locale: Locale; slug: string }>;
 }) {
-  const { locale, slug } = params;
+  const { locale, slug } = await params;
   const { seo } = await getDictionary<typeof dictionary>(locale, "all");
   const { title, excerpt } = await fetchPost(locale, slug);
 
@@ -50,9 +50,9 @@ export async function generateStaticParams() {
 export default async function ContentPage({
   params,
 }: {
-  params: { locale: Locale; slug: string };
+  params: Promise<{ locale: Locale; slug: string }>;
 }) {
-  const { locale, slug } = params;
+  const { locale, slug } = await params;
   const {
     url,
     draft,

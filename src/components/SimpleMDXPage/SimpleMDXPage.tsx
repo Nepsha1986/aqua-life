@@ -10,11 +10,12 @@ export default async function SimpleMDXPage({
   page,
   components,
 }: {
-  params: { locale: Locale };
+  params: Promise<{ locale: Locale }>;
   page: string;
   components: React.ComponentProps<typeof MDXProvider>["components"];
 }) {
-  const { content } = await getContent(params.locale, page);
+  const { locale } = await params;
+  const { content } = await getContent(locale, page);
 
   return <MDXRemote source={content} components={components} />;
 }
@@ -23,10 +24,10 @@ export async function generateMDXMetadata({
   params,
   page,
 }: {
-  params: { locale: Locale };
+  params: Promise<{ locale: Locale }>;
   page: string;
 }) {
-  const { locale } = params;
+  const { locale } = await params;
   const { data } = await getContent(locale, page);
 
   return {
