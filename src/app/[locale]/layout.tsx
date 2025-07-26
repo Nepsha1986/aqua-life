@@ -26,9 +26,9 @@ export default async function RootLayout({
   params,
 }: Readonly<{
   children: React.ReactNode;
-  params: { locale: Locale };
+  params: Promise<{ locale: Locale }>;
 }>) {
-  const { locale } = params;
+  const { locale } = await params;
   if (!locales.includes(locale)) return <ErrorPage />;
 
   const dict = await getDictionary<typeof dictionary>(locale, "all");
