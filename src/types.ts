@@ -28,9 +28,6 @@ interface Post {
   };
 }
 
-type PostPreview = Omit<
-  Post,
-  "content" | "tankInfo" | "traits" | "draft" | "aliases" | "family"
->;
+type PostPreview = Omit<Post, "content" | "draft" | "aliases">;
 
 export { type Post, type PostPreview };
