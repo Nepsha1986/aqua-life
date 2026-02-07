@@ -41,6 +41,9 @@ export async function fetchPosts(
         return {
           slug: dir,
           scientificName: metaData.scientificName,
+          family: metaData.family,
+          traits: metaData.traits,
+          tankInfo: metaData.tankInfo,
           title: parsedContent.data.title,
           url: postUrl,
           excerpt: parsedContent.data.excerpt,

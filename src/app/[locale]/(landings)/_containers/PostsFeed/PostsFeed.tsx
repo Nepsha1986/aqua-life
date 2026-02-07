@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 
-import { PostPreview } from "@/types";
+import { PostPreview, Rate } from "@/types";
 import PostCard from "@/components/PostCard";
 import { t, useLocale } from "@/i18n";
 import PostsGrid from "@/app/[locale]/(landings)/_components/PostsGrid";
@@ -13,19 +13,36 @@ import styles from "./styles.module.scss";
 
 const imgPlaceholderUrl = "/fish-img-not-found-placeholder.png";
 
+const careLevelLabels: Record<Rate, string> = {
+  1: "Very Easy",
+  2: "Easy",
+  3: "Normal",
+  4: "Hard",
+  5: "Very Hard",
+};
+
 interface Props {
   dictionary: {
     show_more: string;
     showed_text: string;
   };
+  careLevelDictionary?: Record<Rate, string>;
   totalItems: number;
   itemsLoaded: number;
 }
-const PostsFeed = ({ totalItems, itemsLoaded, dictionary }: Props) => {
+const PostsFeed = ({
+  totalItems,
+  itemsLoaded,
+  dictionary,
+  careLevelDictionary,
+}: Props) => {
   const { locale } = useLocale();
   const [posts, setPosts] = useState<PostPreview[]>([]);
   const [page, setPage] = useState(0);
   const [postsLoaded, setPostsLoaded] = useState(itemsLoaded);
+
+  const getCareLevelLabel = (level: Rate) =>
+    careLevelDictionary?.[level] ?? careLevelLabels[level];
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -60,6 +77,14 @@ const PostsFeed = ({ totalItems, itemsLoaded, dictionary }: Props) => {
                 />
               }
               subTitle={i.scientificName}
+              size={i.traits?.size}
+              temperature={i.tankInfo?.temperature}
+              careLevel={
+                i.traits?.careLevel
+                  ? getCareLevelLabel(i.traits.careLevel)
+                  : undefined
+              }
+              tankVolume={i.tankInfo?.volume}
             />
           </PostsGrid.Item>
         ))}

@@ -47,8 +47,31 @@
     padding: 1rem 0.8rem;
   }
 
+  &__infoBar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-bottom: 0.6rem;
+  }
+
+  &__chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    font-size: 0.75rem;
+    padding: 0.15rem 0.45rem;
+    border-radius: 4px;
+    background: var(--color-grey-300);
+    color: var(--color-grey-800);
+    white-space: nowrap;
+
+    svg {
+      flex-shrink: 0;
+    }
+  }
+
   &__excerpt {
-    font-size: 1rem;
+    font-size: 0.875rem;
     color: var(--color-grey-700);
     @include mixins.textOverflow(3);
   }

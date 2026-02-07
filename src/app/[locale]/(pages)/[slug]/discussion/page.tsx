@@ -12,7 +12,9 @@ import DiscussionPageLayout from "./_components/DiscussionPageLayout";
 import { type Locale, locales, t } from "@/i18n";
 import { getDictionary } from "@/i18n/server/getDictionary";
 import dictionary from "@/i18n/dictionaries/discussion_page/en.json";
+import charDict from "@/i18n/dictionaries/characteristics_block/en.json";
 import PostCard from "@/components/PostCard";
+import { Rate } from "@/types";
 
 export async function generateMetadata({
   params,
@@ -45,19 +47,30 @@ export async function generateStaticParams() {
   return allParams.flat();
 }
 
+const careLevelMap: Record<string, keyof typeof charDict> = {
+  "1": "very_easy",
+  "2": "easy",
+  "3": "normal",
+  "4": "hard",
+  "5": "very_hard",
+};
+
 export default async function DiscussionPage({
   params,
 }: {
   params: Promise<{ locale: Locale; slug: string }>;
 }) {
   const { locale, slug } = await params;
-  const { url, title, imgUrl, scientificName, excerpt } = await fetchPost(
-    locale,
-    slug,
-  );
-  const { heading, sub_heading, rules, rules_heading } = await getDictionary<
-    typeof dictionary
-  >(locale, "discussion_page");
+  const { url, title, imgUrl, scientificName, excerpt, traits, tankInfo } =
+    await fetchPost(locale, slug);
+  const [{ heading, sub_heading, rules, rules_heading }, charDictionary] =
+    await Promise.all([
+      getDictionary<typeof dictionary>(locale, "discussion_page"),
+      getDictionary<typeof charDict>(locale, "characteristics_block"),
+    ]);
+
+  const getCareLevelLabel = (level: Rate) =>
+    t(charDictionary[careLevelMap[level]]);
 
   return (
     <main>
@@ -81,6 +94,14 @@ export default async function DiscussionPage({
             }
             subTitle={scientificName}
             excerpt={excerpt}
+            size={traits?.size}
+            temperature={tankInfo?.temperature}
+            careLevel={
+              traits?.careLevel
+                ? getCareLevelLabel(traits.careLevel)
+                : undefined
+            }
+            tankVolume={tankInfo?.volume}
           />
         }
         rules={
