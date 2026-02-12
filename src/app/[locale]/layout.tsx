@@ -26,22 +26,24 @@ export default async function RootLayout({
   params,
 }: Readonly<{
   children: React.ReactNode;
-  params: Promise<{ locale: Locale }>;
+  params: Promise<{ locale: string }>;
 }>) {
   const { locale } = await params;
-  if (!locales.includes(locale)) return <ErrorPage />;
+  if (!locales.includes(locale as Locale)) return <ErrorPage />;
 
-  const dict = await getDictionary<typeof dictionary>(locale, "all");
+  const typedLocale = locale as Locale;
+
+  const dict = await getDictionary<typeof dictionary>(typedLocale, "all");
 
   return (
-    <html lang={locale}>
+    <html lang={typedLocale}>
       <body className={inter.className}>
-        <LocaleProvider locale={locale} dictionary={dict}>
+        <LocaleProvider locale={typedLocale} dictionary={dict}>
           <AppHeader />
           {children}
           <AppFooter
             dict={{ ...dict.common, ...dict.footer_nav }}
-            locale={locale}
+            locale={typedLocale}
           />
         </LocaleProvider>
       </body>
