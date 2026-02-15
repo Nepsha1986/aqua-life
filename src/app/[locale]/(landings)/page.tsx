@@ -1,6 +1,7 @@
 import React from "react";
 
 import PostsFeedSection from "./_containers/PostsFeedSection";
+import AboutSection from "./_containers/AboutSection";
 import { fetchPosts } from "@/utils/fetchPosts";
 import { type Locale } from "@/i18n";
 import dictionary from "@/i18n/dictionaries/homepage_seo/en.json";
@@ -26,6 +27,8 @@ export default async function Home({
         totalItems={pagination.totalItems}
         itemsLoaded={data.length}
       />
+
+      <AboutSection locale={locale} />
     </>
   );
 }

@@ -50,7 +50,7 @@ export default async function RootLayout({
   const typedLocale = locale as Locale;
 
   const dict = await getDictionary<typeof dictionary>(typedLocale, "all");
-  const applyThemeInitScript = `(function(){try{var t=localStorage.getItem("theme");if(t==="dark"||t==="light"){document.documentElement.setAttribute("data-theme",t)}}catch(e){}})()`;
+  const applyThemeInitScript = `(function(){try{var t=localStorage.getItem("theme")||"dark";if(t==="dark"||t==="light"){document.documentElement.setAttribute("data-theme",t)}}catch(e){}})()`;
 
   return (
     <html lang={typedLocale} suppressHydrationWarning>

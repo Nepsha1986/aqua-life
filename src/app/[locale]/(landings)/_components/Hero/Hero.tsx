@@ -16,6 +16,15 @@ const Hero = async ({ locale }: Props) => {
     <section className={styles.hero}>
       <div className={styles.hero__bg} />
 
+      <svg
+        className={styles.hero__waveBottom}
+        viewBox="0 0 1440 120"
+        preserveAspectRatio="none"
+        aria-hidden="true"
+      >
+        <path d="M0,56 C360,0 720,120 1080,56 C1260,24 1380,40 1440,48 L1440,120 L0,120 Z" />
+      </svg>
+
       <div className={styles.hero__content}>
         <h1 className={styles.hero__title}>{t(dict.title)}</h1>
         <p className={styles.hero__subTitle}>{t(dict.sub_title)}</p>

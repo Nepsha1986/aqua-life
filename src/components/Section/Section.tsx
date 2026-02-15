@@ -11,14 +11,16 @@ const Section = ({ heading, intro, children, ...rest }: Props) => {
 
   return (
     <section className={sectionClass}>
-      <h1
-        className={styles.section__heading}
-        dangerouslySetInnerHTML={{ __html: heading }}
-      />
-      <p
-        className={styles.section__intro}
-        dangerouslySetInnerHTML={{ __html: intro }}
-      />
+      <div className={styles.section__header}>
+        <h1
+          className={styles.section__heading}
+          dangerouslySetInnerHTML={{ __html: heading }}
+        />
+        <p
+          className={styles.section__intro}
+          dangerouslySetInnerHTML={{ __html: intro }}
+        />
+      </div>
       <div className={styles.section__content}>{children}</div>
     </section>
   );
