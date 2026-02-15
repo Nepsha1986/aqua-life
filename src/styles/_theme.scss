@@ -1,4 +1,5 @@
 @use "colors";
+@use "sass:map";
 
 $primary-color-light: #5faaf8;
 $primary-color-dark: #1462b4;
@@ -22,7 +23,7 @@ $dark: (
 );
 
 @each $name, $color in colors.$colors {
-  $light: map-merge(
+  $light: map.merge(
     $light,
     (
       $name: $color,
@@ -31,7 +32,7 @@ $dark: (
 }
 
 @each $name, $color in colors.$reversed-colors {
-  $dark: map-merge(
+  $dark: map.merge(
     $dark,
     (
       $name: $color,

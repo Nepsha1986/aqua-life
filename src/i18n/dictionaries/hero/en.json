@@ -1,5 +1,11 @@
 {
-  "title": "Discover the World of Freshwater Aquarium Fish",
-  "sub_title": "Discover the ultimate guide to freshwater aquarium fish: care, feeding, breeding, and aquarium maintenance. Learn about different fish species, expert tips, and share experiences with the community to provide the best care for your aquatic pets.",
-  "btn": "Browse Catalog"
+  "title": "Your Guide to Freshwater Aquarium Fish",
+  "sub_title": "Everything you need to create and maintain a thriving underwater world at home.",
+  "btn": "Explore Species",
+  "stat_species": "300+ Species",
+  "stat_species_desc": "Detailed profiles",
+  "stat_guides": "Care Guides",
+  "stat_guides_desc": "Expert advice",
+  "stat_community": "Community",
+  "stat_community_desc": "Share experience"
 }

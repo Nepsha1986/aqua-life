@@ -2,6 +2,7 @@ import { LinkBtn } from "@/ui";
 import { Locale, t } from "@/i18n";
 import { getDictionary } from "@/i18n/server/getDictionary";
 import dictionary from "@/i18n/dictionaries/hero/en.json";
+import HeroStats from "./_components/HeroStats";
 
 import styles from "./styles.module.scss";
 
@@ -20,13 +21,21 @@ const Hero = async ({ locale }: Props) => {
         <p className={styles.hero__subTitle}>{t(dict.sub_title)}</p>
 
         <LinkBtn
-          size="md"
+          size="lg"
           className={styles.hero__btn}
           href={`${locale}/handbook`}
-          ghost
+          color="primary"
         >
           {t(dict.btn)}
         </LinkBtn>
+
+        <HeroStats
+          stats={[
+            { value: dict.stat_species, label: dict.stat_species_desc },
+            { value: dict.stat_guides, label: dict.stat_guides_desc },
+            { value: dict.stat_community, label: dict.stat_community_desc },
+          ]}
+        />
       </div>
     </section>
   );

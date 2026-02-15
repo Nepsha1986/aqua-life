@@ -1,6 +1,6 @@
 @use "theme" as theme;
 @use "mixins" as mixins;
-@import "shame";
+@use "shame" as shame;
 
 :root {
   @include mixins.apply-theme(theme.$shared);
@@ -42,6 +42,7 @@ h4,
 h5,
 h6 {
   color: var(--color-black);
+  font-weight: 500;
 }
 
 a {
