@@ -1,0 +1,11 @@
+{
+  "heading": "About the Project",
+  "intro": "A comprehensive, open-source catalog of freshwater aquarium fish — built by aquarists, for aquarists.",
+  "feature_catalog_title": "300+ Species Catalog",
+  "feature_catalog_desc": "Detailed profiles covering characteristics, feeding, care, breeding, and useful tips for each freshwater aquarium fish species.",
+  "feature_opensource_title": "Open Source",
+  "feature_opensource_desc": "Built on open-source principles using Markdown format. All content is stored in a public GitHub repository anyone can contribute to.",
+  "feature_community_title": "Community Driven",
+  "feature_community_desc": "Created by passionate aquarists who continuously research and add new data, ensuring the catalog remains a valuable resource for all levels.",
+  "btn": "Learn More About Us"
+}

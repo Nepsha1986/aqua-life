@@ -1,13 +1,18 @@
 import React from "react";
 
 import PostsFeedSection from "./_containers/PostsFeedSection";
+import AboutSection from "./_containers/AboutSection";
 import { fetchPosts } from "@/utils/fetchPosts";
 import { type Locale } from "@/i18n";
 import dictionary from "@/i18n/dictionaries/homepage_seo/en.json";
 import Hero from "./_components/Hero";
 import { getDictionary } from "@/i18n/server/getDictionary";
 
-export default async function Home({ params }: { params: Promise<{ locale: Locale }> }) {
+export default async function Home({
+  params,
+}: {
+  params: Promise<{ locale: Locale }>;
+}) {
   const { locale } = await params;
 
   const { data, pagination } = await fetchPosts(locale, 0, 30);
@@ -22,6 +27,8 @@ export default async function Home({ params }: { params: Promise<{ locale: Local
         totalItems={pagination.totalItems}
         itemsLoaded={data.length}
       />
+
+      <AboutSection locale={locale} />
     </>
   );
 }

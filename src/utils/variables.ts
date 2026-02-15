@@ -1,3 +1,4 @@
 const POSTS_FOLDER = "posts/content";
+const GOOGLE_ANALYTICS_ID = "G-B4XFSSZ1EL";
 
-export { POSTS_FOLDER };
+export { POSTS_FOLDER, GOOGLE_ANALYTICS_ID };

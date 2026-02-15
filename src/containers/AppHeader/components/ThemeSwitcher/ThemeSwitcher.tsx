@@ -1,40 +1,28 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import Cookies from "js-cookie";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSun, faMoon, faAdjust } from "@fortawesome/free-solid-svg-icons";
+import { faSun, faMoon } from "@fortawesome/free-solid-svg-icons";
 import { Button } from "@/ui";
 import { Theme } from "@/types/theme";
 
 import styles from "./styles.module.css";
 
 const ThemeSwitcher = () => {
-  const [theme, setTheme] = useState<Theme | undefined>();
+  const [theme, setTheme] = useState<Theme>("light");
 
   useEffect(() => {
-    const savedTheme = (Cookies.get("theme") as Theme) || "auto";
-    setTheme(savedTheme);
-    applyTheme(savedTheme);
+    const savedTheme = localStorage.getItem("theme") as Theme;
+    if (savedTheme) {
+      setTheme(savedTheme);
+    }
   }, []);
 
-  const applyTheme = (newTheme: Theme) => {
-    if (newTheme === "auto") {
-      const darkModeMediaQuery = window.matchMedia(
-        "(prefers-color-scheme: dark)",
-      );
-      const themeToApply = darkModeMediaQuery.matches ? "dark" : "light";
-      document.documentElement.setAttribute("data-theme", themeToApply);
-    } else {
-      document.documentElement.setAttribute("data-theme", newTheme);
-    }
-    Cookies.set("theme", newTheme, { expires: 365 });
-    window.dispatchEvent(new CustomEvent("themeApplied"));
-  };
-
   const handleThemeChange = (newTheme: Theme) => {
-    applyTheme(newTheme);
     setTheme(newTheme);
+    document.documentElement.setAttribute("data-theme", newTheme);
+    localStorage.setItem("theme", newTheme);
+    window.dispatchEvent(new CustomEvent("themeApplied"));
   };
 
   return (
@@ -54,14 +42,6 @@ const ThemeSwitcher = () => {
         onClick={() => handleThemeChange("dark")}
       >
         <FontAwesomeIcon icon={faMoon} />
-      </Button>
-      <Button
-        active={theme === "auto"}
-        size="sm"
-        iconOnly
-        onClick={() => handleThemeChange("auto")}
-      >
-        <FontAwesomeIcon icon={faAdjust} />
       </Button>
     </div>
   );

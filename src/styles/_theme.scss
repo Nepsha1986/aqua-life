@@ -1,7 +1,11 @@
 @use "colors";
+@use "sass:map";
 
 $primary-color-light: #5faaf8;
 $primary-color-dark: #1462b4;
+
+$secondary-color-light: map.get(colors.$colors, "color-green-500");
+$secondary-color-dark: map.get(colors.$colors, "color-green-700");
 
 $shared: (
   container-size: 1360px,
@@ -11,18 +15,20 @@ $light: (
   color-white: #fff,
   color-black: #000,
   primary-color: $primary-color-dark,
-  hero-bg-image: url("/hero-dark.jpg"),
+  secondary-color: $secondary-color-dark,
+  hero-bg-image: url("/hero-light.jpg"),
 );
 
 $dark: (
   color-white: #000,
   color-black: #fff,
   primary-color: $primary-color-light,
+  secondary-color: $secondary-color-light,
   hero-bg-image: url("/hero-dark.jpg"),
 );
 
 @each $name, $color in colors.$colors {
-  $light: map-merge(
+  $light: map.merge(
     $light,
     (
       $name: $color,
@@ -31,7 +37,7 @@ $dark: (
 }
 
 @each $name, $color in colors.$reversed-colors {
-  $dark: map-merge(
+  $dark: map.merge(
     $dark,
     (
       $name: $color,
