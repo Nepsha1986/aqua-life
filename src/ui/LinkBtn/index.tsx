@@ -4,7 +4,13 @@ import classNames from "classnames";
 import styles from "../Button/styles.module.scss";
 
 interface Props extends React.ComponentProps<typeof Link> {
-  color?: "default" | "primary" | "transparent" | "danger" | "success";
+  color?:
+    | "default"
+    | "primary"
+    | "secondary"
+    | "transparent"
+    | "danger"
+    | "success";
   ghost?: boolean;
   iconOnly?: boolean;
   disabled?: boolean;

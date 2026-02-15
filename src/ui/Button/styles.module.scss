@@ -22,6 +22,10 @@
     background: var(--primary-color);
   }
 
+  &_secondary {
+    background: var(--secondary-color);
+  }
+
   &_danger {
     background: var(--color-red-500);
   }

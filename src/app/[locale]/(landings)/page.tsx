@@ -7,7 +7,11 @@ import dictionary from "@/i18n/dictionaries/homepage_seo/en.json";
 import Hero from "./_components/Hero";
 import { getDictionary } from "@/i18n/server/getDictionary";
 
-export default async function Home({ params }: { params: Promise<{ locale: Locale }> }) {
+export default async function Home({
+  params,
+}: {
+  params: Promise<{ locale: Locale }>;
+}) {
   const { locale } = await params;
 
   const { data, pagination } = await fetchPosts(locale, 0, 30);

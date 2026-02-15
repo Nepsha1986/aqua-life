@@ -24,7 +24,7 @@ const Hero = async ({ locale }: Props) => {
           size="lg"
           className={styles.hero__btn}
           href={`${locale}/handbook`}
-          color="primary"
+          color="secondary"
         >
           {t(dict.btn)}
         </LinkBtn>
