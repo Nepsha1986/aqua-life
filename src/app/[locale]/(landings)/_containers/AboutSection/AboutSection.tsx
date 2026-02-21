@@ -68,10 +68,7 @@ const AboutSection = async ({ locale }: Props) => {
         </div>
 
         <div className={styles.about__cta}>
-          <LinkBtn
-            href={`/${locale}/about`}
-            color="primary"
-          >
+          <LinkBtn href={`/${locale}/about`} color="primary">
             {t(dict.btn)}
           </LinkBtn>
         </div>
