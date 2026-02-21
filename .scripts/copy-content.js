@@ -1,8 +1,8 @@
 const fs = require('fs').promises;
 const path = require('path');
 
-const srcDir = path.resolve(__dirname, '../node_modules/handbook-freshwater-fish');
-const destDir = path.resolve(__dirname, '../posts');
+const srcDir = path.resolve(__dirname, '../node_modules/handbook-freshwater-fish/content');
+const destDir = path.resolve(__dirname, '../posts/content');
 
 async function copy(src, dest) {
     const stat = await fs.stat(src);
