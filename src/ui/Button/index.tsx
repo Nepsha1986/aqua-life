@@ -7,7 +7,13 @@ interface Props {
   children: React.ReactNode;
   link?: string;
   onClick?: () => void;
-  color?: "default" | "primary" | "transparent" | "danger" | "success";
+  color?:
+    | "default"
+    | "primary"
+    | "secondary"
+    | "transparent"
+    | "danger"
+    | "success";
   ghost?: boolean;
   iconOnly?: boolean;
   disabled?: boolean;
@@ -16,6 +22,8 @@ interface Props {
   size?: "sm" | "md" | "lg";
   className?: string;
   target?: React.HTMLAttributeAnchorTarget;
+  "aria-label"?: string;
+  title?: string;
 }
 export const Button: React.FC<Props> = ({
   children,
@@ -28,6 +36,8 @@ export const Button: React.FC<Props> = ({
   style,
   size = "lg",
   className = "",
+  "aria-label": ariaLabel,
+  title,
 }) => {
   const [pressed, setPressed] = useState(false);
 
@@ -56,6 +66,8 @@ export const Button: React.FC<Props> = ({
   return (
     <button
       type="button"
+      aria-label={ariaLabel}
+      title={title}
       onClick={onClick}
       className={cssClassName}
       disabled={disabled}

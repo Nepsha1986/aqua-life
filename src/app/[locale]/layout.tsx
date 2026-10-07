@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Unbounded } from "next/font/google";
 import { GoogleAnalytics } from "@next/third-parties/google";
 
 import AppHeader from "@/containers/AppHeader";
 import AppFooter from "@/containers/AppFooter";
+import DepthGauge from "@/components/DepthGauge";
 import { LocaleProvider, Locale, locales } from "@/i18n";
 import { getDictionary } from "@/i18n/server/getDictionary";
 import ErrorPage from "@/app/[locale]/not-found";
@@ -15,7 +16,18 @@ import "normalize.css/normalize.css";
 import "instantsearch.css/themes/satellite-min.css";
 import "@/styles/globals.scss";
 
-const inter = Inter({ subsets: ["latin"] });
+const bodyFont = Inter({
+  subsets: ["latin", "cyrillic"],
+  variable: "--font-body",
+  display: "swap",
+});
+
+const displayFont = Unbounded({
+  subsets: ["latin", "cyrillic"],
+  weight: ["500", "600", "700"],
+  variable: "--font-display",
+  display: "swap",
+});
 
 export async function generateMetadata({
   params,
@@ -61,14 +73,12 @@ export default async function RootLayout({
           }}
         />
       </head>
-      <body className={inter.className}>
+      <body className={`${bodyFont.variable} ${displayFont.variable}`}>
         <LocaleProvider locale={typedLocale} dictionary={dict}>
-          <AppHeader />
+          <AppHeader locale={typedLocale} />
           {children}
-          <AppFooter
-            dict={{ ...dict.common, ...dict.footer_nav }}
-            locale={typedLocale}
-          />
+          <AppFooter dict={dict} locale={typedLocale} />
+          <DepthGauge />
         </LocaleProvider>
       </body>
       <GoogleAnalytics gaId={GOOGLE_ANALYTICS_ID} />

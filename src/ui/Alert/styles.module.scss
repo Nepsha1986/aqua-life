@@ -1,36 +1,76 @@
 .alert {
-  padding: 1rem;
-  border-radius: 5px;
-  border: 1px solid var(--color-grey-300);
+  --alert-color: var(--accent);
+  display: flex;
+  gap: 1rem;
+  padding: 1.4rem;
+  border-radius: var(--radius-lg);
+  border: 1px solid color-mix(in srgb, var(--alert-color) 35%, transparent);
+  background: color-mix(in srgb, var(--alert-color) 8%, var(--surface));
 
-  &__message {
-    margin-top: 0;
+  &__icon {
+    flex: none;
+    display: grid;
+    place-items: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 12px;
+    background: color-mix(in srgb, var(--alert-color) 18%, transparent);
+    color: var(--alert-color);
     font-size: 1.05rem;
   }
 
+  &__body {
+    min-width: 0;
+  }
+
+  &__message {
+    margin: 0.35rem 0 0.5rem;
+    font-size: 1.02rem;
+  }
+
   &__description {
-    text-align: justify;
-    font-size: 0.875rem;
-    margin-top: 0;
+    margin: 0.35rem 0 0;
+    font-size: 0.92rem;
+    line-height: 1.65;
+    color: var(--text);
+  }
+
+  &__footer {
+    margin-top: 0.9rem;
+
+    a {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-weight: 600;
+      font-size: 0.92rem;
+      color: var(--alert-color);
+      text-decoration: none;
+
+      &::after {
+        content: "→";
+        transition: transform 0.3s var(--ease-out);
+      }
+
+      &:hover::after {
+        transform: translateX(4px);
+      }
+    }
   }
 
   &_danger {
-    background: var(--color-red-100);
-    border-color: var(--color-red-700);
+    --alert-color: var(--rate-5);
   }
 
   &_warning {
-    background: var(--color-yellow-100);
-    border-color: var(--color-yellow-700);
+    --alert-color: var(--rate-3);
   }
 
   &_success {
-    background: var(--color-green-100);
-    border-color: var(--color-green-700);
+    --alert-color: var(--rate-1);
   }
 
   &_info {
-    background: var(--color-blue-100);
-    border-color: var(--color-blue-700);
+    --alert-color: var(--accent);
   }
 }

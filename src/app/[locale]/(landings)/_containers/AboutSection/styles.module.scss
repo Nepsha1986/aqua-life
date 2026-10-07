@@ -1,57 +1,63 @@
+@use "@/styles/mixins" as mixins;
+
 .about {
-  background: var(--color-grey-200);
-  padding: 5rem 15px;
   position: relative;
+  isolation: isolate;
   overflow: hidden;
+  padding: clamp(4rem, 9vw, 7rem) 0;
+  background: var(--bg-alt);
+  border-top: 1px solid var(--border);
 
-  &__waveTop {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 80px;
-    fill: var(--color-grey-100);
-    z-index: 2;
-    pointer-events: none;
-  }
-
-  &__shapes {
+  &__glow {
     position: absolute;
     inset: 0;
-    pointer-events: none;
+    z-index: -1;
+    background:
+      radial-gradient(
+        40% 60% at 10% 0%,
+        var(--accent-soft) 0%,
+        transparent 70%
+      ),
+      radial-gradient(
+        35% 50% at 95% 100%,
+        rgba(92, 182, 255, 0.12) 0%,
+        transparent 70%
+      );
   }
 
   &__container {
-    max-width: var(--container-size);
-    margin: 0 auto;
-    position: relative;
-    z-index: 1;
+    @include mixins.container;
   }
 
   &__top {
+    max-width: 720px;
+    margin: 0 auto clamp(2.5rem, 5vw, 4rem);
     text-align: center;
-    max-width: 700px;
-    margin: 0 auto 4rem;
   }
 
-  &__heading {
-    font-size: clamp(1.6rem, 3.5dvw, 2.5rem);
-    color: var(--color-black);
+  &__eyebrow {
+    @include mixins.eyebrow;
     margin-bottom: 1rem;
   }
 
+  &__heading {
+    font-size: clamp(1.75rem, 4vw, 2.75rem);
+    margin: 0 0 1rem;
+  }
+
   &__intro {
-    font-size: clamp(1rem, 2dvw, 1.15rem);
+    margin: 0;
+    font-size: clamp(1rem, 1.6vw, 1.15rem);
     line-height: 1.7;
-    color: var(--color-grey-700);
+    color: var(--text-muted);
   }
 
   &__features {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
+    gap: clamp(1rem, 2vw, 1.5rem);
 
-    @media (max-width: 768px) {
+    @media (max-width: 860px) {
       grid-template-columns: 1fr;
     }
   }
@@ -63,100 +69,72 @@
 }
 
 .feature {
-  background: var(--color-white);
-  border-radius: 12px;
-  padding: 2rem;
-  transition: box-shadow 0.2s ease;
+  position: relative;
+  overflow: hidden;
+  padding: 2rem 1.75rem;
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
+  transition:
+    transform 0.45s var(--ease-out),
+    box-shadow 0.45s var(--ease-out),
+    border-color 0.3s ease;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0 0 auto;
+    height: 3px;
+    background: var(--accent-gradient);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.6s var(--ease-out);
+  }
 
   &:hover {
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    transform: translateY(-4px);
+    box-shadow: var(--shadow);
+    border-color: var(--border-strong);
+
+    &::before {
+      transform: scaleX(1);
+    }
+  }
+
+  &__index {
+    @include mixins.display-font;
+    position: absolute;
+    top: 1.25rem;
+    right: 1.5rem;
+    font-size: 2.5rem;
+    font-weight: 700;
+    line-height: 1;
+    color: var(--surface-3);
   }
 
   &__icon {
-    width: 48px;
-    height: 48px;
-    border-radius: 10px;
-    background: var(--primary-color);
+    width: 52px;
+    height: 52px;
+    border-radius: 16px;
+    background: var(--accent-gradient);
     color: #fff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.25rem;
-    margin-bottom: 1.25rem;
+    display: grid;
+    place-items: center;
+    font-size: 1.3rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 10px 24px -10px var(--accent);
   }
 
   &__title {
-    font-size: 1.15rem;
-    color: var(--color-black);
-    margin-bottom: 0.75rem;
+    font-size: 1.1rem;
+    margin: 0 0 0.75rem;
   }
 
   &__desc {
+    margin: 0;
     font-size: 0.95rem;
-    line-height: 1.6;
-    color: var(--color-grey-600);
-  }
-}
-
-.shape {
-  position: absolute;
-  border: 4px solid var(--primary-color);
-  opacity: 0.06;
-
-  // Large circle — top left
-  &:nth-child(1) {
-    width: 220px;
-    height: 220px;
-    border-radius: 50%;
-    top: -60px;
-    left: -80px;
-  }
-
-  // Small ring — top right
-  &:nth-child(2) {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    top: 12%;
-    right: 8%;
-  }
-
-  // Rotated square — mid left
-  &:nth-child(3) {
-    width: 100px;
-    height: 100px;
-    border-radius: 8px;
-    top: 55%;
-    left: 3%;
-    transform: rotate(35deg);
-  }
-
-  // Small diamond — bottom center
-  &:nth-child(4) {
-    width: 60px;
-    height: 60px;
-    border-radius: 4px;
-    bottom: 10%;
-    left: 45%;
-    transform: rotate(45deg);
-  }
-
-  // Large ring — bottom right
-  &:nth-child(5) {
-    width: 260px;
-    height: 260px;
-    border-radius: 50%;
-    bottom: -100px;
-    right: -80px;
-  }
-
-  // Small square — mid right
-  &:nth-child(6) {
-    width: 44px;
-    height: 44px;
-    border-radius: 6px;
-    top: 35%;
-    right: 15%;
-    transform: rotate(15deg);
+    line-height: 1.65;
+    color: var(--text-muted);
   }
 }

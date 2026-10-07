@@ -61,8 +61,16 @@ export default async function DiscussionPage({
   params: Promise<{ locale: Locale; slug: string }>;
 }) {
   const { locale, slug } = await params;
-  const { url, title, imgUrl, scientificName, excerpt, traits, tankInfo } =
-    await fetchPost(locale, slug);
+  const {
+    url,
+    title,
+    imgUrl,
+    scientificName,
+    excerpt,
+    traits,
+    tankInfo,
+    family,
+  } = await fetchPost(locale, slug);
   const [{ heading, sub_heading, rules, rules_heading }, charDictionary] =
     await Promise.all([
       getDictionary<typeof dictionary>(locale, "discussion_page"),
@@ -73,7 +81,7 @@ export default async function DiscussionPage({
     t(charDictionary[careLevelMap[level]]);
 
   return (
-    <main>
+    <div>
       <DiscussionPageLayout
         header={
           <>
@@ -87,7 +95,7 @@ export default async function DiscussionPage({
             image={
               <Image
                 alt={imgUrl ? title : "placeholder"}
-                src={imgUrl ? imgUrl : ""}
+                src={imgUrl ? imgUrl : "/fish-img-not-found-placeholder.png"}
                 width={400}
                 height={300}
               />
@@ -102,6 +110,8 @@ export default async function DiscussionPage({
                 : undefined
             }
             tankVolume={tankInfo?.volume}
+            careRate={traits?.careLevel}
+            family={family}
           />
         }
         rules={
@@ -123,6 +133,6 @@ export default async function DiscussionPage({
           url={`https://aquajoy.club${url}/discussion`}
         />
       </DiscussionPageLayout>
-    </main>
+    </div>
   );
 }

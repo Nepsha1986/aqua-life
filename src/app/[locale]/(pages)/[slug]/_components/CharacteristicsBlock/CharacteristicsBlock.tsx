@@ -1,3 +1,16 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faFish,
+  faSitemap,
+  faRuler,
+  faHourglassHalf,
+  faSun,
+  faMoon,
+  faHandHoldingHeart,
+  faShieldHalved,
+  faEgg,
+} from "@fortawesome/free-solid-svg-icons";
+
 import InfoCard from "../InfoCard";
 import { Locale, t } from "@/i18n";
 import { Rate, ActivityTime } from "@/types";
@@ -47,30 +60,51 @@ const CharacteristicsBlock = async ({
   );
 
   return (
-    <InfoCard.Container title={t(dict.characteristics)}>
-      <InfoCard.Item term={t(dict.family)} def={family} />
+    <InfoCard.Container
+      title={t(dict.characteristics)}
+      icon={<FontAwesomeIcon icon={faFish} />}
+    >
       <InfoCard.Item
+        icon={<FontAwesomeIcon icon={faSitemap} />}
+        term={t(dict.family)}
+        def={family}
+      />
+      <InfoCard.Item
+        icon={<FontAwesomeIcon icon={faRuler} />}
         term={t(dict.size)}
         def={`${size} ${t(dict.centimeters_short)}`}
       />
       <InfoCard.Item
+        icon={<FontAwesomeIcon icon={faHourglassHalf} />}
         term={t(dict.lifespan)}
         def={`${lifespan} ${t(dict.years)}`}
       />
-      <InfoCard.Item term={t(dict.activity_time)} def={activityTime} />
       <InfoCard.Item
+        icon={
+          <FontAwesomeIcon icon={activityTime === "night" ? faMoon : faSun} />
+        }
+        term={t(dict.activity_time)}
+        def={activityTime}
+      />
+      <InfoCard.Item
+        icon={<FontAwesomeIcon icon={faHandHoldingHeart} />}
         term={t(dict.care_level)}
         def={t(dict[difficultyMap[careLevel] as keyof typeof dictionary])}
+        rate={careLevel}
       />
       <InfoCard.Item
+        icon={<FontAwesomeIcon icon={faShieldHalved} />}
         term={t(dict.behaviour)}
         def={t(dict[behaviourMap[behaviour] as keyof typeof dictionary])}
+        rate={behaviour}
       />
       <InfoCard.Item
+        icon={<FontAwesomeIcon icon={faEgg} />}
         term={t(dict.breed_difficulty)}
         def={t(
           dict[difficultyMap[breedingDifficulty] as keyof typeof dictionary],
         )}
+        rate={breedingDifficulty}
       />
     </InfoCard.Container>
   );

@@ -1,12 +1,15 @@
 import React from "react";
 import Link from "next/link";
+import classNames from "classnames";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faRuler,
   faTemperatureHalf,
-  faStar,
   faDroplet,
+  faArrowRight,
 } from "@fortawesome/free-solid-svg-icons";
+
+import { Rate } from "@/types";
 
 import styles from "./styles.module.scss";
 
@@ -19,7 +22,9 @@ interface Props {
   size?: string;
   temperature?: string;
   careLevel?: string;
+  careRate?: Rate;
   tankVolume?: string | number;
+  family?: string;
 }
 const PostCard = ({
   title,
@@ -30,17 +35,33 @@ const PostCard = ({
   size,
   temperature,
   careLevel,
+  careRate,
   tankVolume,
+  family,
 }: Props) => {
-  const hasInfo = size || temperature || careLevel || tankVolume;
+  const hasInfo = size || temperature || tankVolume;
 
   return (
     <Link className={styles.postCard} href={href}>
       <article className={styles.postCard__article}>
-        <div className={styles.postCard__image}>{image}</div>
+        <div className={styles.postCard__image}>
+          {image}
+
+          {careLevel && (
+            <span
+              className={classNames(
+                styles.postCard__care,
+                careRate && styles[`postCard__care_${careRate}`],
+              )}
+            >
+              <span className={styles.postCard__careDot} />
+              {careLevel}
+            </span>
+          )}
+        </div>
 
         <div className={styles.postCard__content}>
-          <h1 className={styles.postCard__title}>{title}</h1>
+          <h3 className={styles.postCard__title}>{title}</h3>
 
           <p className={styles.postCard__subTitle}>{subTitle}</p>
 
@@ -58,12 +79,6 @@ const PostCard = ({
                   {temperature} °C
                 </span>
               )}
-              {careLevel && (
-                <span className={styles.postCard__chip}>
-                  <FontAwesomeIcon icon={faStar} />
-                  {careLevel}
-                </span>
-              )}
               {tankVolume && (
                 <span className={styles.postCard__chip}>
                   <FontAwesomeIcon icon={faDroplet} />
@@ -74,6 +89,13 @@ const PostCard = ({
           )}
 
           <p className={styles.postCard__excerpt}>{excerpt}</p>
+
+          <div className={styles.postCard__footer}>
+            <span className={styles.postCard__family}>{family}</span>
+            <span className={styles.postCard__arrow} aria-hidden="true">
+              <FontAwesomeIcon icon={faArrowRight} />
+            </span>
+          </div>
         </div>
       </article>
     </Link>

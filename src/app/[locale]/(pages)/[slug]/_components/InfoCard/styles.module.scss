@@ -1,32 +1,87 @@
 .infoCard {
-  border: 1px solid var(--color-grey-400);
-  padding: 2px 0.7rem 0.7rem;
-  border-radius: 3px;
-  margin-bottom: 15px;
-  background: var(--color-white);
+  padding: 1.4rem 1.4rem 0.6rem;
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
+
+  & + & {
+    margin-top: 1rem;
+  }
 
   &__title {
-    margin-bottom: 0.7em;
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    margin: 0 0 0.75rem;
+    font-size: 1rem;
+  }
+
+  &__icon {
+    display: grid;
+    place-items: center;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 10px;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-size: 0.85rem;
+  }
+
+  &__list {
+    margin: 0;
   }
 }
 
 .infoItem {
-  display: flex;
-  justify-content: space-between;
-  padding: 8px 0 5px;
-  line-height: 1;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 0.25rem 1rem;
+  padding: 0.75rem 0;
 
   &:not(:last-child) {
-    border-bottom: 1px dotted #eee;
+    border-bottom: 1px solid var(--border);
   }
 
   &__term {
-    font-size: 0.8rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+  }
+
+  &__icon {
+    width: 1rem;
+    text-align: center;
+    color: var(--text-subtle);
   }
 
   &__def {
-    font-size: 0.8rem;
-    margin-bottom: 4px;
-    font-weight: bold;
+    margin: 0;
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--heading);
+    text-align: right;
+  }
+}
+
+.meter {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 4px;
+  margin-top: 0.35rem;
+
+  &__step {
+    height: 6px;
+    border-radius: 999px;
+    background: var(--surface-3);
+
+    &_filled {
+      background: var(--rate-color);
+      box-shadow: 0 0 10px -2px var(--rate-color);
+    }
   }
 }

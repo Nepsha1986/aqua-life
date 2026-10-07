@@ -1,9 +1,15 @@
 {
   "common": {
     "search": "Search",
+    "search_placeholder": "Search fish species…",
+    "search_title": "Search the catalog",
+    "close": "Close",
     "all_rights_reserved": "All rights reserved",
     "read": "Read",
-    "common_names": "Common Names"
+    "common_names": "Common Names",
+    "toggle_theme": "Toggle color theme",
+    "language": "Language",
+    "back_to_top": "Back to top"
   },
   "seo": {
     "article_heading": "Care, Feeding, Compatibility with Other Aquarium Fish"
@@ -14,6 +20,10 @@
     "about": "About"
   },
   "footer_nav": {
-    "terms_of_use": "Terms of Use"
+    "terms_of_use": "Terms of Use",
+    "tagline": "An open-source encyclopedia of freshwater aquarium fish, built by aquarists for aquarists.",
+    "explore": "Explore",
+    "project": "Project",
+    "github": "Contribute on GitHub"
   }
 }

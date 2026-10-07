@@ -1,49 +1,38 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSun, faMoon } from "@fortawesome/free-solid-svg-icons";
-import { Button } from "@/ui";
+
 import { Theme } from "@/types/theme";
+import { t, useLocale } from "@/i18n";
 
-import styles from "./styles.module.css";
+import styles from "./styles.module.scss";
 
+// The icon shown is driven purely by the `data-theme` attribute (set before
+// hydration by the init script), so there is no flash of the wrong icon.
 const ThemeSwitcher = () => {
-  const [theme, setTheme] = useState<Theme>("light");
+  const { dictionary } = useLocale();
 
-  useEffect(() => {
-    const savedTheme = localStorage.getItem("theme") as Theme;
-    if (savedTheme) {
-      setTheme(savedTheme);
-    }
-  }, []);
+  const handleClick = () => {
+    const current = document.documentElement.getAttribute("data-theme");
+    const newTheme: Theme = current === "dark" ? "light" : "dark";
 
-  const handleThemeChange = (newTheme: Theme) => {
-    setTheme(newTheme);
     document.documentElement.setAttribute("data-theme", newTheme);
     localStorage.setItem("theme", newTheme);
     window.dispatchEvent(new CustomEvent("themeApplied"));
   };
 
   return (
-    <div className={styles.themeSwitcher}>
-      <Button
-        active={theme === "light"}
-        size="sm"
-        iconOnly
-        onClick={() => handleThemeChange("light")}
-      >
-        <FontAwesomeIcon icon={faSun} />
-      </Button>
-      <Button
-        active={theme === "dark"}
-        size="sm"
-        iconOnly
-        onClick={() => handleThemeChange("dark")}
-      >
-        <FontAwesomeIcon icon={faMoon} />
-      </Button>
-    </div>
+    <button
+      type="button"
+      className={styles.themeSwitcher}
+      onClick={handleClick}
+      aria-label={t(dictionary.common.toggle_theme)}
+      title={t(dictionary.common.toggle_theme)}
+    >
+      <FontAwesomeIcon icon={faSun} className={styles.themeSwitcher__sun} />
+      <FontAwesomeIcon icon={faMoon} className={styles.themeSwitcher__moon} />
+    </button>
   );
 };
 

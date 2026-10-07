@@ -1,10 +1,13 @@
 import Link from "next/link";
+import Image from "next/image";
 
 import { PostPreview } from "@/types";
 import { fetchPosts } from "@/utils/fetchPosts";
 import { Locale } from "@/i18n";
 
 import styles from "./styles.module.scss";
+
+const imgPlaceholderUrl = "/fish-img-not-found-placeholder.png";
 
 const PostsLinks = async ({ locale }: { locale: Locale }) => {
   const { data } = await fetchPosts(locale, 0, 9999);
@@ -21,25 +24,65 @@ const PostsLinks = async ({ locale }: { locale: Locale }) => {
     {} as Record<string, PostPreview[]>,
   );
 
+  const letters = Object.keys(groupedPosts).sort((a, b) =>
+    a.localeCompare(b, locale),
+  );
+
   return (
     <div className={styles.postsLinks}>
-      {Object.keys(groupedPosts)
-        .sort()
-        .map((letter) => (
-          <div key={letter}>
-            <h2>{letter}</h2>
+      <nav className={styles.postsLinks__alphabet} aria-label="A–Z">
+        {letters.map((letter) => (
+          <a
+            key={letter}
+            href={`#letter-${letter}`}
+            className={styles.postsLinks__alphabetItem}
+          >
+            {letter}
+          </a>
+        ))}
+      </nav>
 
-            <ul className={styles.postsLinks__list}>
-              {groupedPosts[letter].map((post) => (
-                <li key={post.scientificName}>
-                  <Link className={styles.postsLinks__listItem} href={post.url}>
-                    {post.title} <span>({post.scientificName})</span>
+      {letters.map((letter) => (
+        <section
+          key={letter}
+          id={`letter-${letter}`}
+          className={styles.postsLinks__group}
+        >
+          <h2 className={styles.postsLinks__letter}>
+            {letter}
+            <span className={styles.postsLinks__count}>
+              {groupedPosts[letter].length}
+            </span>
+          </h2>
+
+          <ul className={styles.postsLinks__list}>
+            {groupedPosts[letter]
+              .sort((a, b) => a.title.localeCompare(b.title, locale))
+              .map((post) => (
+                <li key={post.slug} className={styles.postsLinks__item}>
+                  <Link className={styles.postsLinks__link} href={post.url}>
+                    <span className={styles.postsLinks__thumb}>
+                      <Image
+                        src={post.imgUrl || imgPlaceholderUrl}
+                        alt=""
+                        width={96}
+                        height={72}
+                      />
+                    </span>
+                    <span className={styles.postsLinks__text}>
+                      <span className={styles.postsLinks__title}>
+                        {post.title}
+                      </span>
+                      <span className={styles.postsLinks__latin}>
+                        {post.scientificName}
+                      </span>
+                    </span>
                   </Link>
                 </li>
               ))}
-            </ul>
-          </div>
-        ))}
+          </ul>
+        </section>
+      ))}
     </div>
   );
 };

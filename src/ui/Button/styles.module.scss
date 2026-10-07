@@ -1,48 +1,97 @@
 .button {
-  $this: &;
-
-  display: inline-block;
-  color: #fff;
-  border-radius: 3px;
-  font-weight: 400;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55em;
+  border-radius: 999px;
+  font-family: inherit;
+  font-weight: 600;
+  line-height: 1.2;
   cursor: pointer;
-  border: none;
-  transition: 0.3s scale;
+  border: 1px solid transparent;
+  text-decoration: none;
+  white-space: nowrap;
+  transition:
+    transform 0.25s var(--ease-out),
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease,
+    box-shadow 0.25s ease;
 
   &:hover {
-    scale: 1.03;
+    transform: translateY(-1px);
+  }
+
+  &:active,
+  &_pressed {
+    transform: translateY(0) scale(0.98);
   }
 
   &_default {
-    color: var(--color-grey-900);
-    background: var(--color-grey-300);
+    color: var(--heading);
+    background: var(--surface-2);
+    border-color: var(--border);
+
+    &:hover {
+      color: var(--heading);
+      background: var(--surface-3);
+    }
   }
 
   &_primary {
-    background: var(--primary-color);
+    color: var(--accent-contrast);
+    background: var(--accent);
+    box-shadow: 0 8px 24px -8px var(--accent);
+
+    &:hover {
+      color: var(--accent-contrast);
+      background: var(--accent-hover);
+      box-shadow: 0 12px 28px -8px var(--accent);
+    }
   }
 
   &_secondary {
-    background: var(--secondary-color);
+    color: #fff;
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.28);
+    backdrop-filter: blur(8px);
+
+    &:hover {
+      color: #fff;
+      background: rgba(255, 255, 255, 0.16);
+    }
   }
 
   &_danger {
-    background: var(--color-red-500);
+    color: #fff;
+    background: var(--rate-5);
   }
 
   &_success {
-    background: var(--color-green-500);
+    color: #fff;
+    background: var(--rate-1);
   }
 
   &_transparent {
-    color: var(--color-grey-900);
+    color: var(--text);
     background: transparent;
+
+    &:hover {
+      color: var(--heading);
+      background: var(--surface-2);
+    }
   }
 
   &_ghost {
     background: transparent;
-    color: var(--color-grey-800);
-    border: 1px solid var(--color-grey-400);
+    color: var(--text);
+    border-color: var(--border-strong);
+
+    &:hover {
+      color: var(--heading);
+      border-color: var(--accent);
+      background: var(--accent-soft);
+    }
   }
 
   &_disabled {
@@ -52,31 +101,29 @@
 
   &_active {
     pointer-events: none;
-    background: var(--primary-color);
-    color: #fff;
+    background: var(--accent);
+    color: var(--accent-contrast);
   }
 
   &_sm {
-    padding: 5px 20px;
+    padding: 0.45rem 1rem;
     font-size: 0.85rem;
   }
 
   &_md {
-    padding: 7px 25px;
-    font-size: 1rem;
+    padding: 0.65rem 1.4rem;
+    font-size: 0.95rem;
   }
 
   &_lg {
-    padding: 9px 30px;
-    font-size: 1.1rem;
+    padding: 0.9rem 1.8rem;
+    font-size: 1rem;
   }
 
   &_iconOnly {
-    padding: 0.5rem;
+    padding: 0;
+    width: 2.5rem;
+    height: 2.5rem;
     line-height: 1;
-  }
-
-  &_pressed {
-    scale: 1.03;
   }
 }

@@ -4,15 +4,24 @@ import styles from "./styles.module.scss";
 interface Props extends React.ComponentProps<"section"> {
   heading: string;
   intro: string;
+  eyebrow?: string;
   children: React.ReactNode;
 }
-const Section = ({ heading, intro, children, ...rest }: Props) => {
-  const sectionClass = classNames(styles.section, rest.className);
+const Section = ({
+  heading,
+  intro,
+  eyebrow,
+  children,
+  className,
+  ...rest
+}: Props) => {
+  const sectionClass = classNames(styles.section, className);
 
   return (
-    <section className={sectionClass}>
+    <section {...rest} className={sectionClass}>
       <div className={styles.section__header}>
-        <h1
+        {eyebrow && <span className={styles.section__eyebrow}>{eyebrow}</span>}
+        <h2
           className={styles.section__heading}
           dangerouslySetInnerHTML={{ __html: heading }}
         />

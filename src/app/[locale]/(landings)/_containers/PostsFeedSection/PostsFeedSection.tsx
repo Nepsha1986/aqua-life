@@ -48,6 +48,8 @@ export default async function PostsFeedSection({
   return (
     <Section
       data-testid="posts_feed_section"
+      id="species"
+      eyebrow={t(dictionary.eyebrow)}
       heading={t(dictionary.title)}
       intro={t(dictionary.intro)}
       className={styles.postsFeedSection}
@@ -76,6 +78,8 @@ export default async function PostsFeedSection({
                   : undefined
               }
               tankVolume={post.tankInfo?.volume}
+              careRate={post.traits?.careLevel}
+              family={post.family}
             />
           </PostsGrid.Item>
         ))}

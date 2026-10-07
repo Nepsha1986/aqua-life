@@ -1,32 +1,109 @@
 @use "colors";
 @use "sass:map";
 
-$primary-color-light: #5faaf8;
-$primary-color-dark: #1462b4;
-
-$secondary-color-light: map.get(colors.$colors, "color-green-500");
-$secondary-color-dark: map.get(colors.$colors, "color-green-700");
+// Design tokens.
+// "Shallow water" (light) and "Deep water" (dark) themes share the same
+// semantic token names so components never need to know the active theme.
 
 $shared: (
-  container-size: 1360px,
+  container-size: 1280px,
+  radius-sm: 8px,
+  radius: 14px,
+  radius-lg: 24px,
+  ease-out: cubic-bezier(0.22, 1, 0.36, 1),
+  header-height: 68px,
+  // Hero is always "underwater" regardless of the theme
+  hero-deep: #031525,
+  hero-mid: #063a5a,
+  hero-text: #eaf6ff,
+  coral: #ff7a59,
+  sand: #ffcf70,
+  kelp: #45d483,
 );
 
 $light: (
+  // Base
   color-white: #fff,
   color-black: #000,
-  primary-color: $primary-color-dark,
-  secondary-color: $secondary-color-dark,
-  hero-bg-image: url("/hero-light.jpg"),
+  bg: #f2f8fa,
+  bg-alt: #e6f1f4,
+  surface: #ffffff,
+  surface-2: #eef6f8,
+  surface-3: #dcebef,
+  border: rgba(9, 54, 79, 0.12),
+  border-strong: rgba(9, 54, 79, 0.22),
+  glass: rgba(255, 255, 255, 0.82),
+  // Text
+  text: #1c3446,
+  text-muted: #557083,
+  text-subtle: #7a92a3,
+  heading: #08243a,
+  // Accents
+  accent: #0a8576,
+  accent-hover: #076b5f,
+  accent-soft: rgba(10, 133, 118, 0.1),
+  accent-contrast: #ffffff,
+  accent-2: #1d6fd6,
+  accent-gradient: linear-gradient(120deg, #0a9a88 0%, #1d6fd6 100%),
+  link: #0a7a6c,
+  // Rates (easy -> hard)
+  rate-1: #1fa463,
+  rate-2: #67b52d,
+  rate-3: #d29a0c,
+  rate-4: #e36a2e,
+  rate-5: #d63b45,
+  // Effects
+  shadow-sm: (0 1px 2px rgba(8, 36, 58, 0.06), 0 2px 8px rgba(8, 36, 58, 0.05)),
+  shadow: (0 2px 6px rgba(8, 36, 58, 0.05), 0 12px 32px rgba(8, 36, 58, 0.08)),
+  shadow-lg: 0 24px 60px rgba(8, 36, 58, 0.16),
+  glow: 0 0 0 transparent,
+  // Legacy aliases
+  primary-color: #0a8576,
+  secondary-color: #1d6fd6
 );
 
 $dark: (
+  // Base
   color-white: #000,
   color-black: #fff,
-  primary-color: $primary-color-light,
-  secondary-color: $secondary-color-light,
-  hero-bg-image: url("/hero-dark.jpg"),
+  bg: #03111d,
+  bg-alt: #061b2b,
+  surface: #0a2133,
+  surface-2: #0e2a40,
+  surface-3: #15364f,
+  border: rgba(140, 205, 255, 0.1),
+  border-strong: rgba(140, 205, 255, 0.2),
+  glass: rgba(3, 17, 29, 0.78),
+  // Text
+  text: #d3e4f0,
+  text-muted: #8ca7bb,
+  text-subtle: #66849a,
+  heading: #f4fbff,
+  // Accents
+  accent: #3ee6cc,
+  accent-hover: #74f0dc,
+  accent-soft: rgba(62, 230, 204, 0.12),
+  accent-contrast: #03231f,
+  accent-2: #5cb6ff,
+  accent-gradient: linear-gradient(120deg, #3ee6cc 0%, #5cb6ff 100%),
+  link: #4fe3cc,
+  // Rates (easy -> hard)
+  rate-1: #3ddc84,
+  rate-2: #a3dc3d,
+  rate-3: #ffc94a,
+  rate-4: #ff8a4c,
+  rate-5: #ff5a68,
+  // Effects
+  shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3),
+  shadow: (0 2px 6px rgba(0, 0, 0, 0.25), 0 14px 36px rgba(0, 0, 0, 0.3)),
+  shadow-lg: 0 30px 70px rgba(0, 0, 0, 0.5),
+  glow: 0 0 40px rgba(62, 230, 204, 0.18),
+  // Legacy aliases
+  primary-color: #3ee6cc,
+  secondary-color: #5cb6ff
 );
 
+// Keep the raw palette available as CSS variables (used by MDX content).
 @each $name, $color in colors.$colors {
   $light: map.merge(
     $light,

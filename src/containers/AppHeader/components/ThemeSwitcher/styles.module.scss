@@ -1,0 +1,51 @@
+.themeSwitcher {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 2.4rem;
+  height: 2.4rem;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: var(--surface-2);
+  color: var(--heading);
+  cursor: pointer;
+  overflow: hidden;
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease;
+
+  &:hover {
+    border-color: var(--accent);
+    background: var(--accent-soft);
+  }
+
+  &__sun,
+  &__moon {
+    grid-area: 1 / 1;
+    transition:
+      transform 0.5s var(--ease-out),
+      opacity 0.3s ease;
+  }
+
+  &__sun {
+    color: #f5a524;
+  }
+
+  &__moon {
+    color: var(--accent-2);
+    opacity: 0;
+    transform: translateY(150%) rotate(-90deg);
+  }
+
+  :global([data-theme="dark"]) & {
+    .themeSwitcher__sun {
+      opacity: 0;
+      transform: translateY(-150%) rotate(90deg);
+    }
+
+    .themeSwitcher__moon {
+      opacity: 1;
+      transform: none;
+    }
+  }
+}
