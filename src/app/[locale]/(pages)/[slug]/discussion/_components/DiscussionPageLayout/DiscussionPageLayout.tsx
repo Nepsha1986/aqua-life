@@ -16,7 +16,7 @@ const DiscussionPageLayout = ({ header, card, rules, children }: Props) => {
       <div className={styles.layout__main}>
         <div className={styles.layout__cardSlot}>{card}</div>
 
-        <div className={styles.layout__rulesSlot}>{rules}</div>
+        <div className={`${styles.layout__rulesSlot} prose`}>{rules}</div>
       </div>
 
       {children}

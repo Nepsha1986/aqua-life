@@ -3,6 +3,7 @@ import {
   faBook,
   faCodeBranch,
   faUsers,
+  faArrowRight,
 } from "@fortawesome/free-solid-svg-icons";
 import { LinkBtn } from "@/ui";
 import { Locale, t } from "@/i18n";
@@ -26,34 +27,19 @@ const AboutSection = async ({ locale }: Props) => {
 
   return (
     <section className={styles.about}>
-      {/* Decorative SVG shapes */}
-      <svg
-        className={styles.about__waveTop}
-        viewBox="0 0 1440 120"
-        preserveAspectRatio="none"
-        aria-hidden="true"
-      >
-        <path d="M0,64 C360,120 720,0 1080,64 C1260,96 1380,80 1440,72 L1440,0 L0,0 Z" />
-      </svg>
-
-      <div className={styles.about__shapes} aria-hidden="true">
-        <span className={styles.shape} />
-        <span className={styles.shape} />
-        <span className={styles.shape} />
-        <span className={styles.shape} />
-        <span className={styles.shape} />
-        <span className={styles.shape} />
-      </div>
+      <div className={styles.about__glow} aria-hidden="true" />
 
       <div className={styles.about__container}>
         <div className={styles.about__top}>
+          <span className={styles.about__eyebrow}>Aqua Life</span>
           <h2 className={styles.about__heading}>{t(dict.heading)}</h2>
           <p className={styles.about__intro}>{t(dict.intro)}</p>
         </div>
 
         <div className={styles.about__features}>
-          {features.map(({ key, icon }) => (
+          {features.map(({ key, icon }, index) => (
             <div key={key} className={styles.feature}>
+              <span className={styles.feature__index}>0{index + 1}</span>
               <div className={styles.feature__icon}>
                 <FontAwesomeIcon icon={icon} />
               </div>
@@ -70,6 +56,7 @@ const AboutSection = async ({ locale }: Props) => {
         <div className={styles.about__cta}>
           <LinkBtn href={`/${locale}/about`} color="primary">
             {t(dict.btn)}
+            <FontAwesomeIcon icon={faArrowRight} />
           </LinkBtn>
         </div>
       </div>

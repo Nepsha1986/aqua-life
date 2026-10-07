@@ -1,0 +1,93 @@
+@use "@/styles/mixins" as mixins;
+
+.depthGauge {
+  @include mixins.glass;
+  position: fixed;
+  right: clamp(12px, 3vw, 28px);
+  bottom: clamp(12px, 3vw, 28px);
+  z-index: 40;
+  display: grid;
+  place-items: center;
+  width: 64px;
+  height: 64px;
+  padding: 0;
+  border-radius: 50%;
+  border: 1px solid var(--border-strong);
+  box-shadow: var(--shadow);
+  color: var(--heading);
+  font: inherit;
+  cursor: pointer;
+  opacity: 0;
+  translate: 0 16px;
+  pointer-events: none;
+  transition:
+    opacity 0.3s ease,
+    translate 0.4s var(--ease-out),
+    border-color 0.2s ease;
+
+  &_visible {
+    opacity: 1;
+    translate: 0 0;
+    pointer-events: auto;
+  }
+
+  &:hover {
+    border-color: var(--accent);
+  }
+
+  // Circular progress showing how deep we are
+  &__ring {
+    position: absolute;
+    inset: 3px;
+    border-radius: 50%;
+    background: conic-gradient(
+      var(--accent) calc(var(--progress) * 360deg),
+      transparent 0
+    );
+    mask: radial-gradient(
+      farthest-side,
+      transparent calc(100% - 3px),
+      #000 calc(100% - 2px)
+    );
+  }
+
+  &__icon,
+  &__depth {
+    grid-area: 1 / 1;
+    transition:
+      opacity 0.25s ease,
+      transform 0.35s var(--ease-out);
+  }
+
+  &__icon {
+    opacity: 0;
+    transform: translateY(8px);
+    color: var(--accent);
+  }
+
+  &__depth {
+    font-size: 0.82rem;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+
+    small {
+      margin-left: 1px;
+      font-size: 0.7em;
+      font-weight: 500;
+      color: var(--text-muted);
+    }
+  }
+
+  &:hover &__icon,
+  &:focus-visible &__icon {
+    opacity: 1;
+    transform: none;
+  }
+
+  &:hover &__depth,
+  &:focus-visible &__depth {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+}

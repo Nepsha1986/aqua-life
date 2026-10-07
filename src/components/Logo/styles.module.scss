@@ -1,0 +1,110 @@
+@use "@/styles/mixins" as mixins;
+
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: var(--heading);
+
+  &__mark {
+    position: relative;
+    display: grid;
+    place-items: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 11px;
+    background: var(--accent-gradient);
+    color: #fff;
+    box-shadow: var(--glow);
+    transition: transform 0.4s var(--ease-out);
+  }
+
+  &__fish {
+    width: 24px;
+    height: 24px;
+    transition: transform 0.4s var(--ease-out);
+  }
+
+  &__bubble {
+    position: absolute;
+    border-radius: 50%;
+    border: 1.5px solid rgba(255, 255, 255, 0.85);
+    opacity: 0;
+
+    &:nth-of-type(1) {
+      width: 6px;
+      height: 6px;
+      top: 6px;
+      left: 7px;
+    }
+
+    &:nth-of-type(2) {
+      width: 4px;
+      height: 4px;
+      top: 3px;
+      left: 13px;
+    }
+  }
+
+  &__word {
+    @include mixins.display-font;
+    font-weight: 600;
+    font-size: 1.15rem;
+    line-height: 1;
+  }
+
+  &__accent {
+    background: var(--accent-gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  &_lg &__mark {
+    width: 44px;
+    height: 44px;
+    border-radius: 13px;
+  }
+
+  &_lg &__fish {
+    width: 30px;
+    height: 30px;
+  }
+
+  &_lg &__word {
+    font-size: 1.4rem;
+  }
+
+  a:hover > &,
+  &:hover {
+    .logo__mark {
+      transform: rotate(-6deg) scale(1.05);
+    }
+
+    .logo__fish {
+      transform: translateX(-2px);
+    }
+
+    .logo__bubble {
+      animation: bubble 1.2s var(--ease-out) infinite;
+
+      &:nth-of-type(2) {
+        animation-delay: 0.3s;
+      }
+    }
+  }
+}
+
+@keyframes bubble {
+  0% {
+    opacity: 0;
+    transform: translateY(6px) scale(0.6);
+  }
+  40% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-6px) scale(1);
+  }
+}

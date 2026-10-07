@@ -4,7 +4,9 @@ import PostsLinks from "./_components/PostsLinks";
 
 const page = "handbook";
 export default function Handbook(params: any) {
-  return <SimpleMDXPage {...params} page={page} components={{ PostsLinks }} />;
+  return (
+    <SimpleMDXPage {...params} page={page} components={{ PostsLinks }} wide />
+  );
 }
 
 export const generateMetadata = async (context: any) =>

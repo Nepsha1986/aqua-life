@@ -1,7 +1,8 @@
+@use "@/styles/mixins" as mixins;
+
 .layout {
-  max-width: var(--container-size);
-  width: 100%;
-  margin: 0 auto;
-  padding: 3rem 15px;
+  @include mixins.container;
   flex-grow: 1;
+  padding-top: clamp(1.5rem, 4vw, 3rem);
+  padding-bottom: clamp(4rem, 8vw, 6rem);
 }

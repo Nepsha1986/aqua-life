@@ -1,5 +1,7 @@
+@use "@/styles/mixins" as mixins;
+
 .postsFeedSection {
-  max-width: var(--container-size);
-  margin: 0 auto;
-  padding: 5rem 15px;
+  @include mixins.container;
+  padding-top: clamp(3rem, 7vw, 5.5rem);
+  padding-bottom: clamp(4rem, 8vw, 7rem);
 }

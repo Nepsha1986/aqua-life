@@ -16,14 +16,15 @@ const client = algoliasearch(algoliaAppId, algoliaKey);
 
 interface Props {
   index: string;
+  placeholder?: string;
 }
 
-const AlgoSearch = ({ index }: Props) => {
+const AlgoSearch = ({ index, placeholder }: Props) => {
   return (
     <InstantSearch indexName={index} searchClient={client}>
       <Configure hitsPerPage={7} />
-      <div>
-        <SearchBox />
+      <div className="algoSearch">
+        <SearchBox placeholder={placeholder} autoFocus />
         <Hits hitComponent={Hit as any} />
       </div>
     </InstantSearch>

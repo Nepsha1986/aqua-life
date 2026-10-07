@@ -22,6 +22,7 @@ const NavItem = ({
       [styles.navItem_active]: active,
     })}
     href={href}
+    aria-current={active ? "page" : undefined}
   >
     {label}
   </Link>
@@ -49,7 +50,7 @@ const Navigation = () => {
   ];
 
   return (
-    <nav className={styles.navigation}>
+    <nav className={styles.navigation} aria-label="Main">
       {navItems.map((i) => {
         const href = `/${locale}${i.path}`;
 

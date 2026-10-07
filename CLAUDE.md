@@ -48,7 +48,7 @@ Each component folder: `ComponentName.tsx` + `styles.module.scss` + `index.tsx` 
 
 ### Styling
 
-SCSS Modules (`*.module.scss`) for component styles. Global theme with CSS custom properties supporting light/dark mode via `data-theme` attribute. Variables and mixins in `src/styles/` (`_colors.scss`, `_theme.scss`, `_mixins.scss`).
+SCSS Modules (`*.module.scss`) for component styles. Global theme with CSS custom properties supporting light ("shallow water") / dark ("deep water", default) mode via `data-theme` attribute. Design tokens live in `src/styles/_theme.scss` — use the semantic variables (`--bg`, `--surface`, `--text`, `--text-muted`, `--heading`, `--accent`, `--border`, `--radius*`, `--shadow*`, `--rate-1..5`) rather than raw palette colors. Mixins in `_mixins.scss` (`container`, `glass`, `display-font`, `eyebrow`, breakpoints). Long-form MDX content is styled by the global `.prose` class in `globals.scss`. Fonts: Inter (body, `--font-body`) and Unbounded (headings, `--font-display`), both with Cyrillic subsets. Don't hand-write `-webkit-backdrop-filter` — the CSS pipeline drops the unprefixed declaration when both are present.
 
 ### Internationalization
 

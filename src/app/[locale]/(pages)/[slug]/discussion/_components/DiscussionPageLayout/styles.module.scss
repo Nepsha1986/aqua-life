@@ -1,26 +1,42 @@
 .layout {
   &__header {
     margin-bottom: 2rem;
+
+    h1 {
+      margin: 0;
+      font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+    }
   }
 
   &__main {
-    display: flex;
-    flex-flow: row wrap;
-    gap: 15px;
+    display: grid;
+    grid-template-columns: minmax(0, 360px) minmax(0, 1fr);
+    gap: clamp(1.5rem, 4vw, 3rem);
+    align-items: start;
     margin-bottom: 4rem;
+
+    @media (max-width: 860px) {
+      grid-template-columns: 1fr;
+    }
   }
 
   &__cardSlot {
-    flex-basis: 400px;
-    flex-grow: 1;
+    display: flex;
   }
 
   &__rulesSlot {
-    flex-basis: 400px;
-    flex-grow: 5;
+    padding: 1.75rem;
+    border-radius: var(--radius-lg);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    font-size: 0.98rem;
+
+    h3 {
+      margin-top: 1.5rem;
+    }
 
     li {
-      margin-bottom: 10px;
+      margin-bottom: 0.6rem;
     }
   }
 }

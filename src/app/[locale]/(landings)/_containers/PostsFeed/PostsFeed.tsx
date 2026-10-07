@@ -8,6 +8,8 @@ import PostCard from "@/components/PostCard";
 import { t, useLocale } from "@/i18n";
 import PostsGrid from "@/app/[locale]/(landings)/_components/PostsGrid";
 import { Button } from "@/ui";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowDown } from "@fortawesome/free-solid-svg-icons";
 
 import styles from "./styles.module.scss";
 
@@ -25,6 +27,7 @@ interface Props {
   dictionary: {
     show_more: string;
     showed_text: string;
+    loading: string;
   };
   careLevelDictionary?: Record<Rate, string>;
   totalItems: number;
@@ -40,18 +43,24 @@ const PostsFeed = ({
   const [posts, setPosts] = useState<PostPreview[]>([]);
   const [page, setPage] = useState(0);
   const [postsLoaded, setPostsLoaded] = useState(itemsLoaded);
+  const [loading, setLoading] = useState(false);
 
   const getCareLevelLabel = (level: Rate) =>
     careLevelDictionary?.[level] ?? careLevelLabels[level];
 
   useEffect(() => {
     const fetchPosts = async () => {
-      const { data } = await fetch(
-        `/api/v1/posts?page=${page}&locale=${locale}`,
-      ).then((res) => res.json());
-      setPosts([...posts, ...data]);
+      setLoading(true);
+      try {
+        const { data } = await fetch(
+          `/api/v1/posts?page=${page}&locale=${locale}`,
+        ).then((res) => res.json());
+        setPosts((prev) => [...prev, ...data]);
 
-      setPostsLoaded((prev) => prev + data.length);
+        setPostsLoaded((prev) => prev + data.length);
+      } finally {
+        setLoading(false);
+      }
     };
 
     if (!!page) {
@@ -85,12 +94,29 @@ const PostsFeed = ({
                   : undefined
               }
               tankVolume={i.tankInfo?.volume}
+              careRate={i.traits?.careLevel}
+              family={i.family}
             />
           </PostsGrid.Item>
         ))}
       </PostsGrid.Container>
 
       <div className={styles.postsFeed__footer}>
+        <div
+          className={styles.postsFeed__progress}
+          role="progressbar"
+          aria-valuemin={0}
+          aria-valuemax={totalItems}
+          aria-valuenow={postsLoaded}
+        >
+          <span
+            className={styles.postsFeed__progressBar}
+            style={{
+              width: `${Math.min(100, (postsLoaded / totalItems) * 100)}%`,
+            }}
+          />
+        </div>
+
         <p
           className={styles.postsFeed__footerInfo}
           dangerouslySetInnerHTML={{
@@ -106,11 +132,22 @@ const PostsFeed = ({
           <Button
             size="lg"
             color="primary"
+            disabled={loading}
             onClick={() => {
               setPage((prevState) => prevState + 1);
             }}
           >
-            {t(dictionary.show_more)}
+            {loading ? (
+              <>
+                <span className={styles.postsFeed__spinner} />
+                {t(dictionary.loading)}
+              </>
+            ) : (
+              <>
+                {t(dictionary.show_more)}
+                <FontAwesomeIcon icon={faArrowDown} />
+              </>
+            )}
           </Button>
         )}
       </div>

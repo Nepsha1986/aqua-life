@@ -1,10 +1,11 @@
 .postsGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  gap: 2rem;
+  grid-template-columns: repeat(auto-fill, minmax(min(280px, 100%), 1fr));
+  gap: clamp(1rem, 2vw, 1.75rem);
   position: relative;
 
   &__item {
     display: flex;
+    margin: 0;
   }
 }
