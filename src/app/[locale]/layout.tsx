@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { notFound } from "next/navigation";
 import { Inter, Unbounded } from "next/font/google";
 import { GoogleAnalytics } from "@next/third-parties/google";
 
@@ -7,10 +8,9 @@ import AppFooter from "@/containers/AppFooter";
 import DepthGauge from "@/components/DepthGauge";
 import { LocaleProvider, Locale, locales } from "@/i18n";
 import { getDictionary } from "@/i18n/server/getDictionary";
-import ErrorPage from "@/app/[locale]/not-found";
 import dictionary from "@/i18n/dictionaries/all/en.json";
 import seoDictionary from "@/i18n/dictionaries/homepage_seo/en.json";
-import { GOOGLE_ANALYTICS_ID } from "@/utils/variables";
+import { GOOGLE_ANALYTICS_ID, SITE_URL } from "@/utils/variables";
 
 import "normalize.css/normalize.css";
 import "instantsearch.css/themes/satellite-min.css";
@@ -29,6 +29,13 @@ const displayFont = Unbounded({
   display: "swap",
 });
 
+// Only the known locales are valid: anything else is a real 404
+export const dynamicParams = false;
+
+export function generateStaticParams() {
+  return locales.map((locale) => ({ locale }));
+}
+
 export async function generateMetadata({
   params,
 }: {
@@ -41,6 +48,7 @@ export async function generateMetadata({
   );
 
   return {
+    metadataBase: new URL(SITE_URL),
     title: {
       default: dict.title,
       template: "%s | Aqua Life",
@@ -57,7 +65,7 @@ export default async function RootLayout({
   params: Promise<{ locale: string }>;
 }>) {
   const { locale } = await params;
-  if (!locales.includes(locale as Locale)) return <ErrorPage />;
+  if (!locales.includes(locale as Locale)) notFound();
 
   const typedLocale = locale as Locale;
 

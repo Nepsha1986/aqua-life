@@ -8,6 +8,10 @@ import { type PostPreview } from "@/types";
 import dictionary from "@/i18n/dictionaries/homepage_seo/en.json";
 import Hero from "./_components/Hero";
 import { getDictionary } from "@/i18n/server/getDictionary";
+import { getAlternates } from "@/utils/seo";
+
+// Re-render daily so the hero spotlight keeps rotating
+export const revalidate = 86400;
 
 // Rotate the hero spotlight daily between species that have a photo
 const pickSpotlight = (posts: PostPreview[]) => {
@@ -59,5 +63,6 @@ export async function generateMetadata({
   return {
     title: dict.title,
     description: dict.description,
+    alternates: getAlternates(locale, ""),
   };
 }

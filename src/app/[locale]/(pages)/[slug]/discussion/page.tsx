@@ -4,7 +4,7 @@ import path from "path";
 import { promises as fs } from "fs";
 
 import { fetchPost } from "@/utils/fetchPost";
-import { POSTS_FOLDER } from "@/utils/variables";
+import { POSTS_FOLDER, SITE_URL } from "@/utils/variables";
 
 import Discus from "./_components/Discus";
 import DiscussionPageLayout from "./_components/DiscussionPageLayout";
@@ -31,20 +31,19 @@ export async function generateMetadata({
   return {
     title: t(seo_title, title),
     description: t(seo_description, title),
+    alternates: { canonical: `/${locale}/${slug}/discussion` },
+    // Comment pages repeat the species card and add little unique content,
+    // keep them out of the index so they don't dilute the species pages
+    robots: { index: false, follow: true },
   };
 }
 
 export async function generateStaticParams() {
-  const allParams = await Promise.all(
-    locales.map(async (locale) => {
-      const contentDir = path.join(process.cwd(), POSTS_FOLDER);
-      const allDirNames = await fs.readdir(contentDir);
+  const contentDir = path.join(process.cwd(), POSTS_FOLDER);
+  const allDirNames = await fs.readdir(contentDir);
+  const slugs = allDirNames.filter((name) => !name.startsWith("."));
 
-      return allDirNames.map(async (slug) => ({ params: { locale, slug } }));
-    }),
-  );
-
-  return allParams.flat();
+  return locales.flatMap((locale) => slugs.map((slug) => ({ locale, slug })));
 }
 
 const careLevelMap: Record<string, keyof typeof charDict> = {
@@ -130,7 +129,7 @@ export default async function DiscussionPage({
           title={title}
           locale={locale}
           id={scientificName}
-          url={`https://aquajoy.club${url}/discussion`}
+          url={`${SITE_URL}${url}/discussion`}
         />
       </DiscussionPageLayout>
     </div>
