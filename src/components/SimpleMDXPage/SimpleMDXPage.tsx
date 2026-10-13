@@ -5,6 +5,7 @@ import { MDXProvider } from "@mdx-js/react";
 
 import getContent from "@/utils/getContent";
 import { Locale } from "@/i18n";
+import { getAlternates } from "@/utils/seo";
 
 import styles from "./styles.module.scss";
 
@@ -46,5 +47,6 @@ export async function generateMDXMetadata({
   return {
     title: data.title,
     description: data.description,
+    alternates: getAlternates(locale, `/${page}`),
   };
 }

@@ -5,6 +5,7 @@ import Image from "next/image";
 
 import { fetchPost } from "@/utils/fetchPost";
 import { POSTS_FOLDER } from "@/utils/variables";
+import { getAlternates } from "@/utils/seo";
 
 import {
   CharacteristicsBlock,
@@ -33,20 +34,16 @@ export async function generateMetadata({
   return {
     title: `${title}: ${seo.article_heading}`,
     description: excerpt,
+    alternates: getAlternates(locale, `/${slug}`),
   };
 }
 
 export async function generateStaticParams() {
-  const allParams = await Promise.all(
-    locales.map(async (locale) => {
-      const contentDir = path.join(process.cwd(), POSTS_FOLDER);
-      const allDirNames = await fs.readdir(contentDir);
+  const contentDir = path.join(process.cwd(), POSTS_FOLDER);
+  const allDirNames = await fs.readdir(contentDir);
+  const slugs = allDirNames.filter((name) => !name.startsWith("."));
 
-      return allDirNames.map(async (slug) => ({ params: { locale, slug } }));
-    }),
-  );
-
-  return allParams.flat();
+  return locales.flatMap((locale) => slugs.map((slug) => ({ locale, slug })));
 }
 
 export default async function ContentPage({
